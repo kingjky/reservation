@@ -10,8 +10,9 @@ header {
 	text-align: right;
 	padding: 5px 20px;
 	background-color: white;
+	margin-bottom: 10px;
 }
-header>ul {
+header > ul {
 	list-style: none;
 }
 header a {
@@ -21,9 +22,6 @@ header a {
 	height: 40px;
 	box-sizing: border-box;
 	line-height: 40px;
-}
-
-a {
 	background-color: lightseagreen;
 	box-shadow: 5px 5px 5px gray;
 	margin: 5px;
@@ -31,20 +29,15 @@ a {
 
 article {
 	background-color: white;
+	margin-bottom: 10px;
 }
-article a {
+article > div {
 	display: inline-block;
-	box-sizing: border-box;
-	color: white;
-	width: 100px;
-	height: 100px;
-	line-height: 100px;
-}
-article>* {
-	margin: 10px;
-}
-#article_img>img {
 	width: 80%;
+	text-align: left;
+}
+article > * {
+	margin: 10px;
 }
 
 footer {
