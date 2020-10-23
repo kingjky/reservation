@@ -10,10 +10,13 @@ header {
 	text-align: right;
 	padding: 5px 20px;
 	background-color: white;
+	margin-bottom: 10px;
 }
+
 header>ul {
 	list-style: none;
 }
+
 header a {
 	display: inline-block;
 	text-align: center;
@@ -21,9 +24,6 @@ header a {
 	height: 40px;
 	box-sizing: border-box;
 	line-height: 40px;
-}
-
-a {
 	background-color: lightseagreen;
 	box-shadow: 5px 5px 5px gray;
 	margin: 5px;
@@ -31,20 +31,38 @@ a {
 
 article {
 	background-color: white;
+	margin-bottom: 10px;
 }
-article a {
-	display: inline-block;
-	box-sizing: border-box;
-	color: white;
-	width: 100px;
-	height: 100px;
-	line-height: 100px;
-}
+
 article>* {
 	margin: 10px;
 }
-#article_img>img {
+
+article>section {
+	display: inline-block;
 	width: 80%;
+	text-align: left;
+	position: relative;
+}
+
+article>section>* {
+	float: left;
+	margin: 10px;
+}
+
+article>section>div.section_img {
+	width: 30%;
+}
+
+article>section>div.section_description {
+	width: 60%;
+	line-height: 30px;
+}
+
+img {
+	width: 100%;
+	border: 5px solid gray;
+	box-sizing: border-box;
 }
 
 footer {
