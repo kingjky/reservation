@@ -12,9 +12,11 @@ header {
 	background-color: white;
 	margin-bottom: 10px;
 }
-header > ul {
+
+header>ul {
 	list-style: none;
 }
+
 header a {
 	display: inline-block;
 	text-align: center;
@@ -31,13 +33,36 @@ article {
 	background-color: white;
 	margin-bottom: 10px;
 }
-article > div {
+
+article>* {
+	margin: 10px;
+}
+
+article>section {
 	display: inline-block;
 	width: 80%;
 	text-align: left;
+	position: relative;
 }
-article > * {
+
+article>section>* {
+	float: left;
 	margin: 10px;
+}
+
+article>section>div.section_img {
+	width: 30%;
+}
+
+article>section>div.section_description {
+	width: 60%;
+	line-height: 30px;
+}
+
+img {
+	width: 100%;
+	border: 5px solid gray;
+	box-sizing: border-box;
 }
 
 footer {
