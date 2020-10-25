@@ -23,7 +23,7 @@ public class TodayServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print("<a href='./index.html'>메인화면</a>");
-		out.print("<h1 style='text-align:center;'>");
+		out.print("<h1 style='position: fixed; text-align: center; margin: auto; bottom: 50%; left: 0; right: 0;'>");
 		out.print("현재시간 : ");
 		out.print(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm")).toString() + "<br>");
 		out.print("</h1>");
