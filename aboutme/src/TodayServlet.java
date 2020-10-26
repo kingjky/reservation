@@ -22,10 +22,13 @@ public class TodayServlet extends HttpServlet {
 		throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+		String nowDateTime = LocalDateTime.now().format(dateTimeFormatter).toString();
+		
 		out.print("<a href='./index.html'>메인화면</a>");
 		out.print("<h1 style='position: fixed; text-align: center; margin: auto; bottom: 50%; left: 0; right: 0;'>");
 		out.print("현재시간 : ");
-		out.print(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm")).toString() + "<br>");
+		out.print(nowDateTime + "<br>");
 		out.print("</h1>");
 		out.close();
 	}
