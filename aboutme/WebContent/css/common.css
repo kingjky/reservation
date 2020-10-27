@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+body {
+	text-align: center;
+	background-color: thistle;
+	margin: 0;
+}
+body > * {
+	background-color: white;
+}
+
+header {
+	margin-bottom: 10px;
+	width: 100%;
+}
+nav {
+	text-align: right;
+	padding: 10px 20px;
+	margin-right: 10px;
+}
+nav > ul {
+	list-style: none;
+	margin: 0;
+}
+nav > ul > li{
+	display: inline-block;
+}
+nav a {
+	display: block;
+	text-align: center;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	background-color: lightseagreen;
+	box-shadow: 5px 5px 5px gray;
+	margin: 5px;
+}
+
+article {
+	margin-bottom: 10px;
+}
+
+footer {
+	padding: 10px;
+	color: slategray;
+	font-weight: bold;
+}
