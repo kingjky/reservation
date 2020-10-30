@@ -1,0 +1,56 @@
+@charset "UTF-8";
+header {
+	text-align: center;
+}
+article {
+	text-align: center;
+}
+section {
+	text-align: left;
+	display: inline-block;
+	width: 50%;
+}
+section p {
+	margin: 0;
+}
+section input {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	padding: 5px;	
+}
+#form_title {
+	box-sizing: border-box;
+	width: 100%;
+}
+#form_name {
+	width: 50%;
+}
+
+footer {
+	text-align: center;
+}
+footer > div {
+	display: inline-block;
+	position: relative;
+	width: 50%;
+}
+footer > div > a {
+	text-align: center;
+	line-height: 40px;
+	box-shadow: 0 0 3px 1px gray;
+	width: 100px;
+	height: 40px;
+}
+.footer_anchor-left {
+	float: left;
+	left: 0;
+	background-color: white;
+	color: black;
+}
+.footer_anchor-right {
+	margin-left: 10px;
+	float: right;
+	background-color: #20ADEE;
+	color: white;
+}

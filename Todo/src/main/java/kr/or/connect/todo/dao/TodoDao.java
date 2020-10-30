@@ -1,9 +1,6 @@
 package kr.or.connect.todo.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +46,7 @@ public class TodoDao {
 			e.printStackTrace();
 		}
 		
-		String sql = "SELECT id, title, name, sequence, type, regdate FROM todo ORDER BY regdate ASC";
+		String sql = "SELECT id, title, name, sequence, type, SUBSTR(regdate, 1, 10) as regdate FROM todo ORDER BY regdate ASC";
 		try (Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbpasswd);
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
