@@ -97,12 +97,12 @@ public class TodoDao {
 
 	private String getNextType(String type) {
 		switch (type) {
-			case "todo":
-				return "doing";
-			case "doing":
-				return "done";
+			case "TODO":
+				return "DOING";
+			case "DOING":
+				return "DONE";
 			default:
-				return "done";
+				return "DONE";
 		}
 	}
 }

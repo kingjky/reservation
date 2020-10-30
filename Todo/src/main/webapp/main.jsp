@@ -10,13 +10,51 @@
 <link rel="stylesheet" href="./css/main.css">
 <script>
 	function updateType(id, type) {
-		console.log(id, type);
 		var oReq = new XMLHttpRequest();
-		 oReq.addEventListener("load", function() {
-		   console.log(this.responseText);
-		 });
-		 oReq.open("POST", "http://localhost:8080/Todo/todoType?id="+id+"&type="); 
-		 oReq.send();
+		oReq.addEventListener("load", function() {
+			moveTodo(id, type);
+		});
+		oReq.open("PUT", "http://localhost:8080/Todo/todoType?id=" + id
+				+ "&type=" + type);
+		oReq.send();
+	}
+	function moveTodo(id, type) {
+		var value = type + id;
+		var li = document.querySelector("li[value='" + value + "']");
+
+		var newType;
+		if (type === "TODO")
+			newType = "DOING";
+		else if (type === "DOING")
+			newType = "DONE";
+		li.setAttribute("value", newType + id);
+
+		var btn = li.childNodes[3].childNodes[7];
+		if (newType === "DONE")
+			btn.remove();
+		else
+			btn.setAttribute("onclick", "updateType('" + id + "', '" + newType + "')");
+
+		var ul = document.querySelector("#list_" + newType);
+		ul.appendChild(li);
+
+		var items = ul.childNodes;
+		var itemsArr = [];
+		for ( var i in items) {
+			if (items[i].nodeType == 1) {
+				itemsArr.push(items[i]);
+			}
+		}
+
+		itemsArr.sort(function(a, b) {
+			var a_id = Number(a.childNodes[5].innerHTML);
+			var b_id = Number(b.childNodes[5].innerHTML);
+			return a_id == b_id ? 0 : (a_id > b_id ? 1 : -1);
+		});
+
+		for (i = 0; i < itemsArr.length; ++i) {
+			ul.appendChild(itemsArr[i]);
+		}
 	}
 </script>
 </head>
@@ -28,53 +66,57 @@
 	<article>
 		<section>
 			<div class="section_title">DONE</div>
-			<c:forEach items="${todos }" var="todo">
-				<c:if test="${todo.type == 'DONE'}">
-					<div class="section_item">
-						<h3>${todo.title}</h3>
-						<p>
-							<span>등록날짜: ${todo.regDate }</span>, 
-							<span>${todo.name }</span>, 
-							<span>우선순위 ${todo.sequence }</span>
-							<button onclick="updateType('${todo.id}', '${todo.type}')"></button>
-						</p>
-					</div>
-				</c:if>
-			</c:forEach>
+			<ul class="section_list" id="list_DONE">
+				<c:forEach items="${todos }" var="todo">
+					<c:if test="${todo.type == 'DONE'}">
+						<li class="section_item">
+							<h3>${todo.title}</h3>
+							<p>
+								<span>등록날짜: ${todo.regDate }</span>, <span>${todo.name }</span>,
+								<span>우선순위 ${todo.sequence }</span>
+							</p>
+						</li>
+					</c:if>
+				</c:forEach>
+			</ul>
 		</section>
-		
+
 		<section>
 			<div class="section_title">DOING</div>
-			<c:forEach items="${todos }" var="todo">
-				<c:if test="${todo.type == 'DOING'}">
-					<div class="section_item">
-						<h3>${todo.title}</h3>
-						<p>
-							<span>등록날짜: ${todo.regDate }</span>, 
-							<span>${todo.name }</span>, 
-							<span>우선순위 ${todo.sequence }</span>
-							<button onclick="updateType('${todo.id}', '${todo.type}')"></button>
-						</p>
-					</div>
-				</c:if>
-			</c:forEach>
+			<ul class="section_list" id="list_DOING">
+				<c:forEach items="${todos }" var="todo">
+					<c:if test="${todo.type == 'DOING'}">
+						<li class="section_item" value="DOING${todo.id}">
+							<h3>${todo.title}</h3>
+							<p>
+								<span>등록날짜: ${todo.regDate }</span>, <span>${todo.name }</span>,
+								<span>우선순위 ${todo.sequence }</span>
+								<button onclick="updateType('${todo.id}', '${todo.type}')"></button>
+							</p>
+							<span id="item_id">${todo.id }</span>
+						</li>
+					</c:if>
+				</c:forEach>
+			</ul>
 		</section>
-		
+
 		<section>
 			<div class="section_title">TODO</div>
-			<c:forEach items="${todos }" var="todo">
-				<c:if test="${todo.type == 'TODO'}">
-					<div class="section_item">
-						<h3>${todo.title}</h3>
-						<p>
-							<span>등록날짜: ${todo.regDate }</span>, 
-							<span>${todo.name }</span>, 
-							<span>우선순위 ${todo.sequence }</span>
-							<button onclick="updateType('${todo.id}', '${todo.type}')"></button>
-						</p>
-					</div>
-				</c:if>
-			</c:forEach>
+			<ul class="section_list" id="list_TODO">
+				<c:forEach items="${todos }" var="todo">
+					<c:if test="${todo.type == 'TODO'}">
+						<li class="section_item" value="TODO${todo.id}">
+							<h3>${todo.title}</h3>
+							<p>
+								<span>등록날짜: ${todo.regDate }</span>, <span>${todo.name }</span>,
+								<span>우선순위 ${todo.sequence }</span>
+								<button onclick="updateType('${todo.id}', '${todo.type}')"></button>
+							</p>
+							<span id="item_id">${todo.id }</span>
+						</li>
+					</c:if>
+				</c:forEach>
+			</ul>
 		</section>
 	</article>
 </body>

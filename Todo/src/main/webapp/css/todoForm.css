@@ -27,15 +27,13 @@ section input {
 	width: 50%;
 }
 
-footer {
-	text-align: center;
-}
-footer > div {
+#buttons {
 	display: inline-block;
 	position: relative;
-	width: 50%;
+	width: 100%;
 }
-footer > div > a {
+#buttons > * {
+	padding: 0;
 	text-align: center;
 	line-height: 40px;
 	box-shadow: 0 0 3px 1px gray;
@@ -49,7 +47,7 @@ footer > div > a {
 	color: black;
 }
 .footer_anchor-right {
-	margin-left: 10px;
+	margin: 0 0 0 10px;
 	float: right;
 	background-color: #20ADEE;
 	color: white;

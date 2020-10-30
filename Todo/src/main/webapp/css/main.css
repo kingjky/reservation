@@ -49,10 +49,14 @@ section > * {
 	color: white;
 	background-color: #345461;
 }
+.section_list {
+	padding: 0;
+}
 .section_item {
-	height: 100px;
+	margin-top: 10px;
 	box-sizing: border-box;
 	padding-left: 20px;
+	height: 100px;
 	background-color: #CEE5EF;
 	overflow: hidden;
 	white-space: nowrap;
@@ -79,4 +83,7 @@ button {
 	background-repeat: no-repeat;
 	border-radius: 50px;
 	border: none;
+}
+#item_id {
+	visibility: hidden;
 }

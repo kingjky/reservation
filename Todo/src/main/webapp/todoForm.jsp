@@ -11,9 +11,6 @@
 	console.log('hihi');
 	let el = document.querySelector("div");
 	console.log(el);
-	// el.addEventListener("click", function(){
-	// 	alert('hi');
-	// },false)
 </script>
 </head>
 <body>
@@ -22,7 +19,7 @@
 	</header>
 	<article>
 		<section>
-			<form action="">
+			<form action="/Todo/todoAdd" method="post">
 				<p>어떤일인가요?</p>
 				<input type="text" name="title" id="form_title"
 					placeholder="swift 공부하기(24자까지)">
@@ -34,16 +31,14 @@
 					id="sequence2" name="sequence" value="2"> <label
 					for="sequence2">2순위</label> <input type="radio" id="sequence3"
 					name="sequence" value="3"> <label for="sequence3">3순위</label>
+				<div id="buttons">
+					<a href="/Todo/main" class="footer_anchor-left">이전</a>
+					<a class="footer_anchor-right" id="footer_clear">내용지우기</a>
+					<input type="submit" class="footer_anchor-right" >
+				</div>
 			</form>
 		</section>
 	</article>
-	<footer>
-		<div>
-			<a href="/main.html" class="footer_anchor-left">이전</a> <a
-				class="footer_anchor-right" id="footer_clear">내용지우기</a> <a
-				href="/main.html" class="footer_anchor-right"
-				onclick="alert('click');">제출</a>
-		</div>
-	</footer>
+	<footer> </footer>
 </body>
 </html>

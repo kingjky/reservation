@@ -12,6 +12,12 @@ public class TodoDto {
 		super();
 	}
 
+	public TodoDto(long id, String type) {
+		super();
+		this.id = id;
+		this.type = type;
+	}
+
 	public TodoDto(String name, int sequence, String title) {
 		super();
 		this.name = name;
