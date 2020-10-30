@@ -11,9 +11,6 @@
 	console.log('hihi');
 	let el = document.querySelector("div");
 	console.log(el);
-	// el.addEventListener("click", function(){
-	// 	alert('hi');
-	// },false)
 </script>
 </head>
 <body>
