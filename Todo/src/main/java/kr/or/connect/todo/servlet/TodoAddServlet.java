@@ -13,12 +13,15 @@ import kr.or.connect.todo.dto.TodoDto;
 @WebServlet("/todoAdd")
 public class TodoAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public TodoAddServlet() {
-        super();
-    }
-    
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	public TodoAddServlet() {
+		super();
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+
 		String title = request.getParameter("title");
 		String name = request.getParameter("name");
 		int sequence = Integer.parseInt(request.getParameter("sequence"));
@@ -26,7 +29,7 @@ public class TodoAddServlet extends HttpServlet {
 		TodoDao todoDao = new TodoDao();
 		TodoDto todoDto = new TodoDto(name, sequence, title);
 		todoDao.addTodo(todoDto);
-		
+
 		response.sendRedirect("/Todo/main");
 	}
 

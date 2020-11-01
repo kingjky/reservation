@@ -9,15 +9,31 @@
 <title>main</title>
 <link rel="stylesheet" href="./css/main.css">
 <script>
+	document.addEventListener("DOMContentLoaded", function(){
+		var list_items = this.querySelectorAll("li");
+		list_items.forEach(el => {
+			var item_button = el.childNodes[3].childNodes[7];
+			if(item_button != null){
+				var item_id = el.childNodes[5].innerHTML;
+				var item_type = el.childNodes[7].innerHTML;
+				item_button.addEventListener("click", function() {
+					updateType(item_id, item_type);
+				})
+			}
+		});
+	});
+	
 	function updateType(id, type) {
 		var oReq = new XMLHttpRequest();
 		oReq.addEventListener("load", function() {
-			moveTodo(id, type);
+			if (oReq.response === "success")
+				console.log(oReq.response);
+				moveTodo(id, type);
 		});
-		oReq.open("PUT", "http://localhost:8080/Todo/todoType?id=" + id
-				+ "&type=" + type);
+		oReq.open("PUT", "http://localhost:8080/Todo/todoType?id=" + id + "&type=" + type);
 		oReq.send();
 	}
+	
 	function moveTodo(id, type) {
 		var value = type + id;
 		var li = document.querySelector("li[value='" + value + "']");
@@ -49,7 +65,15 @@
 		itemsArr.sort(function(a, b) {
 			var a_id = Number(a.childNodes[5].innerHTML);
 			var b_id = Number(b.childNodes[5].innerHTML);
-			return a_id == b_id ? 0 : (a_id > b_id ? 1 : -1);
+
+			if (a_id === b_id) {
+				return 0;
+			} else {
+				if (a_id > b_id)
+					return 1;
+				else
+					return -1;
+			}
 		});
 
 		for (i = 0; i < itemsArr.length; ++i) {
@@ -75,6 +99,8 @@
 								<span>등록날짜: ${todo.regDate }</span>, <span>${todo.name }</span>,
 								<span>우선순위 ${todo.sequence }</span>
 							</p>
+							<span id="item_id" class="item_hidden">${todo.id }</span>
+							<span id="item_type" class="item_hidden">${todo.type }</span>
 						</li>
 					</c:if>
 				</c:forEach>
@@ -91,9 +117,10 @@
 							<p>
 								<span>등록날짜: ${todo.regDate }</span>, <span>${todo.name }</span>,
 								<span>우선순위 ${todo.sequence }</span>
-								<button onclick="updateType('${todo.id}', '${todo.type}')"></button>
+								<input type="button"></input>
 							</p>
-							<span id="item_id">${todo.id }</span>
+							<span id="item_id" class="item_hidden">${todo.id }</span>
+							<span id="item_type" class="item_hidden">${todo.type }</span>
 						</li>
 					</c:if>
 				</c:forEach>
@@ -110,9 +137,10 @@
 							<p>
 								<span>등록날짜: ${todo.regDate }</span>, <span>${todo.name }</span>,
 								<span>우선순위 ${todo.sequence }</span>
-								<button onclick="updateType('${todo.id}', '${todo.type}')"></button>
+								<input type="button"></input>
 							</p>
-							<span id="item_id">${todo.id }</span>
+							<span id="item_id" class="item_hidden">${todo.id }</span>
+							<span id="item_type" class="item_hidden">${todo.type }</span>
 						</li>
 					</c:if>
 				</c:forEach>

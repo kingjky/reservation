@@ -27,7 +27,7 @@ public class TodoTypeServlet extends HttpServlet {
 		TodoDto todoDto = new TodoDto(id, type);
 		todoDao.updateTodo(todoDto);
 		
-		response.setStatus(response.SC_OK);
+		response.getWriter().write("success");
 		
 	}
 }
