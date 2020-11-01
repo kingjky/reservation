@@ -14,8 +14,8 @@
 		list_items.forEach(el => {
 			var item_button = el.childNodes[3].childNodes[7];
 			if(item_button != null){
-				var item_id = el.childNodes[5].innerHTML;
-				var item_type = el.childNodes[7].innerHTML;
+				var item_id = el.childNodes[5].textContent;
+				var item_type = el.childNodes[7].textContent;
 				item_button.addEventListener("click", function() {
 					updateType(item_id, item_type);
 				})
@@ -26,8 +26,8 @@
 	function updateType(id, type) {
 		var oReq = new XMLHttpRequest();
 		oReq.addEventListener("load", function() {
-			if (oReq.response === "success")
-				console.log(oReq.response);
+			if (oReq.responseText === "success")
+				console.log(oReq.responseText);
 				moveTodo(id, type);
 		});
 		oReq.open("PUT", "http://localhost:8080/Todo/todoType?id=" + id + "&type=" + type);
@@ -63,8 +63,8 @@
 		}
 
 		itemsArr.sort(function(a, b) {
-			var a_id = Number(a.childNodes[5].innerHTML);
-			var b_id = Number(b.childNodes[5].innerHTML);
+			var a_id = Number(a.childNodes[5].textContent);
+			var b_id = Number(b.childNodes[5].textContent);
 
 			if (a_id === b_id) {
 				return 0;
@@ -119,8 +119,8 @@
 								<span>우선순위 ${todo.sequence }</span>
 								<input type="button"></input>
 							</p>
-							<span id="item_id" class="item_hidden">${todo.id }</span>
-							<span id="item_type" class="item_hidden">${todo.type }</span>
+							<span id="item_id" class="item_hidden"><p>${todo.id }</p></span>
+							<span id="item_type" class="item_hidden"><p>${todo.type }</p></span>
 						</li>
 					</c:if>
 				</c:forEach>
