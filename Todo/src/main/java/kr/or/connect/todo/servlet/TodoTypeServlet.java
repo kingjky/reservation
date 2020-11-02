@@ -24,7 +24,7 @@ public class TodoTypeServlet extends HttpServlet {
 		String type = request.getParameter("type");
 		
 		TodoDao todoDao = new TodoDao();
-		TodoDto todoDto = new TodoDto(id, type);
+		TodoDto todoDto = new TodoDto.Builder().id(id).type(type).build();
 		todoDao.updateTodo(todoDto);
 		
 		response.getWriter().write("success");
