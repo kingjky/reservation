@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.or.connect.todo.TodoType;
 import kr.or.connect.todo.dto.TodoDto;
 
 public class TodoDao {
@@ -96,13 +97,17 @@ public class TodoDao {
 	}
 
 	private String getNextType(String type) {
-		switch (type) {
-			case "TODO":
-				return "DOING";
-			case "DOING":
-				return "DONE";
-			default:
-				return "DONE";
-		}
+		TodoType todoType = TodoType.valueOf(type);
+		TodoType[] values = TodoType.values();
+		int nextOrder = getNextOrder(todoType.ordinal(), values.length);
+		TodoType newTodoType = values[nextOrder];
+		return newTodoType.name();
+	}
+
+	private int getNextOrder(int order, int maxNum) {
+		int nextOrder = order + 1;
+		if(nextOrder == maxNum)
+			nextOrder = 0;
+		return nextOrder;
 	}
 }
