@@ -1,0 +1,82 @@
+@charset "UTF-8";
+header {
+	height: 100px;
+}
+#header_title {
+	width: 250px;
+	font-size: 30px;
+	transform: rotate(-30deg);
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	font-weight: bold;
+	color: #406274;
+}
+#header_new-todo {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	background-color: #20ADEE;
+	width: 200px;
+	height: 40px;
+	color: white;
+	text-align: center;
+	line-height: 40px;
+	box-shadow: 0 0 3px 1px gray;
+}
+
+article {
+	width: 100%;
+	text-align: right;
+}
+section {
+	text-align: left;
+	display: inline-block;
+	float:right;
+	width: 30%;
+	margin-right: 10px;
+	top: 0px;
+}
+section > * {
+	margin: 10px 0;
+}
+.section_title {
+	height: 70px;
+	line-height: 70px;
+	padding-left: 20px;
+	font-weight: bold;
+	font-size: 25px;
+	color: white;
+	background-color: #345461;
+}
+.section_item {
+	height: 100px;
+	box-sizing: border-box;
+	padding-left: 20px;
+	background-color: #CEE5EF;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.section_item > h3 {
+	margin: 0;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	font-weight: bold;
+}
+.section_item > p {
+	margin: 0;
+	font-size: 14px;
+	position: relative;
+}
+button {
+	margin: 0 10px;
+	position: absolute;
+	right: 10px;
+	width: 30px;
+    height: 30px;
+	background-image: url("../img/arrow.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	border-radius: 50px;
+	border: none;
+}
