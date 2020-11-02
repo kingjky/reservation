@@ -37,13 +37,13 @@ public class TodoDao {
 			ResultSet rs = dbConn.getPreparedStatement().executeQuery();) {
 			while (rs.next()) {
 				long id = rs.getLong(1);
+				String type = rs.getString(5);
 				String title = rs.getString(2);
 				String name = rs.getString(3);
 				int sequence = rs.getInt(4);
-				String type = rs.getString(5);
 				String regDate = rs.getString(6);
 
-				TodoDto todoDto = new TodoDto(id, name, regDate, sequence, title, type);
+				TodoDto todoDto = new TodoDto.Builder().id(id).type(type).title(title).name(name).sequence(sequence).regDate(regDate).build();
 				list.add(todoDto);
 			}
 		} catch (Exception ex) {

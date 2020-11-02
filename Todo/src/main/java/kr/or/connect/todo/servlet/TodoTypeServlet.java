@@ -1,11 +1,15 @@
 package kr.or.connect.todo.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import kr.or.connect.todo.dao.TodoDao;
+import kr.or.connect.todo.dto.TodoDto;
 
 @WebServlet("/todoType")
 public class TodoTypeServlet extends HttpServlet {
@@ -15,13 +19,15 @@ public class TodoTypeServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		long id = Integer.parseInt(request.getParameter("id"));
 		String type = request.getParameter("type");
 		
-		System.out.println(id);
-		System.out.println(type);
+		TodoDao todoDao = new TodoDao();
+		TodoDto todoDto = new TodoDto.Builder().id(id).type(type).build();
+		todoDao.updateTodo(todoDto);
+		
+		response.getWriter().write("success");
+		
 	}
-
 }
