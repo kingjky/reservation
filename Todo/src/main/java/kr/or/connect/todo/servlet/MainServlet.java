@@ -27,7 +27,7 @@ public class MainServlet extends HttpServlet {
 		request.setAttribute("todos", todos);
 		
 		RequestDispatcher requestDispatehcer = request.getRequestDispatcher("/main.jsp");
-        requestDispatehcer.forward(request, response);
+		requestDispatehcer.forward(request, response);
 	}
 
 }
