@@ -27,7 +27,6 @@
 		var oReq = new XMLHttpRequest();
 		oReq.addEventListener("load", function() {
 			if (oReq.responseText === "success")
-				console.log(oReq.responseText);
 				moveTodo(id, type);
 		});
 		oReq.open("PUT", "http://localhost:8080/Todo/todoType?id=" + id + "&type=" + type);
@@ -62,14 +61,14 @@
 			}
 		}
 
-		itemsArr.sort(function(a, b) {
-			var a_id = Number(a.childNodes[5].textContent);
-			var b_id = Number(b.childNodes[5].textContent);
+		itemsArr.sort(function(prev, next) {
+			var prev_id = Number(prev.childNodes[5].textContent);
+			var next_id = Number(next.childNodes[5].textContent);
 
-			if (a_id === b_id) {
+			if (prev_id === next_id) {
 				return 0;
 			} else {
-				if (a_id > b_id)
+				if (prev_id > next_id)
 					return 1;
 				else
 					return -1;
@@ -91,7 +90,7 @@
 		<section>
 			<div class="section_title">DONE</div>
 			<ul class="section_list" id="list_DONE">
-				<c:forEach items="${todos }" var="todo">
+				<c:forEach items="${todoList }" var="todo">
 					<c:if test="${todo.type == 'DONE'}">
 						<li class="section_item">
 							<h3>${todo.title}</h3>
@@ -110,7 +109,7 @@
 		<section>
 			<div class="section_title">DOING</div>
 			<ul class="section_list" id="list_DOING">
-				<c:forEach items="${todos }" var="todo">
+				<c:forEach items="${todoList }" var="todo">
 					<c:if test="${todo.type == 'DOING'}">
 						<li class="section_item" value="DOING${todo.id}">
 							<h3>${todo.title}</h3>
@@ -130,7 +129,7 @@
 		<section>
 			<div class="section_title">TODO</div>
 			<ul class="section_list" id="list_TODO">
-				<c:forEach items="${todos }" var="todo">
+				<c:forEach items="${todoList }" var="todo">
 					<c:if test="${todo.type == 'TODO'}">
 						<li class="section_item" value="TODO${todo.id}">
 							<h3>${todo.title}</h3>

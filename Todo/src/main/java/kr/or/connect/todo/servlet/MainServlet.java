@@ -16,17 +16,19 @@ import kr.or.connect.todo.dto.TodoDto;
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public MainServlet() {
-        super();
-    }
+	private static final String mainPage = "/main.jsp";
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public MainServlet() {
+		super();
+	}
+
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
 		TodoDao todoDao = new TodoDao();
-		List<TodoDto> todos = todoDao.getTodos();
-		request.setAttribute("todos", todos);
-		
-		RequestDispatcher requestDispatehcer = request.getRequestDispatcher("/main.jsp");
+		List<TodoDto> todoList = todoDao.getTodos();
+		request.setAttribute("todoList", todoList);
+
+		RequestDispatcher requestDispatehcer = request.getRequestDispatcher(mainPage);
 		requestDispatehcer.forward(request, response);
 	}
 

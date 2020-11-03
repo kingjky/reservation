@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/todoForm")
 public class TodoFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String formPage = "/todoForm.jsp";
 
 	public TodoFormServlet() {
 		super();
 	}
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/todoForm.jsp");
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(formPage);
 		requestDispatcher.forward(request, response);
 	}
 
