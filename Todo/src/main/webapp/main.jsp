@@ -9,6 +9,12 @@
 <title>main</title>
 <link rel="stylesheet" href="./css/main.css">
 <script>
+	var TodoType = {
+		TODO  : {name: "TODO"},
+		DOING : {name: "DOING"},
+		DONE  : {name: "DONE"}
+	}
+	
 	document.addEventListener("DOMContentLoaded", function(){
 		var list_items = this.querySelectorAll("li");
 		list_items.forEach(el => {
@@ -36,16 +42,16 @@
 	function moveTodo(id, type) {
 		var value = type + id;
 		var li = document.querySelector("li[value='" + value + "']");
-
+		
 		var newType;
-		if (type === "TODO")
-			newType = "DOING";
-		else if (type === "DOING")
-			newType = "DONE";
+		if (type === TodoType.TODO.name)
+			newType = TodoType.DOING.name;
+		else if (type === TodoType.DOING.name)
+			newType = TodoType.DONE.name;
 		li.setAttribute("value", newType + id);
-
+		
 		var btn = li.childNodes[3].childNodes[7];
-		if (newType === "DONE")
+		if (newType === TodoType.DONE.name)
 			btn.remove();
 		else
 			btn.setAttribute("onclick", "updateType('" + id + "', '" + newType + "')");
@@ -118,8 +124,8 @@
 								<span>우선순위 ${todo.sequence }</span>
 								<input type="button"></input>
 							</p>
-							<span id="item_id" class="item_hidden"><p>${todo.id }</p></span>
-							<span id="item_type" class="item_hidden"><p>${todo.type }</p></span>
+							<span id="item_id" class="item_hidden">${todo.id }</span>
+							<span id="item_type" class="item_hidden">${todo.type }</span>
 						</li>
 					</c:if>
 				</c:forEach>

@@ -12,9 +12,9 @@ import kr.or.connect.todo.enumeration.TodoType;
 import kr.or.connect.todo.util.DBConnection;
 
 public class TodoDao {
-	private final static String dbUrl = "jdbc:mysql://localhost:3306/connectdb?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true&useSSL=false";
-	private final static String dbUser = "connectuser";
-	private final static String dbPasswd = "connect123!@#";
+	private final static String dbUrl = "jdbc:mysql://10.113.116.52:13306/user11?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true&useSSL=false";
+	private final static String dbUser = "user11";
+	private final static String dbPasswd = "user11";
 
 	private final static String insertTodoSQL = "INSERT INTO todo(title, name, sequence) VALUES(?, ?, ?)";
 	private final static String selectTodoSql = "SELECT id, title, name, sequence, type, SUBSTR(regdate, 1, 10) as regdate FROM todo ORDER BY regdate ASC";
