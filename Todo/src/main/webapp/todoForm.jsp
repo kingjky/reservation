@@ -7,9 +7,6 @@
 <title>Document</title>
 <link rel="stylesheet" href="./css/todoForm.css">
 <script type="text/javascript">
-	function clear() {
-		console.log("clear")
-	}
 </script>
 </head>
 <body>
@@ -25,7 +22,7 @@
 				<label for="form_name" class="label_text">누가 할일인가요?</label>
 				<input type="text" name="name" id="form_name" placeholder="홍길동(12자까지)" maxlength="12" required>
 				<div>우선순위를 선택하세요</div>
-				<input type="radio" id="sequence1" name="sequence" value="1" required><label for="sequence1" class="label_radio">1순위</label>
+				<input type="radio" id="sequence1" name="sequence" value="1" ><label for="sequence1" class="label_radio">1순위</label>
 				<input type="radio" id="sequence2" name="sequence" value="2"><label for="sequence2" class="label_radio">2순위</label>
 				<input type="radio" id="sequence3" name="sequence" value="3"><label for="sequence3" class="label_radio">3순위</label>
 				<div id="buttons">
