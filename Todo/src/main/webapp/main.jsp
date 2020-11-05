@@ -9,6 +9,12 @@
 <title>main</title>
 <link rel="stylesheet" href="./css/main.css">
 <script>
+	var TodoType = {
+		TODO  : {name: "TODO"},
+		DOING : {name: "DOING"},
+		DONE  : {name: "DONE"}
+	}
+	
 	document.addEventListener("DOMContentLoaded", function(){
 		var list_items = this.querySelectorAll("li");
 		list_items.forEach(el => {
@@ -27,7 +33,6 @@
 		var oReq = new XMLHttpRequest();
 		oReq.addEventListener("load", function() {
 			if (oReq.responseText === "success")
-				console.log(oReq.responseText);
 				moveTodo(id, type);
 		});
 		oReq.open("PUT", "http://localhost:8080/Todo/todoType?id=" + id + "&type=" + type);
@@ -37,16 +42,16 @@
 	function moveTodo(id, type) {
 		var value = type + id;
 		var li = document.querySelector("li[value='" + value + "']");
-
+		
 		var newType;
-		if (type === "TODO")
-			newType = "DOING";
-		else if (type === "DOING")
-			newType = "DONE";
+		if (type === TodoType.TODO.name)
+			newType = TodoType.DOING.name;
+		else if (type === TodoType.DOING.name)
+			newType = TodoType.DONE.name;
 		li.setAttribute("value", newType + id);
-
+		
 		var btn = li.childNodes[3].childNodes[7];
-		if (newType === "DONE")
+		if (newType === TodoType.DONE.name)
 			btn.remove();
 		else
 			btn.setAttribute("onclick", "updateType('" + id + "', '" + newType + "')");
@@ -62,14 +67,14 @@
 			}
 		}
 
-		itemsArr.sort(function(a, b) {
-			var a_id = Number(a.childNodes[5].textContent);
-			var b_id = Number(b.childNodes[5].textContent);
+		itemsArr.sort(function(prev, next) {
+			var prev_id = Number(prev.childNodes[5].textContent);
+			var next_id = Number(next.childNodes[5].textContent);
 
-			if (a_id === b_id) {
+			if (prev_id === next_id) {
 				return 0;
 			} else {
-				if (a_id > b_id)
+				if (prev_id > next_id)
 					return 1;
 				else
 					return -1;
@@ -91,7 +96,7 @@
 		<section>
 			<div class="section_title">DONE</div>
 			<ul class="section_list" id="list_DONE">
-				<c:forEach items="${todos }" var="todo">
+				<c:forEach items="${todoList }" var="todo">
 					<c:if test="${todo.type == 'DONE'}">
 						<li class="section_item">
 							<h3>${todo.title}</h3>
@@ -110,7 +115,7 @@
 		<section>
 			<div class="section_title">DOING</div>
 			<ul class="section_list" id="list_DOING">
-				<c:forEach items="${todos }" var="todo">
+				<c:forEach items="${todoList }" var="todo">
 					<c:if test="${todo.type == 'DOING'}">
 						<li class="section_item" value="DOING${todo.id}">
 							<h3>${todo.title}</h3>
@@ -119,8 +124,8 @@
 								<span>우선순위 ${todo.sequence }</span>
 								<input type="button"></input>
 							</p>
-							<span id="item_id" class="item_hidden"><p>${todo.id }</p></span>
-							<span id="item_type" class="item_hidden"><p>${todo.type }</p></span>
+							<span id="item_id" class="item_hidden">${todo.id }</span>
+							<span id="item_type" class="item_hidden">${todo.type }</span>
 						</li>
 					</c:if>
 				</c:forEach>
@@ -130,7 +135,7 @@
 		<section>
 			<div class="section_title">TODO</div>
 			<ul class="section_list" id="list_TODO">
-				<c:forEach items="${todos }" var="todo">
+				<c:forEach items="${todoList }" var="todo">
 					<c:if test="${todo.type == 'TODO'}">
 						<li class="section_item" value="TODO${todo.id}">
 							<h3>${todo.title}</h3>
