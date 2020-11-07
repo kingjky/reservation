@@ -6,3 +6,4 @@ target
 /src/main/java/kr/or/connect/daoexam/*
 /src/main/java/kr/or/connect/diexam01/*
 /src/main/java/kr/or/connect/mvcexam/*
+/src/main/java/kr/or/connect/guestbook/*
