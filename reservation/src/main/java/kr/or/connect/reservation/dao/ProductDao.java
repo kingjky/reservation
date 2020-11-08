@@ -20,17 +20,28 @@ import kr.or.connect.reservation.dto.Product;
 public class ProductDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private RowMapper<Product> rowMapper = BeanPropertyRowMapper.newInstance(Product.class);
-	
+
 	public ProductDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
-	
+
+	public List<Product> selectAll(Integer start, Integer limit) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("start", start);
+		params.put("limit", limit);
+		return jdbc.query(SELECT_PAGING, params, rowMapper);
+	}
+
 	public List<Product> selectAllUsingCategory(Integer categoryId, Integer start, Integer limit) {
 		Map<String, Integer> params = new HashMap<>();
 		params.put("categoryId", categoryId);
 		params.put("start", start);
 		params.put("limit", limit);
 		return jdbc.query(SELECT_PAGING_USING_CATEGORY, params, rowMapper);
+	}
+
+	public int selectCount() {
+		return jdbc.queryForObject(SELECT_COUNT, Collections.emptyMap(), Integer.class);
 	}
 
 	public int selectCountUsingCategory(Integer categoryId) {
