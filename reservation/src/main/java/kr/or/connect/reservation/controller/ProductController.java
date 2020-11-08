@@ -21,7 +21,7 @@ public class ProductController {
 	ProductService productService;
 
 	@GetMapping
-	public Map<String, Object> getProduct(@RequestParam(name = "categoryId", required = false) Integer categoryId,
+	public Map<String, Object> getProducts(@RequestParam(name = "categoryId", required = false) Integer categoryId,
 		@RequestParam(name = "start", required = false, defaultValue = "0") Integer start) {
 		List<Product> products = productService.getProductsUsingCategory(categoryId, start);
 		Integer totalCount = productService.getCountUsingCategory(categoryId);
