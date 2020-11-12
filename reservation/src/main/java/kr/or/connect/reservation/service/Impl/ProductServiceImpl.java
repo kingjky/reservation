@@ -25,7 +25,9 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	public List<Product> getProductsUsingCategory(Integer categoryId, Integer start) {
 		List<Product> products;
-		if(categoryId == null)
+		if (start == null)
+			start = 0;
+		if (categoryId == null || categoryId == 0)
 			return getProducts(start);
 		products = productDao.selectAllUsingCategory(categoryId, start, LIMIT);
 		return products;
@@ -39,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	@Transactional
 	public int getCountUsingCategory(Integer categoryId) {
-		if(categoryId == null)
+		if (categoryId == null || categoryId == 0)
 			return getCount();
 		return productDao.selectCountUsingCategory(categoryId);
 	}
