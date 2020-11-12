@@ -18,7 +18,7 @@ import static kr.or.connect.reservation.dao.CategoryDaoSqls.*;
 public class CategoryDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private RowMapper<Category> rowMapper = BeanPropertyRowMapper.newInstance(Category.class);
-	
+
 	public CategoryDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
