@@ -18,11 +18,11 @@ import static kr.or.connect.reservation.dao.PromotionDaoSqls.*;
 public class PromotionDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private RowMapper<Promotion> rowMapper = BeanPropertyRowMapper.newInstance(Promotion.class);
-	
+
 	public PromotionDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
-	
+
 	public List<Promotion> selectAll() {
 		return jdbc.query(SELECT_ALL, rowMapper);
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.service.ProductService;
 
+@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(path = "/products")
-public class ProductController {
+@RequestMapping(path = "/api/products")
+public class ProductApiController {
 	@Autowired
 	ProductService productService;
 
