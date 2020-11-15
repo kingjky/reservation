@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,15 +17,20 @@ import kr.or.connect.reservation.service.PromotionService;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(path = "/api/promotions")
-public class PromotionApiController {
+public class PromotionApiController extends EntityController {
+	private final PromotionService promotionService;
+
 	@Autowired
-	PromotionService promotionService;
+	public PromotionApiController(PromotionService promotionService) {
+		super();
+		this.promotionService = promotionService;
+	}
 
 	@GetMapping
-	public Map<String, Object> getPromotions() {
+	public ResponseEntity<Map<String, Object>> getPromotions() {
 		List<Promotion> promotions = promotionService.getPromotions();
 		Map<String, Object> map = new HashMap<>();
 		map.put("items", promotions);
-		return map;
+		return handleSuccess(map);
 	}
 }

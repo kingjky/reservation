@@ -10,20 +10,23 @@ function initialize(){
 }
 
 function loadProducts(categoryId = 0, start = 0) {
+	
 	var oReq = new XMLHttpRequest();
-	oReq.addEventListener("load", function(response) {
-		console.log(this.getAllResponseHeaders());
+	oReq.addEventListener("load", function() {
+		if(this.status !== 200) {
+			const emptyCount = 0;
+			const emptyProducts = [];
+			updateProducts(emptyCount, emptyProducts);
+			return;
+		}
 		var productsWrapper = JSON.parse(this.responseText);
-		updateProducts(productsWrapper);
+		updateProducts(productsWrapper.totalCount, productsWrapper.items);
 	});
 	oReq.open("GET", `./api/products?categoryId=${categoryId}&start=${start}`);
 	oReq.send();
 }
 
-function updateProducts(productsWrapper) {
-	var totalCount = productsWrapper.totalCount;
-	var products = productsWrapper.items;
-	
+function updateProducts(totalCount, products) {	
 	var count = document.querySelector(".pink");
 	count.innerText = totalCount + "개";
 	
