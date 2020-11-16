@@ -20,6 +20,7 @@ import kr.or.connect.reservation.util.exception.CustomException;
 public class ExceptionManager extends ResponseEntityExceptionHandler {
 	private final static Logger logger = Logger.getRootLogger();
 	
+	// FIXME 잘못된 URL 요청 시 Not Found 404 처리 필요
 	@Override
 	protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException exception, HttpHeaders headers,
 		HttpStatus status, WebRequest request) {
