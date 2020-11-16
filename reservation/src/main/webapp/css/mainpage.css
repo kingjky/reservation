@@ -1,0 +1,10 @@
+#count {
+	visibility: hidden;
+}
+
+/*ANIMATION*/
+.container_visual ul {
+	-webkit-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
