@@ -37,7 +37,6 @@ public class ExceptionManager extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler
 	public ResponseEntity<Error> thrownException(Exception exception) {
-		System.out.println(exception);
 		logger.error(exception);
 		if(exception.getCause() == null) {
 			Error error = Error.create(ExceptionEnum.UNKNOWN_EXCEPTION);
