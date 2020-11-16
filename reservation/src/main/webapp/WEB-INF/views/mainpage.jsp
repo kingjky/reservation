@@ -54,11 +54,10 @@
 						</div>
 						<div>
 							<div class="container_visual">
-								<!-- 슬라이딩기능: 이미지 (type = 'th')를 순차적으로 노출 -->
 								<ul class="visual_img">
 									<c:forEach items="${promotions}" var="promotion">
 										<li class="item"
-											style="background-image: url(http://localhost:8080/reservation/${promotion.productImageUrl});">
+											style="background-image: url(./${promotion.productImageUrl});">
 											<a href="#"> <span class="img_btm_border"></span> <span
 												class="img_right_border"></span> <span class="img_bg_gra"></span>
 												<div class="event_txt">
@@ -105,12 +104,10 @@
 					바로 예매 가능한 행사가 <span class="pink">0개</span> 있습니다
 				</p>
 				<div class="wrap_event_box">
-					<!-- [D] lst_event_box 가 2컬럼으로 좌우로 나뉨, 더보기를 클릭할때마다 좌우 ul에 li가 추가됨 -->
 					<ul class="lst_event_box">
 					</ul>
 					<ul class="lst_event_box">
 					</ul>
-					<!-- 더보기 -->
 					<div class="more">
 						<button class="btn" value="0">
 							<span>더보기</span>
@@ -134,7 +131,7 @@
 
 
 	<script type="rv-template" id="promotionItem">
-	<li class="item" style="background-image: url(http://localhost:8080/reservation/{productImageUrl});">
+	<li class="item" style="background-image: url(./{productImageUrl});">
 		<a href="#"> <span class="img_btm_border"></span> <span class="img_right_border"></span> <span class="img_bg_gra"></span>
 			<div class="event_txt">
 				<h4 class="event_txt_tit"></h4>
@@ -145,12 +142,11 @@
 	</li>
     </script>
 
-	<!-- http://211.249.62.123/productImages/${id}?type=th -->
 	<script type="rv-template" id="itemList">
 	<li class="item">
 		<a href="detail.html?id={id}" class="item_book">
 			<div class="item_preview">
-				<img alt="{description}" class="img_thumb" src="http://localhost:8080/reservation/{productImageUrl}">
+				<img alt="{description}" class="img_thumb" src="./{productImageUrl}">
 
 				<span class="img_border"></span>
 			</div>
@@ -162,7 +158,7 @@
 	</li>
 	</script>
 
-	<script src="http://localhost:8080/reservation/js/mainpage.js"></script>
+	<script src="./js/mainpage.js"></script>
 </body>
 
 </html>
