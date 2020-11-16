@@ -6,17 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.connect.reservation.dao.ProductDao;
+import kr.or.connect.reservation.dao.ProductImageDao;
+import kr.or.connect.reservation.dao.ProductPriceDao;
 import kr.or.connect.reservation.dto.Product;
+import kr.or.connect.reservation.dto.ProductImage;
+import kr.or.connect.reservation.dto.ProductPrice;
 import kr.or.connect.reservation.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+	private final ProductDao productDao;
+	private final ProductImageDao productImageDao;
+	private final ProductPriceDao productPriceDao;
+	
 	@Autowired
-	ProductDao productDao;
+	public ProductServiceImpl(ProductDao productDao, ProductImageDao productImageDao, ProductPriceDao productPriceDao) {
+		this.productDao = productDao;
+		this.productImageDao = productImageDao;
+		this.productPriceDao = productPriceDao;
+	}
 
 	@Override
 	public List<Product> getProducts(Integer start) {
-		List<Product> products = productDao.selectAll(start, LIMIT);
+		List<Product> products = productDao.selectAllWithPaging(start, LIMIT);
 		return products;
 	}
 
@@ -25,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> products;
 		if (categoryId == null || categoryId == 0)
 			return getProducts(start);
-		products = productDao.selectAllUsingCategory(categoryId, start, LIMIT);
+		products = productDao.selectAllWithPagingUsingCategory(categoryId, start, LIMIT);
 		return products;
 	}
 
@@ -40,4 +52,17 @@ public class ProductServiceImpl implements ProductService {
 			return getCount();
 		return productDao.selectCountUsingCategory(categoryId);
 	}
+
+	@Override
+	public List<ProductImage> getProductImagesUsingProductId(Integer productId) {
+		List<ProductImage> productImages = productImageDao.selectAllUsingProductId(productId);
+		return productImages;
+	}
+
+	@Override
+	public List<ProductPrice> getProductPricesUsingProductId(Integer productId) {
+		List<ProductPrice> productPrices = productPriceDao.selectAllUsingProductId(productId);
+		return productPrices;
+	}
+
 }

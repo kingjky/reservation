@@ -1,4 +1,4 @@
-package kr.or.connect.reservation.controller;
+package kr.or.connect.reservation.controller.api;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.or.connect.reservation.controller.EntityController;
 import kr.or.connect.reservation.dto.Promotion;
 import kr.or.connect.reservation.service.PromotionService;
 
