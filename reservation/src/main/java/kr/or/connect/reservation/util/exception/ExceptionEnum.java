@@ -17,15 +17,18 @@ public enum ExceptionEnum implements BaseExceptionType {
 		this.httpStatus = httpStatus;
 		this.errorMessage = errorMessage;
 	}
-
+	
+    @Override
 	public int getErrorCode() {
 		return errorCode;
 	}
-
+	
+    @Override
 	public HttpStatus getHttpStatus() {
 		return httpStatus;
 	}
-
+	
+    @Override
 	public String getErrorMessage() {
 		return errorMessage;
 	}
