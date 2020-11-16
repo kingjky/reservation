@@ -1,4 +1,4 @@
-/src/main/resources/application.properties
+/src/main/resources/*
 target
 .classpath
 .project
@@ -10,5 +10,3 @@ target
 /src/main/java/kr/or/connect/guestbook/*
 
 /src/main/webapp/WEB-INF/view/*
-
-*Test.java

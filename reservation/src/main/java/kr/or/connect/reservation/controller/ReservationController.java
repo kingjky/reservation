@@ -1,28 +1,32 @@
 package kr.or.connect.reservation.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestScope;
 
 import kr.or.connect.reservation.dto.Promotion;
 import kr.or.connect.reservation.service.PromotionService;
 
-@RestController
-@RequestMapping(path = "/promotions")
-public class PromotionController {
-	@Autowired
+@Controller
+@RequestMapping(path = "/")
+public class ReservationController {
 	PromotionService promotionService;
-
+	
+	@Autowired
+	public ReservationController(PromotionService promotionService) {
+		super();
+		this.promotionService = promotionService;
+	}
+	
 	@GetMapping
-	public Map<String, Object> getPromotions() {
+	public String mainpage(ModelMap model) {
 		List<Promotion> promotions = promotionService.getPromotions();
-		Map<String, Object> map = new HashMap<>();
-		map.put("items", promotions);
-		return map;
+		model.addAttribute("promotions", promotions);
+		return "mainpage";
 	}
 }
