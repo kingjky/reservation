@@ -41,7 +41,7 @@ public class ExceptionManager extends ResponseEntityExceptionHandler {
 		if(exception.getCause() == null) {
 			Error error = Error.create(ExceptionEnum.UNKNOWN_EXCEPTION);
 			return new ResponseEntity<Error>(error, error.getStatus());
-		}else if(NumberFormatException.class.equals(exception.getCause().getClass())) {
+		} else if(NumberFormatException.class.equals(exception.getCause().getClass())) {
 			Error error = Error.create(ExceptionEnum.WRONG_INPUT);
 			return new ResponseEntity<Error>(error, error.getStatus());
 		} else {
