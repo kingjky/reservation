@@ -15,19 +15,30 @@ import kr.or.connect.reservation.util.exception.BaseExceptionType;
 import kr.or.connect.reservation.util.exception.ExceptionEnum;
 import kr.or.connect.reservation.util.exception.CustomException;
 
+/*
+ * XXX: ExceptionHandler 적용해서 모든 Exception을 이곳에서 처리
+ * (
+ * 		http://localhost:8080/reservation/api/products/1
+ * 		http://localhost:8080/reservation/api/products?categoryId=0&start=0
+ * )
+ * 
+ * (https://github.com/123qwe123qwe123qwezxc) 과 같이 404 Not Found도 처리하도록
+ * ResponseEntityExceptionHandler를 상속받아 handleNoHandlerFoundException를 Override 하였으나 잘 되지 않아서 나중에 추가 예정
+ */
 @ControllerAdvice
 @ResponseBody
-public class ExceptionManager extends ResponseEntityExceptionHandler {
+public class ExceptionManager {
+	//public class ExceptionManager extends ResponseEntityExceptionHandler {
 	private final static Logger logger = Logger.getRootLogger();
-	
-	@Override
+
+	/*@Override
 	protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException exception, HttpHeaders headers,
 		HttpStatus status, WebRequest request) {
 		logger.error(exception);
 		Error error = Error.create(ExceptionEnum.NOT_FOUND);
 		return new ResponseEntity<Object>(error, error.getStatus());
-	}
-	
+	}*/
+
 	@ExceptionHandler(CustomException.class)
 	public ResponseEntity<Error> catchedException(CustomException exception) {
 		logger.error(exception);
@@ -36,12 +47,11 @@ public class ExceptionManager extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler
 	public ResponseEntity<Error> thrownException(Exception exception) {
-		System.out.println(exception);
 		logger.error(exception);
-		if(exception.getCause() == null) {
+		if (exception.getCause() == null) {
 			Error error = Error.create(ExceptionEnum.UNKNOWN_EXCEPTION);
 			return new ResponseEntity<Error>(error, error.getStatus());
-		}else if(NumberFormatException.class.equals(exception.getCause().getClass())) {
+		} else if (NumberFormatException.class.equals(exception.getCause().getClass())) {
 			Error error = Error.create(ExceptionEnum.WRONG_INPUT);
 			return new ResponseEntity<Error>(error, error.getStatus());
 		} else {

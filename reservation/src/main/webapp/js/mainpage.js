@@ -80,7 +80,6 @@ function addTabClickEvent() {
 		tab.firstChild.classList.add("active");
 		loadProducts(category);
 	});
-	
 }
 
 function addMoreClickEvent() {

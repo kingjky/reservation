@@ -19,11 +19,11 @@ import kr.or.connect.reservation.dto.ProductImage;
 public class ProductImageDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private RowMapper<ProductImage> rowMapper = BeanPropertyRowMapper.newInstance(ProductImage.class);
-	
+
 	public ProductImageDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
-	
+
 	public List<ProductImage> selectAllUsingProductId(Integer productId) {
 		Map<String, ?> params = Collections.singletonMap("productId", productId);
 		return jdbc.query(SELECT_ALL_USING_PRODUCT_ID, params, rowMapper);

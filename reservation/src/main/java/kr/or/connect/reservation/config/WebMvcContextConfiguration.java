@@ -28,11 +28,13 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/img/**").addResourceLocations("/img/").setCachePeriod(31556926);
 		registry.addResourceHandler("/img-map/**").addResourceLocations("/img_map/").setCachePeriod(31556926);
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(31556926);
+		registry.addResourceHandler("/html/**").addResourceLocations("/htmls/").setCachePeriod(31556926);
 	}
 
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("mainpage");
+		registry.addViewController("/detail").setViewName("detail");
+		registry.addViewController("/review").setViewName("review");
 	}
 
 	@Bean

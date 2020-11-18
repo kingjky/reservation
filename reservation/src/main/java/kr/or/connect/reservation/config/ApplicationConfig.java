@@ -9,5 +9,4 @@ import kr.or.connect.reservation.config.DBConfig;
 @Configuration
 @ComponentScan(basePackages = {"kr.or.connect.reservation.dao", "kr.or.connect.reservation.service"})
 @Import({DBConfig.class})
-public class ApplicationConfig {
-}
+public class ApplicationConfig {}
