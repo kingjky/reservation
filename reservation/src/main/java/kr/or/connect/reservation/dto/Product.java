@@ -3,10 +3,8 @@ package kr.or.connect.reservation.dto;
 public class Product {
 	int productId;
 	String productDescription, productContent;
-
 	int displayInfoId;
 	String placeName;
-
 	String productImageUrl;
 
 	public int getProductId() {

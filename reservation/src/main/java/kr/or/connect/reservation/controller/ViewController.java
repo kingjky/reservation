@@ -14,11 +14,11 @@ import kr.or.connect.reservation.service.PromotionService;
 
 @Controller
 @RequestMapping(path = "/")
-public class ReservationController {
+public class ViewController {
 	PromotionService promotionService;
 	
 	@Autowired
-	public ReservationController(PromotionService promotionService) {
+	public ViewController(PromotionService promotionService) {
 		super();
 		this.promotionService = promotionService;
 	}
