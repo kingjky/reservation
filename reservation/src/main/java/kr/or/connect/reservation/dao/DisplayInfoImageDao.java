@@ -13,15 +13,16 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import kr.or.connect.reservation.dto.DisplayInfoImage;
+
 @Repository
 public class DisplayInfoImageDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private RowMapper<DisplayInfoImage> rowMapper = BeanPropertyRowMapper.newInstance(DisplayInfoImage.class);
-	
+
 	public DisplayInfoImageDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
-	
+
 	public DisplayInfoImage selectUsingDisplayInfoId(Integer displayInfoId) {
 		Map<String, ?> params = Collections.singletonMap("displayInfoId", displayInfoId);
 		return jdbc.queryForObject(SELECT_USING_DISPLAY_INFO_ID, params, rowMapper);

@@ -18,11 +18,11 @@ import kr.or.connect.reservation.dto.DisplayInfo;
 public class DisplayInfoDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private RowMapper<DisplayInfo> rowMapper = BeanPropertyRowMapper.newInstance(DisplayInfo.class);
-	
+
 	public DisplayInfoDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
-	
+
 	public DisplayInfo selectUsingDisplayInfoId(Integer displayInfoId) {
 		Map<String, ?> params = Collections.singletonMap("displayInfoId", displayInfoId);
 		return jdbc.queryForObject(SELECT_USING_DISPLAY_INFO_ID, params, rowMapper);

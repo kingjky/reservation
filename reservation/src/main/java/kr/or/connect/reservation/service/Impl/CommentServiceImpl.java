@@ -23,12 +23,6 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public List<Comment> getCommentsWithPagingUsingProductId(Integer productId, Integer start, Integer limit) {
-		List<Comment> comments = commentDao.selectAllWithPagingUsingProductId(productId, start, limit);
-		return comments;
-	}
-
-	@Override
 	public List<Comment> getCommentsUsingProductId(Integer productId) {
 		List<Comment> comments = commentDao.selectAllUsingProductId(productId);
 		return comments;
@@ -42,18 +36,18 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public double getAverageScore(List<Comment> comments) {
-		if (comments == null)
-			return 0;
-		int size = comments.size();
-		if (size == 0)
-			return 0;
-
 		double result = 0;
+
+		int size;
+		// XXX: Short circuit evalutaion 적용
+		if (comments == null || (size = comments.size()) == 0)
+			return result;
+
 		for (Comment comment : comments) {
 			result += comment.getScore();
 		}
 		result /= size;
-		result = (double)Math.round(result * 100) / 100;
+		result = (double)Math.round(result * 10) / 10;
 		return result;
 	}
 

@@ -1,34 +1,24 @@
-package kr.or.connect.reservation.util;
+package kr.or.connect.reservation.exception;
 
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.NoHandlerFoundException;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import kr.or.connect.reservation.util.exception.BaseExceptionType;
-import kr.or.connect.reservation.util.exception.ExceptionEnum;
-import kr.or.connect.reservation.util.exception.CustomException;
-
+/*
+ * XXX: ExceptionHandler 적용해서 모든 Exception을 이곳에서 처리
+ * 		http://localhost:8080/reservation/api/products/abc
+ * 		http://localhost:8080/reservation/api/products?categoryId=0&start=abc
+ * 
+ * 		https://github.com/123qwe123qwe123qwezxc
+ */
 @ControllerAdvice
 @ResponseBody
-public class ExceptionManager extends ResponseEntityExceptionHandler {
+public class ExceptionManager {
+	//extends ResponseEntityExceptionHandler
 	private final static Logger logger = Logger.getRootLogger();
-	
-	// FIXME 잘못된 URL 요청 시 Not Found 404 처리 필요
-	@Override
-	protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException exception, HttpHeaders headers,
-		HttpStatus status, WebRequest request) {
-		logger.error(exception);
-		Error error = Error.create(ExceptionEnum.NOT_FOUND);
-		return new ResponseEntity<Object>(error, error.getStatus());
-	}
-	
 	@ExceptionHandler(CustomException.class)
 	public ResponseEntity<Error> catchedException(CustomException exception) {
 		logger.error(exception);
@@ -38,10 +28,10 @@ public class ExceptionManager extends ResponseEntityExceptionHandler {
 	@ExceptionHandler
 	public ResponseEntity<Error> thrownException(Exception exception) {
 		logger.error(exception);
-		if(exception.getCause() == null) {
+		if (exception.getCause() == null) {
 			Error error = Error.create(ExceptionEnum.UNKNOWN_EXCEPTION);
 			return new ResponseEntity<Error>(error, error.getStatus());
-		} else if(NumberFormatException.class.equals(exception.getCause().getClass())) {
+		} else if (NumberFormatException.class.equals(exception.getCause().getClass())) {
 			Error error = Error.create(ExceptionEnum.WRONG_INPUT);
 			return new ResponseEntity<Error>(error, error.getStatus());
 		} else {

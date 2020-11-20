@@ -6,18 +6,19 @@ import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.ProductImage;
 import kr.or.connect.reservation.dto.ProductPrice;
 
+//XXX: Service는 대표 Domain 별로 생성
 public interface ProductService {
-	public static final Integer LIMIT = 4;
+	int PRODUCT_PAGING_ROWS = 4;
 
-	public List<Product> getProducts(Integer start);
+	List<Product> getProducts(Integer start);
 
-	public List<Product> getProductsUsingCategory(Integer categoryId, Integer start);
+	List<Product> getProductsUsingCategory(Integer categoryId, Integer start);
 
-	public int getCount();
+	int getCount();
 
-	public int getCountUsingCategory(Integer categoryId);
-	
-	public List<ProductImage> getProductImagesUsingProductId(Integer productId);
-	
-	public List<ProductPrice> getProductPricesUsingProductId(Integer productId);
+	int getCountUsingCategory(Integer categoryId);
+
+	List<ProductImage> getProductImagesUsingProductId(Integer productId);
+
+	List<ProductPrice> getProductPricesUsingProductId(Integer productId);
 }

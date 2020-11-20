@@ -1,9 +1,9 @@
-package kr.or.connect.reservation.util.exception;
+package kr.or.connect.reservation.exception;
 
 import org.springframework.http.HttpStatus;
 
 public enum ExceptionEnum implements BaseExceptionType {
-	
+
 	UNKNOWN_EXCEPTION(1000, HttpStatus.INTERNAL_SERVER_ERROR, "알 수 없는 예외가 발생했습니다."),
 	WRONG_INPUT(1001, HttpStatus.BAD_REQUEST, "입력의 형식이 잘못되었습니다."),
 	NOT_FOUND(1002, HttpStatus.NOT_FOUND, "찾는 페이지가 없습니다.");
@@ -17,18 +17,18 @@ public enum ExceptionEnum implements BaseExceptionType {
 		this.httpStatus = httpStatus;
 		this.errorMessage = errorMessage;
 	}
-	
-    @Override
+
+	@Override
 	public int getErrorCode() {
 		return errorCode;
 	}
-	
-    @Override
+
+	@Override
 	public HttpStatus getHttpStatus() {
 		return httpStatus;
 	}
-	
-    @Override
+
+	@Override
 	public String getErrorMessage() {
 		return errorMessage;
 	}
