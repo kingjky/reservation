@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ExceptionManager {
 	//extends ResponseEntityExceptionHandler
 	private final static Logger logger = Logger.getRootLogger();
-
 	@ExceptionHandler(CustomException.class)
 	public ResponseEntity<Error> catchedException(CustomException exception) {
 		logger.error(exception);
