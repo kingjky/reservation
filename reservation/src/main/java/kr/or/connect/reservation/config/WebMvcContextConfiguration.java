@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"kr.or.connect.reservation.controller", "kr.or.connect.reservation.util"})
+@ComponentScan(basePackages = {"kr.or.connect.reservation.controller", "kr.or.connect.reservation.exception"})
 public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -22,8 +22,7 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/META-INF/resources/webjars/")
-			.setCachePeriod(31556926);
+		registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/META-INF/resources/webjars/").setCachePeriod(31556926);
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(31556926);
 		registry.addResourceHandler("/img/**").addResourceLocations("/img/").setCachePeriod(31556926);
 		registry.addResourceHandler("/img-map/**").addResourceLocations("/img_map/").setCachePeriod(31556926);

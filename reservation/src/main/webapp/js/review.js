@@ -10,11 +10,10 @@ const review = {
 		}.bind(this));
 	},
 	loadDisplayInfo(displayInfoId) {
-		console.log("loadDisplayInfo");
-		console.log(displayInfoId);
+		const HTTP_STATUS_OK = 200;
 		const oReq = new XMLHttpRequest();
 		oReq.addEventListener("load", function () {
-			if (oReq.status !== 200)
+			if (oReq.status !== HTTP_STATUS_OK)
 				return;
 			
 			const displayInfoWrapper = JSON.parse(oReq.responseText);
@@ -28,17 +27,15 @@ const review = {
 		const averagePointTag = document.querySelector(".text_value");
 		averagePointTag.firstElementChild.textContent = averageScore;
 
+		const TO_PERCENT = 100;
 		const totalPointTag = document.querySelector(".total"),
 			totalPoint = Number(totalPointTag.textContent),
-			percentage = (averageScore / totalPoint * 100) + "%";
+			percentage = (averageScore / totalPoint) * TO_PERCENT + "%";
 
 		const graphValueTag = document.querySelector(".graph_value");
 		graphValueTag.style.width = percentage;
 	},
 	updateComments(displayInfo, comments) {
-		console.log("comments");
-		console.log(comments);
-
 		const titleTag = document.querySelector(".title");
 		titleTag.textContent = displayInfo.productDescription;
 		titleTag.href = "detail?id=" + displayInfo.displayInfoId;
@@ -58,9 +55,10 @@ const review = {
 			return score + DECIMAL_STR;
 		});
 		Handlebars.registerHelper("getFormatEmail", function (reservationEmail) {
+			const SHOW_EMAIL_START = 0;
 			const SHOW_EMAIL_LIMIT = 4;
 			const MASAIC_STR = "****";
-			return reservationEmail.slice(0, SHOW_EMAIL_LIMIT) + MASAIC_STR;
+			return reservationEmail.slice(SHOW_EMAIL_START, SHOW_EMAIL_LIMIT) + MASAIC_STR;
 		});
 		Handlebars.registerHelper("getFormatDate", function (reservationDate) {
 			const date = new Date(reservationDate);

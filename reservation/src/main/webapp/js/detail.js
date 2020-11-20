@@ -12,12 +12,12 @@ const detail = {
 		}.bind(this));
 	},
 	loadDisplayInfo(displayInfoId) {
+		const HTTP_STATUS_OK = 200;
 		const oReq = new XMLHttpRequest();
 		oReq.addEventListener("load", function () {
-			if (oReq.status !== 200) {
+			if (oReq.status !== HTTP_STATUS_OK) {
 				return;
 			}
-
 			const displayInfoWrapper = JSON.parse(oReq.responseText);
 			this.updateProductDetail(displayInfoWrapper.averageScore,
 				displayInfoWrapper.comments,
@@ -34,15 +34,15 @@ const detail = {
 		this.updateComments(displayInfo, comments);
 		this.updateDisplayInfo(displayInfo, displayInfoImage);
 		this.updateProductImages(displayInfo, productImages);
-		// this.updateProductPrices(productPrices);
 	},
 	updateAverageScore(averageScore) {
 		const averagePointTag = document.querySelector(".average");
 		averagePointTag.textContent = averageScore;
 
+		const TO_PERCENT = 100;
 		const totalPointTag = document.querySelector(".total"),
 			totalPoint = Number(totalPointTag.textContent),
-			percentage = (averageScore / totalPoint * 100) + "%";
+			percentage = (averageScore / totalPoint) * TO_PERCENT + "%";
 
 		const graphValueTag = document.querySelector(".graph_value");
 		graphValueTag.style.width = percentage;
@@ -51,8 +51,10 @@ const detail = {
 		const commentsNum = comments.length,
 			joinCountTag = document.querySelector(".join_count > .green");
 		joinCountTag.innerText = commentsNum + "건";
+
+		const COMMENTS_START = 0;
 		const COMMENTS_LIMIT = 3;
-		comments = comments.slice(0, COMMENTS_LIMIT);
+		comments = comments.slice(COMMENTS_START, COMMENTS_LIMIT);
 
 		const ReviewMoreTag = document.querySelector(".btn_review_more");
 		ReviewMoreTag.href = "./review?id=" + displayInfo.displayInfoId;
@@ -71,9 +73,10 @@ const detail = {
 			return score + DECIMAL_STR;
 		});
 		Handlebars.registerHelper("getFormatEmail", function (reservationEmail) {
+			const SHOW_EMAIL_START = 0;
 			const SHOW_EMAIL_LIMIT = 4;
 			const MASAIC_STR = "****";
-			return reservationEmail.slice(0, SHOW_EMAIL_LIMIT) + MASAIC_STR;
+			return reservationEmail.slice(SHOW_EMAIL_START, SHOW_EMAIL_LIMIT) + MASAIC_STR;
 		});
 		Handlebars.registerHelper("getFormatDate", function (reservationDate) {
 			const date = new Date(reservationDate);
@@ -140,9 +143,11 @@ const detail = {
 		totalNumTag.textContent = productImages.length;
 
 		const currentNumTag = document.querySelector(".figure_pagination").firstElementChild;
-		currentNumTag.textContent = 1;
+		const FIRST_IMAGE_NUMBER = 1;
+		currentNumTag.textContent = FIRST_IMAGE_NUMBER;
 
-		if (totalImagesLength >= 2) {
+		const MIN_IMAGE_NUM_TO_USE_BTN = 2
+		if (totalImagesLength >= MIN_IMAGE_NUM_TO_USE_BTN) {
 			this.addNavClickSlideEvent();
 		} else {
 			const prevBtn = document.querySelector(".prev");
@@ -151,6 +156,7 @@ const detail = {
 			nextBtn.style.display = "none";
 		}
 	},
+	// XXX
 	addMoreClickEvent(){
 		$(document).ready(function () {
 			$("._open").on("click", function () {
@@ -214,31 +220,34 @@ const detail = {
 
 		const nextBtn = document.querySelector(".nxt");
 		const prevBtn = document.querySelector(".prev");
+		const NEXT = 1;
+		const PREV = -1;
 		nextBtn.addEventListener("click", function () {
-			plusSlides(1);
+			plusSlides(NEXT);
 		}, true);
 		prevBtn.addEventListener("click", function () {
-			plusSlides(-1);
+			plusSlides(PREV);
 		}, true);
 
-		let slideIndex = 0;
+		const FIRST_IMAGE_INDEX = 0;
+		let slideIndex = FIRST_IMAGE_INDEX;
 		function plusSlides(n) {
 			showSlides(slideIndex += n);
 		}
 
 		function showSlides(n) {
 			slideIndex = n;
-			if (slideIndex == -1) {
-				slideIndex = totalSlides - 1;
+			if (slideIndex < FIRST_IMAGE_INDEX) {
+				slideIndex = totalSlides + PREV;
 			} else if (slideIndex === totalSlides) {
-				slideIndex = 0;
+				slideIndex = FIRST_IMAGE_INDEX;
 			}
 			const prevIcon = document.querySelector(".prev i");
 			const nextIcon = document.querySelector(".nxt i");
-			if (slideIndex == 0) {
+			if (slideIndex == FIRST_IMAGE_INDEX) {
 				prevIcon.classList.add("off");
 				nextIcon.classList.remove("off");
-			} else if (slideIndex == (totalSlides - 1)) {
+			} else if (slideIndex == (totalSlides + PREV)) {
 				prevIcon.classList.remove("off");
 				nextIcon.classList.add("off");
 			} else {
@@ -246,7 +255,7 @@ const detail = {
 				prevIcon.classList.remove("off");
 			}
 			const currentNumTag = document.querySelector(".figure_pagination").firstElementChild;
-			currentNumTag.textContent = (slideIndex + 1);
+			currentNumTag.textContent = (slideIndex + NEXT);
 
 			slider.style.left = -(sliderWidth * slideIndex) + "px";
 		}

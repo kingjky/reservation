@@ -1,43 +1,24 @@
-package kr.or.connect.reservation.util;
+package kr.or.connect.reservation.exception;
 
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.NoHandlerFoundException;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import kr.or.connect.reservation.util.exception.BaseExceptionType;
-import kr.or.connect.reservation.util.exception.ExceptionEnum;
-import kr.or.connect.reservation.util.exception.CustomException;
 
 /*
  * XXX: ExceptionHandler 적용해서 모든 Exception을 이곳에서 처리
- * (
- * 		http://localhost:8080/reservation/api/products/1
- * 		http://localhost:8080/reservation/api/products?categoryId=0&start=0
- * )
+ * 		http://localhost:8080/reservation/api/products/abc
+ * 		http://localhost:8080/reservation/api/products?categoryId=0&start=abc
  * 
- * (https://github.com/123qwe123qwe123qwezxc) 과 같이 404 Not Found도 처리하도록
- * ResponseEntityExceptionHandler를 상속받아 handleNoHandlerFoundException를 Override 하였으나 잘 되지 않아서 나중에 추가 예정
+ * 		https://github.com/123qwe123qwe123qwezxc
  */
 @ControllerAdvice
 @ResponseBody
 public class ExceptionManager {
-	//public class ExceptionManager extends ResponseEntityExceptionHandler {
+	//extends ResponseEntityExceptionHandler
 	private final static Logger logger = Logger.getRootLogger();
-
-	/*@Override
-	protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException exception, HttpHeaders headers,
-		HttpStatus status, WebRequest request) {
-		logger.error(exception);
-		Error error = Error.create(ExceptionEnum.NOT_FOUND);
-		return new ResponseEntity<Object>(error, error.getStatus());
-	}*/
 
 	@ExceptionHandler(CustomException.class)
 	public ResponseEntity<Error> catchedException(CustomException exception) {

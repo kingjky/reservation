@@ -54,7 +54,7 @@
 					<div class="group_visual">
 						<div>
 							<div class="container_visual" style="width: 414px;">
-								<ul class="visual_img detail_swipe">
+								<ul class="visual_img detail_swipe shifting">
 								</ul>
 							</div>
 							<div class="prev">

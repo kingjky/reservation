@@ -1,4 +1,4 @@
-package kr.or.connect.reservation.util.exception;
+package kr.or.connect.reservation.exception;
 
 import org.springframework.http.HttpStatus;
 

@@ -1,4 +1,4 @@
-package kr.or.connect.reservation.util.exception;
+package kr.or.connect.reservation.exception;
 
 public class CustomException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
