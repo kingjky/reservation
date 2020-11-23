@@ -3,15 +3,21 @@ package kr.or.connect.reservation.service;
 import java.util.List;
 
 import kr.or.connect.reservation.dto.Product;
+import kr.or.connect.reservation.dto.ProductImage;
+import kr.or.connect.reservation.dto.ProductPrice;
 
 public interface ProductService {
-	public static final Integer LIMIT = 4;
+	int PRODUCT_PAGING_ROWS = 4;
 
-	public List<Product> getProducts(Integer start);
+	List<Product> getProducts(Integer start);
 
-	public List<Product> getProductsUsingCategory(Integer categoryId, Integer start);
+	List<Product> getProductsUsingCategory(Integer categoryId, Integer start);
 
-	public int getCount();
+	int getCount();
 
-	public int getCountUsingCategory(Integer categoryId);
+	int getCountUsingCategory(Integer categoryId);
+
+	List<ProductImage> getProductImagesUsingProductId(Integer productId);
+
+	List<ProductPrice> getProductPricesUsingProductId(Integer productId);
 }

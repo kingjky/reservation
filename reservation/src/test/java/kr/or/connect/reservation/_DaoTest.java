@@ -7,10 +7,22 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import kr.or.connect.reservation.config.ApplicationConfig;
 import kr.or.connect.reservation.dao.CategoryDao;
+import kr.or.connect.reservation.dao.CommentDao;
+import kr.or.connect.reservation.dao.CommentImageDao;
+import kr.or.connect.reservation.dao.DisplayInfoDao;
+import kr.or.connect.reservation.dao.DisplayInfoImageDao;
 import kr.or.connect.reservation.dao.ProductDao;
+import kr.or.connect.reservation.dao.ProductImageDao;
+import kr.or.connect.reservation.dao.ProductPriceDao;
 import kr.or.connect.reservation.dao.PromotionDao;
 import kr.or.connect.reservation.dto.Category;
+import kr.or.connect.reservation.dto.Comment;
+import kr.or.connect.reservation.dto.CommentImage;
+import kr.or.connect.reservation.dto.DisplayInfo;
+import kr.or.connect.reservation.dto.DisplayInfoImage;
 import kr.or.connect.reservation.dto.Product;
+import kr.or.connect.reservation.dto.ProductImage;
+import kr.or.connect.reservation.dto.ProductPrice;
 import kr.or.connect.reservation.dto.Promotion;
 
 public class _DaoTest {
@@ -21,7 +33,7 @@ public class _DaoTest {
 		PromotionDao promotionDao = ac.getBean(PromotionDao.class);
 		ProductDao productDao = ac.getBean(ProductDao.class);
 		
-		List<Category> categories = categoryDao.selectAll();
+		/*List<Category> categories = categoryDao.selectAll();
 		for (Category category : categories) {
 			System.out.println(category);
 		}
@@ -37,6 +49,49 @@ public class _DaoTest {
 		System.out.println(count);
 		for (Product product : products) {
 			System.out.println(product);
+		}*/
+		System.out.println("================================================ CommentDao Test ============================================================");
+		CommentDao commentDao = ac.getBean(CommentDao.class);
+		CommentImageDao commentImageDao = ac.getBean(CommentImageDao.class);
+		List<Comment> comments = commentDao.selectAllUsingProductId(1);
+		for (Comment comment : comments) {
+			comment.setCommentImages(commentImageDao.selectAllUsingCommentId(comment.getCommentId()));
+			System.out.println(comment);
+		}
+		
+		System.out.println("================================================ CommentImageDao Test ============================================================");
+		List<CommentImage> commentImages;
+		commentImages = commentImageDao.selectAllUsingCommentId(2);
+		for (CommentImage commentImage : commentImages) {
+			System.out.println(commentImage);
+		}
+		commentImages = commentImageDao.selectAllUsingCommentId(3);
+		for (CommentImage commentImage : commentImages) {
+			System.out.println(commentImage);
+		}
+		
+		System.out.println("================================================ DisplayInfoDao Test ============================================================");
+		DisplayInfoDao displayInfoDao = ac.getBean(DisplayInfoDao.class);
+		DisplayInfo displayInfo = displayInfoDao.selectUsingDisplayInfoId(1);
+		System.out.println(displayInfo);
+		
+		System.out.println("================================================ DisplayInfoImageDao Test ============================================================");
+		DisplayInfoImageDao displayInfoImageDao = ac.getBean(DisplayInfoImageDao.class);
+		DisplayInfoImage displayInfoImage = displayInfoImageDao.selectUsingDisplayInfoId(1);
+		System.out.println(displayInfoImage);
+		
+		System.out.println("================================================ ProductImageDao Test ============================================================");
+		ProductImageDao productImageDao = ac.getBean(ProductImageDao.class);
+		List<ProductImage> productImages = productImageDao.selectAllUsingProductId(1);
+		for (ProductImage productImage : productImages) {
+			System.out.println(productImage);
+		}
+		
+		System.out.println("================================================ ProductPriceDao Test ============================================================");
+		ProductPriceDao productPriceDao = ac.getBean(ProductPriceDao.class);
+		List<ProductPrice> productPrices = productPriceDao.selectAllUsingProductId(1);
+		for (ProductPrice productPrice : productPrices) {
+			System.out.println(productPrice);
 		}
 	}
 
