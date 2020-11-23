@@ -19,11 +19,11 @@ import kr.or.connect.reservation.dto.CommentImage;
 public class CommentImageDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private RowMapper<CommentImage> rowMapper = BeanPropertyRowMapper.newInstance(CommentImage.class);
-	
+
 	public CommentImageDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
-	
+
 	public List<CommentImage> selectAllUsingCommentId(Integer commentId) {
 		Map<String, ?> params = Collections.singletonMap("commentId", commentId);
 		return jdbc.query(SELECT_ALL_USING_COMMENT_ID, params, rowMapper);

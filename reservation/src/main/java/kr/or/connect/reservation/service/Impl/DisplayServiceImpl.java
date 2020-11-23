@@ -13,7 +13,7 @@ import kr.or.connect.reservation.service.DisplayService;
 public class DisplayServiceImpl implements DisplayService {
 	private final DisplayInfoDao displayInfoDao;
 	private final DisplayInfoImageDao displayInfoImageDao;
-	
+
 	@Autowired
 	public DisplayServiceImpl(DisplayInfoDao displayInfoDao, DisplayInfoImageDao displayInfoImageDao) {
 		this.displayInfoDao = displayInfoDao;

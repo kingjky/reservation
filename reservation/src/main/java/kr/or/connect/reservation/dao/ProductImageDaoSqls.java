@@ -18,5 +18,7 @@ public class ProductImageDaoSqls {
 		"        JOIN " + 
 		"    file_info AS f ON i.file_id = f.id " + 
 		"WHERE " + 
-		"    i.type = 'ma' AND product_id = :productId";
+		"    i.type != 'th' AND product_id = :productId " + 
+		"ORDER BY i.id ASC " + 
+		"LIMIT 0 , 2 ";
 }

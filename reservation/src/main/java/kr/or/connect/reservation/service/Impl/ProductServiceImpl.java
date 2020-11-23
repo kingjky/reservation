@@ -18,7 +18,7 @@ public class ProductServiceImpl implements ProductService {
 	private final ProductDao productDao;
 	private final ProductImageDao productImageDao;
 	private final ProductPriceDao productPriceDao;
-	
+
 	@Autowired
 	public ProductServiceImpl(ProductDao productDao, ProductImageDao productImageDao, ProductPriceDao productPriceDao) {
 		this.productDao = productDao;
@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> getProducts(Integer start) {
-		List<Product> products = productDao.selectAllWithPaging(start, LIMIT);
+		List<Product> products = productDao.selectAllWithPaging(start, PRODUCT_PAGING_ROWS);
 		return products;
 	}
 
@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
 		List<Product> products;
 		if (categoryId == null || categoryId == 0)
 			return getProducts(start);
-		products = productDao.selectAllWithPagingUsingCategory(categoryId, start, LIMIT);
+		products = productDao.selectAllWithPagingUsingCategory(categoryId, start, PRODUCT_PAGING_ROWS);
 		return products;
 	}
 
