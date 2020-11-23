@@ -7,18 +7,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/*
- * XXX: ExceptionHandler 적용해서 모든 Exception을 이곳에서 처리
- * 		http://localhost:8080/reservation/api/products/abc
- * 		http://localhost:8080/reservation/api/products?categoryId=0&start=abc
- * 
- * 		https://github.com/123qwe123qwe123qwezxc
- */
 @ControllerAdvice
 @ResponseBody
 public class ExceptionManager {
-	//extends ResponseEntityExceptionHandler
 	private final static Logger logger = Logger.getRootLogger();
+
 	@ExceptionHandler(CustomException.class)
 	public ResponseEntity<Error> catchedException(CustomException exception) {
 		logger.error(exception);
