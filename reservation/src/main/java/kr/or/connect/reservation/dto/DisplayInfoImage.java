@@ -1,7 +1,5 @@
 package kr.or.connect.reservation.dto;
 
-import java.util.Date;
-
 public class DisplayInfoImage {
 	int displayInfoImageId;
 	int displayInfoId;

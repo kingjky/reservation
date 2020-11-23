@@ -1,6 +1,3 @@
-// XXX
-// import Handlebars from "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js";
-
 const detail = {
 	initialize() {
 		const url = new URL(window.location);

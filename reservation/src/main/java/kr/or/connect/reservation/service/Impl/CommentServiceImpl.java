@@ -39,7 +39,6 @@ public class CommentServiceImpl implements CommentService {
 		double result = 0;
 
 		int size;
-		// XXX: Short circuit evalutaion 적용
 		if (comments == null || (size = comments.size()) == 0)
 			return result;
 

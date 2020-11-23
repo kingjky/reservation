@@ -1,8 +1,5 @@
 package kr.or.connect.reservation.dao;
 
-/*
- * XXX: SQL에 Beautify 적용
- */
 public class CommentDaoSqls {
 	public static final String SELECT_ALL_USING_PRODUCT_ID =
 		"SELECT  " + 

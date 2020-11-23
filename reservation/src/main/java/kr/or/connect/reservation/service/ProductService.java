@@ -6,7 +6,6 @@ import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.ProductImage;
 import kr.or.connect.reservation.dto.ProductPrice;
 
-//XXX: Service는 대표 Domain 별로 생성
 public interface ProductService {
 	int PRODUCT_PAGING_ROWS = 4;
 
