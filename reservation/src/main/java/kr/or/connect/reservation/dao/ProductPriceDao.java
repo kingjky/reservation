@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.connect.reservation.dto.ProductPrice;
 
-//XXX: Dao는 Dto Domain 별로 생성
 @Repository
 public class ProductPriceDao {
 	private NamedParameterJdbcTemplate jdbc;
