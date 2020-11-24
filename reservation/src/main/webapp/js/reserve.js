@@ -38,9 +38,6 @@ const reserve = {
 			return Math.min(prev, next.price);
 		}, Number.MAX_VALUE);
 		priceTag.textContent = `₩${minPrice} ~ `;
-		
-		const visualImg = document.querySelector(".visual_img > li > img");
-		visualImg.src = productImages[0].saveFileName;
 
 	}
 }
