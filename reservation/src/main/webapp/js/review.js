@@ -1,3 +1,5 @@
+import format from './format.js';
+
 const review = {
 	initialize() {
 		const url = new URL(window.location);
@@ -51,23 +53,26 @@ const review = {
 			return displayInfo.productDescription;
 		});
 		Handlebars.registerHelper("getFormatScore", function (score) {
-			const DECIMAL_STR = ".0";
-			return score + DECIMAL_STR;
+			return format.getFormatScore(score);
+			// const DECIMAL_STR = ".0";
+			// return score + DECIMAL_STR;
 		});
 		Handlebars.registerHelper("getFormatEmail", function (reservationEmail) {
-			const SHOW_EMAIL_START = 0;
-			const SHOW_EMAIL_LIMIT = 4;
-			const MASAIC_STR = "****";
-			return reservationEmail.slice(SHOW_EMAIL_START, SHOW_EMAIL_LIMIT) + MASAIC_STR;
+			return format.getFormatEmail(reservationEmail);
+			// const SHOW_EMAIL_START = 0;
+			// const SHOW_EMAIL_LIMIT = 4;
+			// const MASAIC_STR = "****";
+			// return reservationEmail.slice(SHOW_EMAIL_START, SHOW_EMAIL_LIMIT) + MASAIC_STR;
 		});
 		Handlebars.registerHelper("getFormatDate", function (reservationDate) {
-			const date = new Date(reservationDate);
-			let year = date.getFullYear();
-			let month = (1 + date.getMonth());
-			month = month >= 10 ? month : '0' + month;
-			let day = date.getDate();
-			day = day >= 10 ? day : '0' + day;
-			return year + '.' + month + '.' + day;
+			return format.getFormatDate(reservationDate);
+			// const date = new Date(reservationDate);
+			// let year = date.getFullYear();
+			// let month = (1 + date.getMonth());
+			// month = month >= 10 ? month : '0' + month;
+			// let day = date.getDate();
+			// day = day >= 10 ? day : '0' + day;
+			// return year + '.' + month + '.' + day;
 		});
 		const commentTemplate = document.querySelector("#commentTemplate").innerText,
 			commentBindTemplate = Handlebars.compile(commentTemplate);

@@ -17,6 +17,9 @@ const api = {
 		var result = await this.sendAjax("GET", `./api/products/${id}`);
 		return result;
 	},
+	async postBookingForm(formData) {
+		console.log(formData);
+	},
 }
 
 export default api;
