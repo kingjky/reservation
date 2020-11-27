@@ -13,5 +13,5 @@ public class ProductPriceDaoSqls {
 		"FROM " + 
 		"    product_price " + 
 		"WHERE " + 
-		"    product_id = 1";
+		"    product_id = :productId";
 }
