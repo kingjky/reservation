@@ -54,7 +54,7 @@ const detail = {
 		comments = comments.slice(COMMENTS_START, COMMENTS_LIMIT);
 
 		const ReviewMoreTag = document.querySelector(".btn_review_more");
-		ReviewMoreTag.href = "./review?id=" + displayInfo.displayInfoId;
+		ReviewMoreTag.href = `./review?id=${displayInfo.displayInfoId}`;
 		if (commentsNum > COMMENTS_LIMIT) {
 			ReviewMoreTag.classList.remove("hide");
 		}
@@ -79,10 +79,10 @@ const detail = {
 			const date = new Date(reservationDate);
 			let year = date.getFullYear();
 			let month = (1 + date.getMonth());
-			month = month >= 10 ? month : '0' + month;
+			month = month >= 10 ? month : `0${month}`;
 			let day = date.getDate();
-			day = day >= 10 ? day : '0' + day;
-			return year + '.' + month + '.' + day;
+			day = day >= 10 ? day : `0${day}`;
+			return `${year}.${month}.${day}`;
 		});
 		const commentTemplate = document.querySelector("#commentTemplate").innerText,
 			commentBindTemplate = Handlebars.compile(commentTemplate);
@@ -93,6 +93,9 @@ const detail = {
 		commentList.innerHTML = resultHTML;
 	},
 	updateDisplayInfo(displayInfo, displayInfoImage) {
+		const bookAnchor = document.querySelector(".section_btn > a");
+		bookAnchor.href = `./reserve?id=${displayInfo.displayInfoId}`;
+
 		const storeNameTag = document.querySelector(".store_name");
 		storeNameTag.textContent = displayInfo.productDescription;
 
@@ -153,7 +156,6 @@ const detail = {
 			nextBtn.style.display = "none";
 		}
 	},
-	// XXX
 	addMoreClickEvent(){
 		$(document).ready(function () {
 			$("._open").on("click", function () {

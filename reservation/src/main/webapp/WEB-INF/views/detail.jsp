@@ -11,12 +11,12 @@
 	<title>네이버 예약</title>
 	<link href="./css/style.css" rel="stylesheet">
 	<link href="./css/containerVisual.css" rel="stylesheet">
+	<link rel="icon" href="./img/favicon.ico">
 	<style>
 		.container_visual {
 			height: 414px;
 		}
 	</style>
-	<link rel="icon" href="./img/favicon.ico">
 </head>
 
 <body>
@@ -107,7 +107,7 @@
 					</div>
 				</div>
 				<div class="section_btn">
-					<a href="./html/reserve.html">
+					<a>
 						<button type="button" class="bk_btn">
 							<i class="fn fn-nbooking-calender2"></i>예매하기
 						</button>
