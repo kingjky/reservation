@@ -14,7 +14,6 @@ import kr.or.connect.reservation.service.PromotionService;
 public class ViewController {
 	PromotionService promotionService;
 
-	@Autowired
 	public ViewController(PromotionService promotionService) {
 		this.promotionService = promotionService;
 	}

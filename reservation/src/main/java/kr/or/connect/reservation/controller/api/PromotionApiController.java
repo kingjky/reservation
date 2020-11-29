@@ -21,7 +21,6 @@ import kr.or.connect.reservation.service.PromotionService;
 public class PromotionApiController extends EntityController {
 	private final PromotionService promotionService;
 
-	@Autowired
 	public PromotionApiController(PromotionService promotionService) {
 		super();
 		this.promotionService = promotionService;
