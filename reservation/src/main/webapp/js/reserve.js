@@ -40,8 +40,6 @@ const reserve = {
 				result.productImages,
 				result.productPrices);
 		}.bind(this));
-
-
 	},
 	updateProductReserve(averageScore, comments, displayInfo, displayInfoImage, productImages, productPrices) {
 		this.updateProductImages(displayInfo, productImages, productPrices);
@@ -50,6 +48,7 @@ const reserve = {
 		this.addFormCheck();
 		this.addAgreeDetailClickEvent();
 		this.addSubmitBtnClickEvent(displayInfo);
+		this.addCheckAgreeClickEvent();
 	},
 	updateDisplayInfo(displayInfo, productPrices) {
 		const BackBtn = document.querySelector(".btn_back");
@@ -87,6 +86,8 @@ const reserve = {
 		priceTag.textContent = `₩${minPrice} ~ `;
 	},
 	bindProductPrices(productPrices) {
+		console.log(productPrices);
+
 		Handlebars.registerHelper("getTypeName", function (priceTypeName) {
 			const typeName = this.priceTypeList[priceTypeName].name;
 			return typeName;
@@ -113,14 +114,28 @@ const reserve = {
 		const formTag = document.querySelector(".form_horizontal");
 
 		formTag.addEventListener("change", function (evt) {
-			this.formCheck(evt.target.name, evt.target, evt.target.nextSibling.nextSibling)();
+			this.validCheck(evt.target.name, evt.target, evt.target.nextSibling.nextSibling)();
 		}.bind(this));
 	},
-	formCheck(type, input, warning) {
+	formValidCheck() {
+		const form = document.querySelector(".section_booking_form form");
+
+		const nameInput = form.querySelector("input.name");
+		const nameValid = this.validCheck(nameInput.name, nameInput, nameInput.nextSibling.nextSibling)();
+
+		const telInput = form.querySelector("input.tel");
+		const telValid = this.validCheck(telInput.name, telInput, telInput.nextSibling.nextSibling)();
+
+		const emailInput = form.querySelector("input.email");
+		const emailValid = this.validCheck(emailInput.name, emailInput, emailInput.nextSibling.nextSibling)();
+
+		return nameValid && telValid && emailValid;
+	},
+	validCheck(type, input, warning) {
 		return {
 			name() {
 				let name = input.value;
-				if(!name || name.length === 0){
+				if (!name || name.length === 0) {
 					warning.style.visibility = "visible";
 					warning.style.opacity = 1;
 					setTimeout(() => {
@@ -169,35 +184,71 @@ const reserve = {
 	},
 	addSubmitBtnClickEvent(displayInfo) {
 		const submitButton = document.querySelector(".bk_btn");
-		
-		submitButton.addEventListener("click", function() {
+
+		submitButton.addEventListener("click", function () {
 			this.submitForm(displayInfo);
 		}.bind(this));
 	},
 	submitForm(displayInfo) {
-		const nameInput = document.querySelector("input.name");
-		const nameValid = this.formCheck(nameInput.name, nameInput, nameInput.nextSibling.nextSibling)();
+		const checkBtn = document.querySelector("input.chk_agree");
+		const checkedStatus = checkBtn.checked;
 
-		const telInput = document.querySelector("input.tel");
-		const telValid = this.formCheck(telInput.name, telInput, telInput.nextSibling.nextSibling)();
-		
-		const emailInput = document.querySelector("input.email");
-		const emailValid = this.formCheck(emailInput.name, emailInput, emailInput.nextSibling.nextSibling)();
+		if (checkedStatus && this.formValidCheck()) {
+			// for (var pair of formData.entries()) {
+			// 	console.log(pair[0] + ', ' + pair[1]);
+			// }
+			var reservation = this.getReservationObj(displayInfo);
 
-		if(nameValid && telValid && emailValid) {
-			const form = document.querySelector(".section_booking_form form");
-			const inputList = form.querySelectorAll("input");
-			
-			let formData = new FormData();
-			for (const input of inputList) {
-				const name = input.name;
-				const value = input.value;
-				formData.append(name, value);
-			}
-			
-			api.postBookingForm(formData);
-			location.href = "./detail?id=" + displayInfo.displayInfoId;
+			console.log(reservation);
+
+			var json = JSON.stringify(reservation);
+
+			api.postBookingForm(json);
+			// location.href = "./detail?id=" + displayInfo.displayInfoId;
 		}
+	},
+	getReservationObj(displayInfo) {
+		const form = document.querySelector(".section_booking_form form");
+		const nameInput = form.querySelector("input.name");
+		const telInput = form.querySelector("input.tel");
+		const emailInput = form.querySelector("input.email");
+
+		let object = new Object();
+		object.reservationName = nameInput.value;
+		object.reservationTelephone = telInput.value;
+		object.reservationEmail = emailInput.value;
+		object.displayInfoId = displayInfo.displayInfoId;
+		object.productId = displayInfo.productId;
+		object.reservationYearMonthDay = format.getFormatDate(new Date().toDateString());
+		object.prices = this.getReservationPriceArray();
+		return object;
+	},
+	getReservationPriceArray() {
+		const quantityTagList = document.querySelectorAll(".qty");
+		let arr = new Array();
+		quantityTagList.forEach((qty) => {
+			const countInput = qty.querySelector("input.count_control_input");
+			if (countInput && countInput.value > 0) {
+				let id = qty.dataset.productPriceId;
+				let price = new Object();
+				price.productPriceId = id;
+				price.count = countInput.value;
+				arr.push(price);
+			}
+		})
+		return arr;
+	},
+	addCheckAgreeClickEvent() {
+		const checkBtn = document.querySelector(".chk_agree");
+		checkBtn.addEventListener("click", function () {
+			const checkedStatus = checkBtn.checked;
+			const btn_wrap = document.querySelector(".bk_btn_wrap");
+			if (checkedStatus) {
+				btn_wrap.classList.remove("disable")
+			} else {
+				btn_wrap.classList.add("disable")
+			}
+		})
 	}
 }
 class agreementControl {

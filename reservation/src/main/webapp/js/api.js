@@ -1,5 +1,5 @@
 const api = {
-	sendAjax(method, url) {
+	sendAjax(method, url, body) {
 		const HTTP_STATUS_OK = 200;
 		const oReq = new XMLHttpRequest();
 		return new Promise(function (resolve, reject) {
@@ -10,15 +10,21 @@ const api = {
 				resolve(JSON.parse(oReq.responseText));
 			}.bind(this))
 			oReq.open(method, url);
-			oReq.send();
+			if(body && method === "POST"){
+				oReq.setRequestHeader('Content-type', 'application/json');
+				oReq.send(body);
+			} else {
+				oReq.send();
+			}
 		})
 	},
 	async getDisplayInfo(id) {
 		var result = await this.sendAjax("GET", `./api/products/${id}`);
 		return result;
 	},
-	async postBookingForm(formData) {
-		console.log(formData);
+	async postBookingForm(jsonFormData) {
+		 var result = await this.sendAjax("POST", `./api/reservations`, jsonFormData);
+		return result;
 	},
 }
 

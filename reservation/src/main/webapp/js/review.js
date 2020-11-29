@@ -54,25 +54,12 @@ const review = {
 		});
 		Handlebars.registerHelper("getFormatScore", function (score) {
 			return format.getFormatScore(score);
-			// const DECIMAL_STR = ".0";
-			// return score + DECIMAL_STR;
 		});
 		Handlebars.registerHelper("getFormatEmail", function (reservationEmail) {
 			return format.getFormatEmail(reservationEmail);
-			// const SHOW_EMAIL_START = 0;
-			// const SHOW_EMAIL_LIMIT = 4;
-			// const MASAIC_STR = "****";
-			// return reservationEmail.slice(SHOW_EMAIL_START, SHOW_EMAIL_LIMIT) + MASAIC_STR;
 		});
 		Handlebars.registerHelper("getFormatDate", function (reservationDate) {
 			return format.getFormatDate(reservationDate);
-			// const date = new Date(reservationDate);
-			// let year = date.getFullYear();
-			// let month = (1 + date.getMonth());
-			// month = month >= 10 ? month : '0' + month;
-			// let day = date.getDate();
-			// day = day >= 10 ? day : '0' + day;
-			// return year + '.' + month + '.' + day;
 		});
 		const commentTemplate = document.querySelector("#commentTemplate").innerText,
 			commentBindTemplate = Handlebars.compile(commentTemplate);

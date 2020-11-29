@@ -179,7 +179,7 @@
 				</div>
 				<div class="box_bk_btn">
 					<!-- [D] 약관 전체 동의가 되면 disable 제거 -->
-					<div class="bk_btn_wrap">
+					<div class="bk_btn_wrap disable">
 						<button type="button" class="bk_btn">
 							<i class="spr_book ico_naver_s"></i> <span>예약하기</span>
 						</button>
@@ -200,9 +200,8 @@
 		</div>
 	</footer>
 	<script type="myTemplate" id="priceTemplate">
-		<div class="qty">
+		<div class="qty" data-product-price-id="{{productPriceId}}">
 			<div class="count_control">
-				<!-- [D] 수량이 최소 값이 일때 ico_minus3, count_control_input에 disabled 각각 추가, 수량이 최대 값일 때는 ico_plus3에 disabled 추가 -->
 				<div class="clearfix">
 					<a class="btn_plus_minus spr_book2 ico_minus3 disabled"
 						title="빼기"
@@ -214,7 +213,6 @@
 						title="더하기"
 						value=1> </a>
 				</div>
-				<!-- [D] 금액이 0 이상이면 individual_price에 on_color 추가 -->
 				<div class="individual_price">
 					<span class="total_price">0</span><span class="price_type">원</span>
 				</div>

@@ -1,5 +1,6 @@
 package kr.or.connect.reservation.service.Impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -7,7 +8,9 @@ import org.springframework.stereotype.Service;
 import kr.or.connect.reservation.dao.DisplayInfoDao;
 import kr.or.connect.reservation.dao.ReservationDao;
 import kr.or.connect.reservation.dto.DisplayInfo;
+import kr.or.connect.reservation.dto.PriceForm;
 import kr.or.connect.reservation.dto.Reservation;
+import kr.or.connect.reservation.dto.ReservationForm;
 import kr.or.connect.reservation.service.ReservationService;
 
 @Service
@@ -29,6 +32,23 @@ public class ReservationServiceImpl implements ReservationService {
 			reservation.setDisplayInfo(displayInfo);
 		}
 		return reservations;
+	}
+
+	@Override
+	public ReservationForm postReservation(ReservationForm reservationForm) {
+		reservationForm.setCancelYn(false);
+		Date now = new Date(new java.util.Date().getTime());
+		reservationForm.setCreateDate(now.toString());
+		reservationForm.setModifyDate(now.toString());
+
+		Long reservationInfoId = reservationDao.insert(reservationForm);
+		reservationForm.setReservationInfoId(reservationInfoId);
+		for (PriceForm priceForm : reservationForm.getPrices()) {
+			priceForm.setReservationInfoId(reservationInfoId);
+			Long reservationInfoPriceId = reservationDao.insertPrice(priceForm);
+			priceForm.setReservationInfoPriceId(reservationInfoPriceId);
+		}
+		return reservationForm;
 	}
 
 }
