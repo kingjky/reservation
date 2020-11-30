@@ -42,6 +42,11 @@ public class ReservationDao {
 		Map<String, ?> params = Collections.singletonMap("email", email);
 		return jdbc.query(SELECT_ALL_USING_EMAIL, params, reservationRowMapper);
 	};
+	
+	public Reservation selectUsingId(Long id) {
+		Map<String, ?> params = Collections.singletonMap("id", id);
+		return jdbc.queryForObject(SELECT_USING_ID, params, reservationRowMapper);
+	};
 
 	public Long insert(ReservationForm form) {
 		Map<String, Object> params = new HashMap<>();
@@ -55,6 +60,11 @@ public class ReservationDao {
 		params.put("create_date", form.getCreateDate());
 		params.put("modify_date", form.getModifyDate());
 		return reservationInsertAction.executeAndReturnKey(params).longValue();
+	};
+	
+	public Integer updateCancel(Long reservationInfoId) {
+		Map<String, ?> params = Collections.singletonMap("id", reservationInfoId);
+		return jdbc.update(UPDATE_CANCEL_USING_Id, params);
 	};
 
 	public Long insertPrice(PriceForm form) {

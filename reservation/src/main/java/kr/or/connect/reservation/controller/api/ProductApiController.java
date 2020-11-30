@@ -52,7 +52,7 @@ public class ProductApiController extends EntityController {
 
 	@GetMapping("/{displayInfoId}")
 	public ResponseEntity<Map<String, Object>> getProductUsingDisplayInfoId(
-		@PathVariable(name = "displayInfoId") Integer displayInfoId) {
+		@PathVariable(name = "displayInfoId") Long displayInfoId) {
 		DisplayInfo displayInfo = displayService.getDisplayInfoUsingDisplayInfoId(displayInfoId);
 		DisplayInfoImage displayInfoImage = displayService.getDisplayInfoImageUsingDisplayInfoId(displayInfoId);
 		int productId = displayInfo.getProductId();

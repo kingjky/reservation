@@ -19,13 +19,13 @@ public class DisplayServiceImpl implements DisplayService {
 	}
 
 	@Override
-	public DisplayInfo getDisplayInfoUsingDisplayInfoId(Integer displayInfoId) {
+	public DisplayInfo getDisplayInfoUsingDisplayInfoId(Long displayInfoId) {
 		DisplayInfo displayInfo = displayInfoDao.selectUsingDisplayInfoId(displayInfoId);
 		return displayInfo;
 	}
 
 	@Override
-	public DisplayInfoImage getDisplayInfoImageUsingDisplayInfoId(Integer displayInfoId) {
+	public DisplayInfoImage getDisplayInfoImageUsingDisplayInfoId(Long displayInfoId) {
 		DisplayInfoImage displayInfoImage = displayInfoImageDao.selectUsingDisplayInfoId(displayInfoId);
 		return displayInfoImage;
 	}

@@ -30,8 +30,8 @@ const api = {
 		var result = await this.sendAjax("GET", `./api/reservations?reservationEmail=${email}`);
 		return result;
 	},
-	async deleteReservation(reservationInfoId) {
-		var result = await this.sendAjax("GET", `./api/reservations/${reservationInfoId}`);
+	async cancelReservation(reservationInfoId) {
+		var result = await this.sendAjax("PUT", `./api/reservations/${reservationInfoId}`);
 		return result;
 	},
 }

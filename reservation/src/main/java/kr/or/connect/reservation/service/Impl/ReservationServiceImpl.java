@@ -53,4 +53,11 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationForm;
 	}
 
+	@Override
+	public Reservation putReservationCancel(Long reservationInfoId) {
+		reservationDao.updateCancel(reservationInfoId);
+		Reservation reservation = reservationDao.selectUsingId(reservationInfoId);
+		return reservation;
+	}
+
 }

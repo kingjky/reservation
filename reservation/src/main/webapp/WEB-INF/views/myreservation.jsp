@@ -17,10 +17,10 @@
 		<div class="header">
 			<header class="header_tit">
 				<h1 class="logo">
-					<a href="./mainpage.html" class="lnk_logo" title="네이버">
+					<a href="./" class="lnk_logo" title="네이버">
 						<span class="spr_bi ico_n_logo">네이버</span>
 					</a>
-					<a href="./mainpage.html" class="lnk_logo" title="예약">
+					<a href="./" class="lnk_logo" title="예약">
 						<span class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
@@ -388,14 +388,14 @@
 			</div>
 			<div class="pop_bottom_btnarea">
 				<div class="btn_gray">
-					<a href="#" class="btn_bottom"><span>아니오</span></a>
+					<a class="btn_bottom"><span>아니오</span></a>
 				</div>
 				<div class="btn_green">
-					<a href="#" class="btn_bottom"><span>예</span></a>
+					<a class="btn_bottom"><span>예</span></a>
 				</div>
 			</div>
 			<!-- 닫기 -->
-			<a href="#" class="popup_btn_close" title="close"> <i class="spr_book2 ico_cls"></i>
+			<a class="popup_btn_close" title="close"> <i class="spr_book2 ico_cls"></i>
 			</a>
 			<!--// 닫기 -->
 		</div>
@@ -432,6 +432,7 @@
 								</em>
 							</div>
 							{{#if cancelYn}}
+
 							{{else}}
 							<!-- [D] 예약 신청중, 예약 확정 만 취소가능, 취소 버튼 클릭 시 취소 팝업 활성화 -->
 								<div class="booking_cancel">
@@ -459,43 +460,3 @@
 </body>
 
 </html>
-
-<!-- <article class="card_item">
-	<a class="link_booking_details">
-		<div class="card_body">
-			<div class="left"></div>
-			<div class="middle">
-				<div class="card_detail">
-					<em class="booking_number">No.0000001</em>
-					<h4 class="tit">서비스명/상품명1</h4>
-					<ul class="detail">
-						<li class="item"><span class="item_tit">일정</span> <em
-								class="item_dsc"> 2000.0.00.(월)2000.0.00.(일) </em></li>
-						<li class="item"><span class="item_tit">내역</span> <em
-								class="item_dsc"> 내역이 없습니다. </em></li>
-						<li class="item"><span class="item_tit">장소</span> <em
-								class="item_dsc"> 내역이 없습니다. </em></li>
-						<li class="item"><span class="item_tit">업체</span> <em
-								class="item_dsc"> 업체명이 없습니다. </em></li>
-					</ul>
-					<div class="price_summary">
-						<span class="price_tit">결제 예정금액</span> <em class="price_amount">
-							<span>000,000,000</span> <span class="unit">원</span>
-						</em>
-					</div>
-					<div class="booking_cancel">
-						<button class="btn">
-							<span>취소</span>
-						</button>
-					</div>
-				</div>
-			</div>
-			<div class="right"></div>
-		</div>
-		<div class="card_footer">
-			<div class="left"></div>
-			<div class="middle"></div>
-			<div class="right"></div>
-		</div>
-	</a> <a href="#" class="fn fn-share1 naver-splugin btn_goto_share" title="공유하기"></a>
-</article> -->
