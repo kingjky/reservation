@@ -20,14 +20,25 @@
 		<div class="header">
 			<header class="header_tit">
 				<h1 class="logo">
-					<a href="https://m.naver.com/" class="lnk_logo" title="네이버"> <span
-							class="spr_bi ico_n_logo">네이버</span>
-					</a> <a href="./html/myreservation.html" class="lnk_logo" title="예약"> <span
-							class="spr_bi ico_bk_logo">예약</span>
+					<a href="https://m.naver.com/" class="lnk_logo" title="네이버">
+						<span class="spr_bi ico_n_logo">네이버</span>
+					</a>
+					<a href="myreservation" class="lnk_logo" title="예약">
+						<span class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
-				<a href="./html/bookinglogin.html" class="btn_my"> <span class="viewReservation" title="예약확인">예약확인</span>
-				</a>
+				<c:choose>
+					<c:when test="${sessionScope.email == null}">
+						<a href="bookinglogin" class="btn_my">
+							<span class="viewReservation" title="예약확인">예약확인</span>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a href="myreservation" class="btn_my">
+							<span class="viewReservation" title="예약내역">${sessionScope.email}</span>
+						</a>
+					</c:otherwise>
+				</c:choose>
 			</header>
 		</div>
 		<hr>

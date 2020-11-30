@@ -9,14 +9,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import kr.or.connect.reservation.controller.EntityController;
 import kr.or.connect.reservation.dto.Reservation;
@@ -42,7 +46,6 @@ public class ReservationApiController extends EntityController {
 			Date reservationDate = dateFormat.parse(reservation.getReservationDate());
 			reservation.setReservationDate(dateFormat.format(reservationDate));
 		}
-		
 		Map<String, Object> map = new HashMap<>();
 		map.put("reservations", reservations);
 		return handleSuccess(map);

@@ -27,9 +27,11 @@ public class ReservationServiceImpl implements ReservationService {
 	public List<Reservation> getReservationsUsingEmail(String email) {
 		List<Reservation> reservations = reservationDao.selectAllUsingEmail(email);
 		for (Reservation reservation : reservations) {
-			int displayInfoId = reservation.getDisplayInfoId();
+			Long displayInfoId = reservation.getDisplayInfoId();
 			DisplayInfo displayInfo = displayInfoDao.selectUsingDisplayInfoId(displayInfoId);
 			reservation.setDisplayInfo(displayInfo);
+			int totalPrice = reservationDao.selectTotalPrice(reservation.getReservationInfoId());
+			reservation.setTotalPrice(totalPrice);
 		}
 		return reservations;
 	}

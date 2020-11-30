@@ -23,7 +23,15 @@ const api = {
 		return result;
 	},
 	async postBookingForm(jsonFormData) {
-		 var result = await this.sendAjax("POST", `./api/reservations`, jsonFormData);
+		var result = await this.sendAjax("POST", `./api/reservations`, jsonFormData);
+		return result;
+	},
+	async getReservations(email) {
+		var result = await this.sendAjax("GET", `./api/reservations?reservationEmail=${email}`);
+		return result;
+	},
+	async deleteReservation(reservationInfoId) {
+		var result = await this.sendAjax("GET", `./api/reservations/${reservationInfoId}`);
 		return result;
 	},
 }

@@ -26,7 +26,7 @@ public class ReservationDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private SimpleJdbcInsert reservationInsertAction;
 	private SimpleJdbcInsert reservationPriceInsertAction;
-	private RowMapper<Reservation> rowMapper = BeanPropertyRowMapper.newInstance(Reservation.class);
+	private RowMapper<Reservation> reservationRowMapper = BeanPropertyRowMapper.newInstance(Reservation.class);
 
 	public ReservationDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
@@ -40,7 +40,7 @@ public class ReservationDao {
 
 	public List<Reservation> selectAllUsingEmail(String email) {
 		Map<String, ?> params = Collections.singletonMap("email", email);
-		return jdbc.query(SELECT_ALL_USING_EMAIL, params, rowMapper);
+		return jdbc.query(SELECT_ALL_USING_EMAIL, params, reservationRowMapper);
 	};
 
 	public Long insert(ReservationForm form) {
@@ -60,5 +60,10 @@ public class ReservationDao {
 	public Long insertPrice(PriceForm form) {
 		SqlParameterSource params = new BeanPropertySqlParameterSource(form);
 		return reservationPriceInsertAction.executeAndReturnKey(params).longValue();
+	}
+	
+	public Integer selectTotalPrice(Long reservationInfoId) {
+		Map<String, ?> params = Collections.singletonMap("id", reservationInfoId);
+		return jdbc.queryForObject(SELECT_TOTAL_PRICE_USING_EMAIL, params, Integer.class);
 	}
 }

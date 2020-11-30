@@ -17,4 +17,14 @@ public class ReservationDaoSqls {
 		"    reservation_info " + 
 		"WHERE " + 
 		"    reservation_email = :email";
+
+	public static final String SELECT_TOTAL_PRICE_USING_EMAIL = 
+		"SELECT " + 
+		"    SUM(rip.count * pp.price) as sum " + 
+		"FROM " + 
+		"    reservation_info_price AS rip " + 
+		"    join " + 
+		"    product_price as pp on rip.product_price_id = pp.id " + 
+		"WHERE " + 
+		"    reservation_info_id = :id";
 }

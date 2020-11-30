@@ -194,17 +194,10 @@ const reserve = {
 		const checkedStatus = checkBtn.checked;
 
 		if (checkedStatus && this.formValidCheck()) {
-			// for (var pair of formData.entries()) {
-			// 	console.log(pair[0] + ', ' + pair[1]);
-			// }
-			var reservation = this.getReservationObj(displayInfo);
-
-			console.log(reservation);
-
-			var json = JSON.stringify(reservation);
-
+			const reservation = this.getReservationObj(displayInfo);
+			const json = JSON.stringify(reservation);
 			api.postBookingForm(json);
-			// location.href = "./detail?id=" + displayInfo.displayInfoId;
+			location.href = "./";
 		}
 	},
 	getReservationObj(displayInfo) {
@@ -317,6 +310,10 @@ class CountControl {
 		const totalPriceTag = countBody.querySelector(".total_price");
 		const totalPrice = price * count;
 		totalPriceTag.textContent = format.getFormatPrice(totalPrice);
+
+		const totalCountTag = document.querySelector("#totalCount");
+		const totalCount = Number(totalCountTag.textContent) + Number(value);
+		totalCountTag.textContent = totalCount;
 	}
 }
 document.addEventListener("DOMContentLoaded", function () {

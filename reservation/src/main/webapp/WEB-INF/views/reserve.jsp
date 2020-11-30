@@ -31,7 +31,8 @@
 		<div class="ct">
 			<div class="ct_wrap">
 				<div class="top_title">
-					<a href="./detail" class="btn_back" title="이전 화면으로 이동"> <i class="fn fn-backward1"></i>
+					<a href="./detail" class="btn_back" title="이전 화면으로 이동">
+						<i class="fn fn-backward1"></i>
 					</a>
 					<h2>
 						<span class="title"></span>
@@ -112,7 +113,7 @@
 									<div class="inline_control">
 										<p class="inline_txt selected">
 											2017.2.17, 총
-											<span id="totalCount">16</span>매
+											<span id="totalCount">0</span>매
 										</p>
 									</div>
 								</div>
