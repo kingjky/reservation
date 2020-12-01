@@ -31,7 +31,8 @@
 		<div class="ct">
 			<div class="ct_wrap">
 				<div class="top_title">
-					<a href="./detail" class="btn_back" title="이전 화면으로 이동"> <i class="fn fn-backward1"></i>
+					<a href="./detail" class="btn_back" title="이전 화면으로 이동">
+						<i class="fn fn-backward1"></i>
 					</a>
 					<h2>
 						<span class="title"></span>
@@ -54,11 +55,11 @@
 				<div class="section_store_details">
 					<div class="store_details">
 						<h3 class="in_tit">장소</h3>
-						<p class="dsc"></p>
+						<p class="dsc place"></p>
 						<h3 class="in_tit">관람시간</h3>
-						<p class="dsc"></p>
+						<p class="dsc time"></p>
 						<h3 class="in_tit">요금</h3>
-						<p class="dsc"></p>
+						<p class="dsc price"></p>
 					</div>
 				</div>
 				<div class="section_booking_ticket">
@@ -112,7 +113,7 @@
 									<div class="inline_control">
 										<p class="inline_txt selected">
 											2017.2.17, 총
-											<span id="totalCount">16</span>매
+											<span id="totalCount">0</span>매
 										</p>
 									</div>
 								</div>
@@ -179,7 +180,7 @@
 				</div>
 				<div class="box_bk_btn">
 					<!-- [D] 약관 전체 동의가 되면 disable 제거 -->
-					<div class="bk_btn_wrap">
+					<div class="bk_btn_wrap disable">
 						<button type="button" class="bk_btn">
 							<i class="spr_book ico_naver_s"></i> <span>예약하기</span>
 						</button>
@@ -200,21 +201,19 @@
 		</div>
 	</footer>
 	<script type="myTemplate" id="priceTemplate">
-		<div class="qty">
+		<div class="qty" data-product-price-id="{{productPriceId}}">
 			<div class="count_control">
-				<!-- [D] 수량이 최소 값이 일때 ico_minus3, count_control_input에 disabled 각각 추가, 수량이 최대 값일 때는 ico_plus3에 disabled 추가 -->
 				<div class="clearfix">
 					<a class="btn_plus_minus spr_book2 ico_minus3 disabled"
 						title="빼기"
-						value=-1> </a>
+						data-value=-1> </a>
 					<input type="tel"
 						class="count_control_input disabled" value="0" readonly
 						title="수량">
 					<a class="btn_plus_minus spr_book2 ico_plus3"
 						title="더하기"
-						value=1> </a>
+						data-value=1> </a>
 				</div>
-				<!-- [D] 금액이 0 이상이면 individual_price에 on_color 추가 -->
 				<div class="individual_price">
 					<span class="total_price">0</span><span class="price_type">원</span>
 				</div>
@@ -227,7 +226,7 @@
 					</span>
 				</strong>
 				<strong class="product_price">
-					<span class="price" value="{{price}}">
+					<span class="price" data-price="{{price}}">
 						{{#getFormatPrice price}}
 						{{/getFormatPrice}}
 					</span>
