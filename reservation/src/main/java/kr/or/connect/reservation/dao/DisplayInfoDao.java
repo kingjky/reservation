@@ -23,7 +23,7 @@ public class DisplayInfoDao {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	public DisplayInfo selectUsingDisplayInfoId(Integer displayInfoId) {
+	public DisplayInfo selectUsingDisplayInfoId(Long displayInfoId) {
 		Map<String, ?> params = Collections.singletonMap("displayInfoId", displayInfoId);
 		return jdbc.queryForObject(SELECT_USING_DISPLAY_INFO_ID, params, rowMapper);
 	}

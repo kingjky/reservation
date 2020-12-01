@@ -2,7 +2,6 @@ package kr.or.connect.reservation.service.Impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.connect.reservation.dao.CommentDao;
@@ -16,7 +15,6 @@ public class CommentServiceImpl implements CommentService {
 	private final CommentDao commentDao;
 	private final CommentImageDao commentImageDao;
 
-	@Autowired
 	public CommentServiceImpl(CommentDao commentDao, CommentImageDao commentImageDao) {
 		this.commentDao = commentDao;
 		this.commentImageDao = commentImageDao;
