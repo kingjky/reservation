@@ -9,6 +9,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
 	<title>네이버 예약</title>
 	<link href="./css/style.css" rel="stylesheet">
+	<link rel="icon" href="./img/favicon.ico">
 
 </head>
 
@@ -68,7 +69,7 @@
 				<!--// 예약 현황 -->
 
 				<!-- 내 예약 리스트 -->
-				<div class="wrap_mylist">
+				<div class="wrap_mylist" style="display: none;">
 					<ul class="list_cards" ng-if="bookedLists.length > 0">
 						<!--[D] 예약확정: .confirmed, 취소된 예약&이용완료: .used 추가 card -->
 						<li class="card" style="display: none;">
@@ -354,7 +355,7 @@
 				<!--// 내 예약 리스트 -->
 
 				<!-- 예약 리스트 없음 -->
-				<div class="err">
+				<div class="err" style="display: none;">
 					<i class="spr_book ico_info_nolist"></i>
 					<h1 class="tit">예약 리스트가 없습니다</h1>
 				</div>
@@ -381,7 +382,8 @@
 		<div class="dimm_dark" style="display: block"></div>
 		<div class="popup_booking refund">
 			<h1 class="pop_tit">
-				<span>서비스명/상품명</span> <small class="sm">2000.0.00.(월)2000.0.00.(일)</small>
+				<span>서비스명/상품명</span>
+				<!-- <small class="sm">2000.0.00.(월)2000.0.00.(일)</small> -->
 			</h1>
 			<div class="nomember_alert">
 				<p>취소하시겠습니까?</p>

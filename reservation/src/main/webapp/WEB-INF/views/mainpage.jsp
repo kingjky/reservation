@@ -82,18 +82,29 @@
 			</div>
 			<div class="section_event_tab">
 				<ul class="event_tab_lst tab_lst_min">
-					<li class="item" data-category="0"><a class="anchor active">
+					<li class="item" data-category="0">
+						<a class="anchor active">
 							<span>전체리스트</span>
 						</a></li>
-					<li class="item" data-category="1"><a class="anchor"> <span>전시</span>
+					<li class="item" data-category="1">
+						<a class="anchor">
+							<span>전시</span>
 						</a></li>
-					<li class="item" data-category="2"><a class="anchor"> <span>뮤지컬</span>
+					<li class="item" data-category="2">
+						<a class="anchor">
+							<span>뮤지컬</span>
 						</a></li>
-					<li class="item" data-category="3"><a class="anchor"> <span>콘서트</span>
+					<li class="item" data-category="3">
+						<a class="anchor">
+							<span>콘서트</span>
 						</a></li>
-					<li class="item" data-category="4"><a class="anchor"> <span>클래식</span>
+					<li class="item" data-category="4">
+						<a class="anchor"> 
+							<span>클래식</span>
 						</a></li>
-					<li class="item" data-category="5"><a class="anchor"> <span>연극</span>
+					<li class="item" data-category="5">
+						<a class="anchor"> 
+							<span>연극</span>
 						</a></li>
 					<!-- <li class="item" data-category="7"><a class="anchor"> <span>클래스</span>
 					</a></li>
@@ -109,9 +120,9 @@
 					바로 예매 가능한 행사가 <span class="pink">0개</span> 있습니다
 				</p>
 				<div class="wrap_event_box">
-					<ul class="lst_event_box">
+					<ul class="lst_event_box left">
 					</ul>
-					<ul class="lst_event_box">
+					<ul class="lst_event_box right">
 					</ul>
 					<div class="more">
 						<button class="btn" value="0">
@@ -152,18 +163,20 @@
 		<a href="detail?id={id}" class="item_book">
 			<div class="item_preview">
 				<img alt="{description}" class="img_thumb" src="./{productImageUrl}">
-
 				<span class="img_border"></span>
 			</div>
 				<div class="event_txt">
-				<h4 class="event_txt_tit"> <span>{description}</span> <small class="sm">{placeName}</small> </h4>
+				<h4 class="event_txt_tit">
+					<span>{description}</span>
+					<small class="sm">{placeName}</small>
+				</h4>
 				<p class="event_txt_dsc">{content}</p>
 			</div>
 		</a>
 	</li>
 	</script>
 
-	<script src="./js/mainpage.js"></script>
+	<script type="module" src="./js/mainpage.js"></script>
 </body>
 
 </html>

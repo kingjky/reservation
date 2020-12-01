@@ -39,10 +39,9 @@ public class ViewController {
 			List<Reservation> reservations = reservationService.getReservationsUsingEmail(reservationEmail);
 			if (reservations.size() > 0) {
 				session.setAttribute("email", reservationEmail);
-				return "redirect:/myreservation";
 			}
 		}
-		return "redirect:/bookinglogin";
+		return "redirect:/myreservation";
 	}
 
 	@GetMapping(path = "/logout")

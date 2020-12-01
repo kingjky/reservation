@@ -55,11 +55,11 @@
 				<div class="section_store_details">
 					<div class="store_details">
 						<h3 class="in_tit">장소</h3>
-						<p class="dsc"></p>
+						<p class="dsc place"></p>
 						<h3 class="in_tit">관람시간</h3>
-						<p class="dsc"></p>
+						<p class="dsc time"></p>
 						<h3 class="in_tit">요금</h3>
-						<p class="dsc"></p>
+						<p class="dsc price"></p>
 					</div>
 				</div>
 				<div class="section_booking_ticket">
@@ -206,13 +206,13 @@
 				<div class="clearfix">
 					<a class="btn_plus_minus spr_book2 ico_minus3 disabled"
 						title="빼기"
-						value=-1> </a>
+						data-value=-1> </a>
 					<input type="tel"
 						class="count_control_input disabled" value="0" readonly
 						title="수량">
 					<a class="btn_plus_minus spr_book2 ico_plus3"
 						title="더하기"
-						value=1> </a>
+						data-value=1> </a>
 				</div>
 				<div class="individual_price">
 					<span class="total_price">0</span><span class="price_type">원</span>
@@ -226,7 +226,7 @@
 					</span>
 				</strong>
 				<strong class="product_price">
-					<span class="price" value="{{price}}">
+					<span class="price" data-price="{{price}}">
 						{{#getFormatPrice price}}
 						{{/getFormatPrice}}
 					</span>

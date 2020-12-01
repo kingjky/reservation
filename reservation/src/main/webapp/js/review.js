@@ -1,4 +1,5 @@
-import format from './format.js';
+import API from './util//api.js';
+import format from './util//format.js';
 
 const review = {
 	initialize() {
@@ -6,24 +7,13 @@ const review = {
 		const displayInfoId = url.searchParams.get("id");
 		const backTag = document.querySelector(".btn_back");
 		backTag.href = "detail?id=" + displayInfoId;
-
-		document.addEventListener("DOMContentLoaded", function () {
-			this.loadDisplayInfo(displayInfoId);
-		}.bind(this));
+		this.loadDisplayInfo(displayInfoId);
 	},
 	loadDisplayInfo(displayInfoId) {
-		const HTTP_STATUS_OK = 200;
-		const oReq = new XMLHttpRequest();
-		oReq.addEventListener("load", function () {
-			if (oReq.status !== HTTP_STATUS_OK)
-				return;
-			
-			const displayInfoWrapper = JSON.parse(oReq.responseText);
-			this.updateAverageScore(displayInfoWrapper.averageScore);
-			this.updateComments(displayInfoWrapper.displayInfo, displayInfoWrapper.comments);
-		}.bind(this));
-		oReq.open("GET", `./api/products/${displayInfoId}`);
-		oReq.send();
+		API.getDisplayInfo(displayInfoId).then(result => {
+			this.updateAverageScore(result.averageScore);
+			this.updateComments(result.displayInfo, result.comments);
+		});
 	},
 	updateAverageScore(averageScore) {
 		const averagePointTag = document.querySelector(".text_value");
@@ -31,13 +21,13 @@ const review = {
 
 		const TO_PERCENT = 100;
 		const totalPointTag = document.querySelector(".total"),
-			totalPoint = Number(totalPointTag.textContent),
+			totalPoint = Number(totalPointTag?.textContent),
 			percentage = (averageScore / totalPoint) * TO_PERCENT + "%";
 
 		const graphValueTag = document.querySelector(".graph_value");
 		graphValueTag.style.width = percentage;
 	},
-	updateComments(displayInfo, comments) {
+	updateComments(displayInfo = {}, comments = []) {
 		const titleTag = document.querySelector(".title");
 		titleTag.textContent = displayInfo.productDescription;
 		titleTag.href = "detail?id=" + displayInfo.displayInfoId;
@@ -49,25 +39,27 @@ const review = {
 		this.bindComments(displayInfo, comments);
 	},
 	bindComments(displayInfo, comments){
-		Handlebars.registerHelper("getProductDescription", function () {
+		Handlebars.registerHelper("getProductDescription", () => {
 			return displayInfo.productDescription;
 		});
-		Handlebars.registerHelper("getFormatScore", function (score) {
+		Handlebars.registerHelper("getFormatScore", score => {
 			return format.getFormatScore(score);
 		});
-		Handlebars.registerHelper("getFormatEmail", function (reservationEmail) {
+		Handlebars.registerHelper("getFormatEmail", reservationEmail => {
 			return format.getFormatEmail(reservationEmail);
 		});
-		Handlebars.registerHelper("getFormatDate", function (reservationDate) {
+		Handlebars.registerHelper("getFormatDate", reservationDate => {
 			return format.getFormatDate(reservationDate);
 		});
 		const commentTemplate = document.querySelector("#commentTemplate").innerText,
 			commentBindTemplate = Handlebars.compile(commentTemplate);
-		let resultHTML = comments.reduce(function (prev, next) {
+		let resultHTML = comments.reduce((prev, next) => {
 			return prev + commentBindTemplate(next);
 		}, "");
 		const commentList = document.querySelector(".list_short_review");
 		commentList.innerHTML = resultHTML;
 	},
 }
-review.initialize();
+document.addEventListener("DOMContentLoaded", () => {
+	review.initialize();
+});

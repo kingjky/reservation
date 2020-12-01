@@ -88,21 +88,23 @@
 						</div>
 					</div>
 					<div class="group_btn_goto" style="display: none;">
-						<a class="btn_goto_home" title="홈페이지" href="#" target="siteUrl">
-							<i class="fn fn-home1"></i>
-						</a> <a class="btn_goto_tel" title="전화" href="#"> <i class="fn fn-call1"></i>
-						</a> <a class="btn_goto_mail" title="이메일" href="#"> <i class="fn fn-mail1"></i>
-						</a> <a href="#" class="btn_goto_path" title="길찾기"> <i class="fn fn-path-find1"></i>
-						</a> <a href="#" class="fn fn-share1 naver-splugin btn_goto_share" title="공유하기"></a>
+						<a class="btn_goto_home" title="홈페이지" href="#" target="siteUrl"><i class="fn fn-home1"></i></a>
+						<a class="btn_goto_tel" title="전화" href="#"> <i class="fn fn-call1"></i></a>
+						<a class="btn_goto_mail" title="이메일" href="#"> <i class="fn fn-mail1"></i></a>
+						<a href="#" class="btn_goto_path" title="길찾기"> <i class="fn fn-path-find1"></i></a>
+						<a href="#" class="fn fn-share1 naver-splugin btn_goto_share" title="공유하기"></a>
 					</div>
 				</div>
 				<div class="section_store_details">
 					<div class="store_details close3">
 						<p class="dsc"></p>
 					</div>
-					<a class="bk_more _open"> <span class="bk_more_txt">펼쳐보기</span>
+					<a class="bk_more _open">
+						<span class="bk_more_txt">펼쳐보기</span>
 						<i class="fn fn-down2"></i>
-					</a> <a class="bk_more _close" style="display: none;"> <span class="bk_more_txt">접기</span>
+					</a>
+					<a class="bk_more _close" style="display: none;">
+						<span class="bk_more_txt">접기</span>
 						<i class="fn fn-up2"></i>
 					</a>
 				</div>
@@ -132,29 +134,34 @@
 						<h3 class="title_h3">예매자 한줄평</h3>
 						<div class="short_review_area">
 							<div class="grade_area">
-								<span class="graph_mask"> <em class="graph_value" style="width: 0%;"></em>
-								</span> <strong class="text_value"> <span class="average">0.0</span> <em
-										class="total">5.0</em>
-								</strong> <span class="join_count"><em class="green">0건</em> 등록</span>
+								<span class="graph_mask"> <em class="graph_value" style="width: 0%;"></em></span>
+								<strong class="text_value">
+									<span class="average">0.0</span>
+									<em class="total">5.0</em>
+								</strong>
+								<span class="join_count"><em class="green">0건</em> 등록</span>
 							</div>
 							<ul class="list_short_review">
 							</ul>
 						</div>
 						<p class="guide">
-							<i class="spr_book2 ico_bell"></i> <span>네이버 예약을 통해 실제 방문한
-								이용자가 남긴 평가입니다.</span>
+							<i class="spr_book2 ico_bell"></i>
+							<span>네이버 예약을 통해 실제 방문한 이용자가 남긴 평가입니다.</span>
 						</p>
 					</div>
-					<a class="btn_review_more hide" href="./review"> <span>예매자
-							한줄평 더보기</span> <i class="fn fn-forward1"></i>
+					<a class="btn_review_more hide" href="./review">
+						<span>예매자 한줄평 더보기</span>
+						<i class="fn fn-forward1"></i>
 					</a>
 				</div>
 				<div class="section_info_tab">
 					<ul class="info_tab_lst">
-						<li class="item _detail"><a class="anchor active"> <span>상세정보</span>
-							</a></li>
-						<li class="item _path"><a class="anchor"> <span>오시는길</span>
-							</a></li>
+						<li class="item _detail">
+							<a class="anchor active"> <span>상세정보</span></a>
+						</li>
+						<li class="item _path">
+							<a class="anchor"> <span>오시는길</span></a>
+						</li>
 					</ul>
 					<div class="detail_area_wrap">
 						<div class="detail_area">
@@ -182,10 +189,10 @@
 					</div>
 					<div class="detail_location hide">
 						<div class="box_store_info no_topline">
-							<a href="#" class="store_location" title="지도웹으로 연결"> <img class="store_map img_thumb"
-									alt="map" src="">
-								<span class="img_border"></span> <span class="btn_map"><i
-										class="spr_book2 ico_mapview"></i></span>
+							<a href="#" class="store_location" title="지도웹으로 연결">
+								<img class="store_map img_thumb" alt="map" src="">
+								<span class="img_border"></span>
+								<span class="btn_map"><i class="spr_book2 ico_mapview"></i></span>
 							</a>
 							<h3 class="store_name"></h3>
 							<div class="store_info">
@@ -199,17 +206,25 @@
 								</div>
 								<div class="lst_store_info_wrap">
 									<ul class="lst_store_info">
-										<li class="item"><span class="item_lt"> <i class="fn fn-call2"></i> <span
-													class="sr_only">전화번호</span>
-											</span> <span class="item_rt"> <a href="" class="store_tel"></a></span></li>
+										<li class="item">
+											<span class="item_lt">
+												<i class="fn fn-call2"></i><span class="sr_only">전화번호</span>
+											</span>
+											<span class="item_rt">
+												<a href="" class="store_tel"></a>
+											</span>
+										</li>
 									</ul>
 								</div>
 							</div>
 							<!-- [D] 모바일 브라우저에서 접근 시 column2 추가와 btn_navigation 요소 추가 -->
 							<div class="bottom_common_path column2">
-								<a href="" class="btn_path"> <i class="fn fn-path-find2"></i>
+								<a href="" class="btn_path">
+									<i class="fn fn-path-find2"></i>
 									<span>길찾기</span>
-								</a> <a href="" class="btn_navigation before"> <i class="fn fn-navigation2"></i>
+								</a>
+								<a href="" class="btn_navigation before">
+									<i class="fn fn-navigation2"></i>
 									<span>내비게이션</span>
 								</a>
 							</div>
@@ -290,7 +305,7 @@
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="./js/detail.js"></script>
+	<script type="module" src="./js/detail.js"></script>
 </body>
 
 
