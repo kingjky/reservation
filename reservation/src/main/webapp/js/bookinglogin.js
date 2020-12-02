@@ -11,9 +11,9 @@ const bookinglogin = {
 		});
 	},
 	submitForm() {
-		if (this.formValidCheck()) {
-			const form = document.querySelector(".login_form");
-			const emailInput = form?.querySelector("input#resrv_id");
+		const form = document.querySelector(".login_form"),
+			emailInput = form?.querySelector("input#resrv_id");
+		if (this.validCheck(emailInput)) {
 			const email = emailInput?.value;
 			this.login(email);
 		}
@@ -21,21 +21,15 @@ const bookinglogin = {
 	login(email = "") {
 		location.href = `./login?reservationEmail=${email}`;
 	},
-	formValidCheck() {
-		const form = document.querySelector(".login_form");
-		const emailInput = form?.querySelector("input#resrv_id");
-		const emailValid = this.validCheck(emailInput);
-		return emailValid;
-	},
-	validCheck(emailInput = "") {
-		let email = emailInput?.value;
+	validCheck(emailInput) {
+		let email = emailInput.value;
 		const emailValid = inputValidCheck.getEmailValid(email);
 		if (!emailValid) {
-			emailInput.style.color = "red";
+			emailInput.style?.color = "red";
 			emailInput.value = "형식이 틀렸거나 너무 짧아요";
 			setTimeout(() => {
 				emailInput.value = "";
-				emailInput.style.color = "black";
+				emailInput.style?.color = "black";
 			}, 1000);
 			return false;
 		}
