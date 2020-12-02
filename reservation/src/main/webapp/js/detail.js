@@ -1,30 +1,22 @@
+import API from "./util/api.js";
+
 const detail = {
 	initialize() {
 		const url = new URL(window.location);
 		const displayInfoId = url.searchParams.get("id");
-		document.addEventListener("DOMContentLoaded", function () {
-			this.loadDisplayInfo(displayInfoId);
-			this.addTabClickEvent();
-			this.addMoreClickEvent();
-		}.bind(this));
+		this.loadDisplayInfo(displayInfoId);
+		this.addTabClickEvent();
+		this.addMoreClickEvent();
 	},
 	loadDisplayInfo(displayInfoId) {
-		const HTTP_STATUS_OK = 200;
-		const oReq = new XMLHttpRequest();
-		oReq.addEventListener("load", function () {
-			if (oReq.status !== HTTP_STATUS_OK) {
-				return;
-			}
-			const displayInfoWrapper = JSON.parse(oReq.responseText);
-			this.updateProductDetail(displayInfoWrapper.averageScore,
-				displayInfoWrapper.comments,
-				displayInfoWrapper.displayInfo,
-				displayInfoWrapper.displayInfoImage,
-				displayInfoWrapper.productImages,
-				displayInfoWrapper.productPrices);
-		}.bind(this));
-		oReq.open("GET", `./api/products/${displayInfoId}`);
-		oReq.send();
+		API.getDisplayInfo(displayInfoId).then(result => {
+			this.updateProductDetail(result.averageScore,
+				result.comments,
+				result.displayInfo,
+				result.displayInfoImage,
+				result.productImages,
+				result.productPrices);
+		});
 	},
 	updateProductDetail(averageScore, comments, displayInfo, displayInfoImage, productImages, productPrices) {
 		this.updateAverageScore(averageScore);
@@ -35,7 +27,6 @@ const detail = {
 	updateAverageScore(averageScore) {
 		const averagePointTag = document.querySelector(".average");
 		averagePointTag.textContent = averageScore;
-
 		const TO_PERCENT = 100;
 		const totalPointTag = document.querySelector(".total"),
 			totalPoint = Number(totalPointTag.textContent),
@@ -54,65 +45,62 @@ const detail = {
 		comments = comments.slice(COMMENTS_START, COMMENTS_LIMIT);
 
 		const ReviewMoreTag = document.querySelector(".btn_review_more");
-		ReviewMoreTag.href = "./review?id=" + displayInfo.displayInfoId;
-		if (commentsNum > COMMENTS_LIMIT) {
+		ReviewMoreTag.href = `./review?id=${displayInfo.displayInfoId}`;
+		if (commentsNum > COMMENTS_LIMIT)
 			ReviewMoreTag.classList.remove("hide");
-		}
 
 		this.bindComments(displayInfo, comments);
 	},
-	bindComments(displayInfo, comments){
-		Handlebars.registerHelper("getProductDescription", function () {
+	bindComments(displayInfo, comments) {
+		Handlebars.registerHelper("getProductDescription", () => {
 			return displayInfo.productDescription;
 		});
-		Handlebars.registerHelper("getFormatScore", function (score) {
+		Handlebars.registerHelper("getFormatScore", score => {
 			const DECIMAL_STR = ".0";
 			return score + DECIMAL_STR;
 		});
-		Handlebars.registerHelper("getFormatEmail", function (reservationEmail) {
+		Handlebars.registerHelper("getFormatEmail", reservationEmail => {
 			const SHOW_EMAIL_START = 0;
 			const SHOW_EMAIL_LIMIT = 4;
 			const MASAIC_STR = "****";
 			return reservationEmail.slice(SHOW_EMAIL_START, SHOW_EMAIL_LIMIT) + MASAIC_STR;
 		});
-		Handlebars.registerHelper("getFormatDate", function (reservationDate) {
+		Handlebars.registerHelper("getFormatDate", reservationDate => {
 			const date = new Date(reservationDate);
 			let year = date.getFullYear();
 			let month = (1 + date.getMonth());
-			month = month >= 10 ? month : '0' + month;
+			month = month >= 10 ? month : `0${month}`;
 			let day = date.getDate();
-			day = day >= 10 ? day : '0' + day;
-			return year + '.' + month + '.' + day;
+			day = day >= 10 ? day : `0${day}`;
+			return `${year}.${month}.${day}`;
 		});
 		const commentTemplate = document.querySelector("#commentTemplate").innerText,
 			commentBindTemplate = Handlebars.compile(commentTemplate);
-		let resultHTML = comments.reduce(function (prev, next) {
+		let resultHTML = comments.reduce((prev, next) => {
 			return prev + commentBindTemplate(next);
 		}, "");
 		const commentList = document.querySelector(".list_short_review");
 		commentList.innerHTML = resultHTML;
 	},
 	updateDisplayInfo(displayInfo, displayInfoImage) {
-		const storeNameTag = document.querySelector(".store_name");
+		const TEL_LINK = "tel:";
+
+		const bookAnchor = document.querySelector(".section_btn > a"),
+			storeNameTag = document.querySelector(".store_name"),
+			storeDetailTag = document.querySelector(".store_details > .dsc"),
+			detailInfoTag = document.querySelector(".detail_info_lst > .in_dsc"),
+			storeAddressBoldTag = document.querySelector(".store_addr_bold"),
+			addrOldDetailTag = document.querySelector(".addr_old_detail"),
+			addrDetailTag = document.querySelector(".addr_detail"),
+			storeTelTag = document.querySelector(".store_tel");
+
+		bookAnchor.href = `./reserve?id=${displayInfo.displayInfoId}`;
 		storeNameTag.textContent = displayInfo.productDescription;
-
-		const storeDetailTag = document.querySelector(".store_details > .dsc"),
-			detailInfoTag = document.querySelector(".detail_info_lst > .in_dsc");
-
 		storeDetailTag.textContent = displayInfo.productContent;
 		detailInfoTag.textContent = displayInfo.productContent;
-
-		const storeAddressBoldTag = document.querySelector(".store_addr_bold");
 		storeAddressBoldTag.textContent = displayInfo.placeStreet;
-
-		const addrOldDetailTag = document.querySelector(".addr_old_detail");
 		addrOldDetailTag.textContent = displayInfo.placeLot;
-
-		const addrDetailTag = document.querySelector(".addr_detail");
 		addrDetailTag.textContent = displayInfo.placeName;
-
-		const storeTelTag = document.querySelector(".store_tel");
-		const TEL_LINK = "tel:";
 		storeTelTag.href = TEL_LINK + displayInfo.telephone;
 		storeTelTag.textContent = displayInfo.telephone;
 
@@ -126,14 +114,14 @@ const detail = {
 		const totalImagesLength = productImages.length,
 			imageTemplate = document.querySelector("#imageTemplate").innerText,
 			imageBindTemplate = Handlebars.compile(imageTemplate);
-		let resultHTML = productImages.reduce(function (prev, next) {
+		let resultHTML = productImages.reduce((prev, next) => {
 			return prev + imageBindTemplate(next);
 		}, "");
 		const imageList = document.querySelector(".visual_img");
 		imageList.innerHTML = resultHTML;
 
 		const visualTextList = document.querySelectorAll(".visual_txt_tit");
-		visualTextList.forEach(function (visualText) {
+		visualTextList.forEach(visualText => {
 			visualText.firstElementChild.textContent = displayInfo.productDescription;
 		})
 		const totalNumTag = document.querySelector(".figure_pagination").lastElementChild.firstElementChild;
@@ -153,15 +141,14 @@ const detail = {
 			nextBtn.style.display = "none";
 		}
 	},
-	// XXX
-	addMoreClickEvent(){
-		$(document).ready(function () {
-			$("._open").on("click", function () {
+	addMoreClickEvent() {
+		$(document).ready(() => {
+			$("._open").on("click", () => {
 				$("._open").attr("style", "display: none;");
 				$("._close").attr("style", "display: block;");
 				$(".store_details").removeClass("close3");
 			});
-			$("._close").on("click", function () {
+			$("._close").on("click", () => {
 				$("._close").attr("style", "display: none;");
 				$("._open").attr("style", "display: block;");
 				$(".store_details").addClass("close3");
@@ -169,60 +156,48 @@ const detail = {
 		});
 	},
 	addTabClickEvent() {
-		const tabList = document.querySelector(".section_info_tab > .info_tab_lst");
-		tabList.addEventListener("click", function (event) {
-			let tab;
-			if (event.target.tagName === "SPAN")
-				tab = event.target.parentNode.parentNode;
-			else if (event.target.tagName === "A")
-				tab = event.target.parentNode;
-			else if (event.target.tagName === "LI")
-				tab = event.target;
-			else
+		const tabList = document.querySelector(".section_info_tab > ul.info_tab_lst"),
+			detailTab = tabList?.querySelector("._detail"),
+			pathTab = tabList?.querySelector("._path"),
+			detailAreaWrap = document.querySelector(".detail_area_wrap"),
+			detailLocation = document.querySelector(".detail_location");
+		tabList?.addEventListener("click", event => {
+			const tab = event.target.closest("li");
+			if (!tab || !event.currentTarget.contains(tab) || tab.querySelector("a")?.classList.contains("active"))
 				return;
 
-			this.clearTabs();
-			tab.firstChild.classList.add("active");
+			tab.querySelector("a")?.classList.add("active");
 			if (tab.classList.contains("_detail")) {
-				const detailLocation = document.querySelector(".detail_location");
-				detailLocation.classList.add("hide");
+				pathTab?.querySelector("a")?.classList.remove("active");
+				detailAreaWrap?.classList.remove("hide");
+				detailLocation?.classList.add("hide");
 			} else {
-				const detailAreaWrap = document.querySelector(".detail_area_wrap");
-				detailAreaWrap.classList.add("hide");
+				detailTab?.querySelector("a")?.classList.remove("active");
+				detailAreaWrap?.classList.add("hide");
+				detailLocation?.classList.remove("hide");
 			}
-		}.bind(this));
-	},
-	clearTabs() {
-		const tabList = document.querySelector(".section_info_tab > .info_tab_lst");
-		tabList.childNodes.forEach(function (tab) {
-			if (tab.firstChild)
-				tab.firstChild.classList.remove("active");
 		});
-		const detailAreaWrap = document.querySelector(".detail_area_wrap");
-		detailAreaWrap.classList.remove("hide");
-		const detailLocation = document.querySelector(".detail_location");
-		detailLocation.classList.remove("hide");
 	},
 	addNavClickSlideEvent() {
 		const slideWrapper = document.querySelector(".container_visual"),
 			slides = document.querySelectorAll(".container_visual ul li"),
-			totalSlides = slides.length,
-			sliderWidth = slideWrapper.clientWidth;
-		slides.forEach(function (element) {
+			totalSlides = slides?.length,
+			sliderWidth = slideWrapper?.clientWidth;
+		slides.forEach(element => {
 			element.style.width = sliderWidth + "px";
 		})
 		const slider = document.querySelector(".container_visual > ul.detail_swipe");
 		slider.style.width = sliderWidth * totalSlides + "px";
 		slider.style.left = 0 + "px";
 
-		const nextBtn = document.querySelector(".nxt");
-		const prevBtn = document.querySelector(".prev");
-		const NEXT = 1;
-		const PREV = -1;
-		nextBtn.addEventListener("click", function () {
+		const nextBtn = document.querySelector(".nxt"),
+			prevBtn = document.querySelector(".prev");
+		const NEXT = 1,
+			PREV = -1;
+		nextBtn.addEventListener("click", () => {
 			plusSlides(NEXT);
 		}, true);
-		prevBtn.addEventListener("click", function () {
+		prevBtn.addEventListener("click", () => {
 			plusSlides(PREV);
 		}, true);
 
@@ -239,24 +214,25 @@ const detail = {
 			} else if (slideIndex === totalSlides) {
 				slideIndex = FIRST_IMAGE_INDEX;
 			}
-			const prevIcon = document.querySelector(".prev i");
-			const nextIcon = document.querySelector(".nxt i");
+			const prevIcon = document.querySelector(".prev i"),
+				nextIcon = document.querySelector(".nxt i");
 			if (slideIndex == FIRST_IMAGE_INDEX) {
-				prevIcon.classList.add("off");
-				nextIcon.classList.remove("off");
+				prevIcon?.classList.add("off");
+				nextIcon?.classList.remove("off");
 			} else if (slideIndex == (totalSlides + PREV)) {
-				prevIcon.classList.remove("off");
-				nextIcon.classList.add("off");
+				prevIcon?.classList.remove("off");
+				nextIcon?.classList.add("off");
 			} else {
-				nextIcon.classList.remove("off");
-				prevIcon.classList.remove("off");
+				nextIcon?.classList.remove("off");
+				prevIcon?.classList.remove("off");
 			}
-			const currentNumTag = document.querySelector(".figure_pagination").firstElementChild;
+			const currentNumTag = document.querySelector(".figure_pagination")?.firstElementChild;
 			currentNumTag.textContent = (slideIndex + NEXT);
 
 			slider.style.left = -(sliderWidth * slideIndex) + "px";
 		}
 	}
 }
-
-detail.initialize();
+document.addEventListener("DOMContentLoaded", () => {
+	detail.initialize();
+});

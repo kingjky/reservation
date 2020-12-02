@@ -1,6 +1,5 @@
 package kr.or.connect.reservation.service.Impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.connect.reservation.dao.DisplayInfoDao;
@@ -14,20 +13,19 @@ public class DisplayServiceImpl implements DisplayService {
 	private final DisplayInfoDao displayInfoDao;
 	private final DisplayInfoImageDao displayInfoImageDao;
 
-	@Autowired
 	public DisplayServiceImpl(DisplayInfoDao displayInfoDao, DisplayInfoImageDao displayInfoImageDao) {
 		this.displayInfoDao = displayInfoDao;
 		this.displayInfoImageDao = displayInfoImageDao;
 	}
 
 	@Override
-	public DisplayInfo getDisplayInfoUsingDisplayInfoId(Integer displayInfoId) {
+	public DisplayInfo getDisplayInfoUsingDisplayInfoId(Long displayInfoId) {
 		DisplayInfo displayInfo = displayInfoDao.selectUsingDisplayInfoId(displayInfoId);
 		return displayInfo;
 	}
 
 	@Override
-	public DisplayInfoImage getDisplayInfoImageUsingDisplayInfoId(Integer displayInfoId) {
+	public DisplayInfoImage getDisplayInfoImageUsingDisplayInfoId(Long displayInfoId) {
 		DisplayInfoImage displayInfoImage = displayInfoImageDao.selectUsingDisplayInfoId(displayInfoId);
 		return displayInfoImage;
 	}

@@ -15,6 +15,7 @@ import kr.or.connect.reservation.dao.ProductDao;
 import kr.or.connect.reservation.dao.ProductImageDao;
 import kr.or.connect.reservation.dao.ProductPriceDao;
 import kr.or.connect.reservation.dao.PromotionDao;
+import kr.or.connect.reservation.dao.ReservationDao;
 import kr.or.connect.reservation.dto.Category;
 import kr.or.connect.reservation.dto.Comment;
 import kr.or.connect.reservation.dto.CommentImage;
@@ -24,6 +25,7 @@ import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.ProductImage;
 import kr.or.connect.reservation.dto.ProductPrice;
 import kr.or.connect.reservation.dto.Promotion;
+import kr.or.connect.reservation.dto.Reservation;
 
 public class _DaoTest {
 
@@ -32,6 +34,12 @@ public class _DaoTest {
 		CategoryDao categoryDao = ac.getBean(CategoryDao.class);
 		PromotionDao promotionDao = ac.getBean(PromotionDao.class);
 		ProductDao productDao = ac.getBean(ProductDao.class);
+		CommentDao commentDao = ac.getBean(CommentDao.class);
+		CommentImageDao commentImageDao = ac.getBean(CommentImageDao.class);
+		DisplayInfoDao displayInfoDao = ac.getBean(DisplayInfoDao.class);
+		DisplayInfoImageDao displayInfoImageDao = ac.getBean(DisplayInfoImageDao.class);
+		ProductImageDao productImageDao = ac.getBean(ProductImageDao.class);
+		ReservationDao reservationDao = ac.getBean(ReservationDao.class);
 		
 		/*List<Category> categories = categoryDao.selectAll();
 		for (Category category : categories) {
@@ -44,15 +52,13 @@ public class _DaoTest {
 		}
 		System.out.println("============================================================================================================");
 		int categoryId = 1;
-		List<Product> products = productDao.selectAllUsingCategory(categoryId, 0, 4);
+		List<Product> products = productDao.selectAllWithPagingUsingCategory(categoryId, 0, 4);
 		int count = productDao.selectCountUsingCategory(categoryId);
 		System.out.println(count);
 		for (Product product : products) {
 			System.out.println(product);
-		}*/
+		}
 		System.out.println("================================================ CommentDao Test ============================================================");
-		CommentDao commentDao = ac.getBean(CommentDao.class);
-		CommentImageDao commentImageDao = ac.getBean(CommentImageDao.class);
 		List<Comment> comments = commentDao.selectAllUsingProductId(1);
 		for (Comment comment : comments) {
 			comment.setCommentImages(commentImageDao.selectAllUsingCommentId(comment.getCommentId()));
@@ -71,17 +77,14 @@ public class _DaoTest {
 		}
 		
 		System.out.println("================================================ DisplayInfoDao Test ============================================================");
-		DisplayInfoDao displayInfoDao = ac.getBean(DisplayInfoDao.class);
 		DisplayInfo displayInfo = displayInfoDao.selectUsingDisplayInfoId(1);
 		System.out.println(displayInfo);
 		
 		System.out.println("================================================ DisplayInfoImageDao Test ============================================================");
-		DisplayInfoImageDao displayInfoImageDao = ac.getBean(DisplayInfoImageDao.class);
 		DisplayInfoImage displayInfoImage = displayInfoImageDao.selectUsingDisplayInfoId(1);
 		System.out.println(displayInfoImage);
 		
 		System.out.println("================================================ ProductImageDao Test ============================================================");
-		ProductImageDao productImageDao = ac.getBean(ProductImageDao.class);
 		List<ProductImage> productImages = productImageDao.selectAllUsingProductId(1);
 		for (ProductImage productImage : productImages) {
 			System.out.println(productImage);
@@ -92,6 +95,13 @@ public class _DaoTest {
 		List<ProductPrice> productPrices = productPriceDao.selectAllUsingProductId(1);
 		for (ProductPrice productPrice : productPrices) {
 			System.out.println(productPrice);
+		}*/
+		
+		System.out.println("================================================ ReservationDao Test ============================================================");
+		List<Reservation> reservations = reservationDao.selectAllUsingEmail("kimjinsu@connect.co.kr");
+		for (Reservation reservation : reservations) {
+			reservation.setDisplayInfo(displayInfoDao.selectUsingDisplayInfoId(reservation.getDisplayInfoId()));
+			System.out.println(reservation);
 		}
 	}
 
