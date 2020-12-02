@@ -147,7 +147,7 @@ const detail = {
 		});
 	},
 	addTabClickEvent() {
-		const tabList = document.querySelector(".section_info_tab > ul.info_tab_lstaa"),
+		const tabList = document.querySelector(".section_info_tab > ul.info_tab_lst"),
 			detailTab = tabList.querySelector("._detail"),
 			pathTab = tabList.querySelector("._path"),
 			detailAreaWrap = document.querySelector(".detail_area_wrap"),
