@@ -1,6 +1,7 @@
 package kr.or.connect.reservation.exception;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,17 +11,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 @ResponseBody
 public class ExceptionManager {
-	private final static Logger logger = Logger.getRootLogger();
+	private final static Logger logger = LoggerFactory.getLogger(ExceptionManager.class);
 
 	@ExceptionHandler(CustomException.class)
 	public ResponseEntity<Error> catchedException(CustomException exception) {
-		logger.error(exception);
+//		logger.error(exception);
 		return new ResponseEntity<Error>(Error.create(exception.getExceptionType()), HttpStatus.OK);
 	}
 
 	@ExceptionHandler
 	public ResponseEntity<Error> thrownException(Exception exception) {
-		logger.error(exception);
+//		logger.error(exception);
 		if (exception.getCause() == null) {
 			Error error = Error.create(ExceptionEnum.UNKNOWN_EXCEPTION);
 			return new ResponseEntity<Error>(error, error.getStatus());
