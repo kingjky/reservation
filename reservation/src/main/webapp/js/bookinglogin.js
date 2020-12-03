@@ -25,11 +25,11 @@ const bookinglogin = {
 		let email = emailInput.value;
 		const emailValid = inputValidCheck.getEmailValid(email);
 		if (!emailValid) {
-			emailInput.style?.color = "red";
+			emailInput.style.color = "red";
 			emailInput.value = "형식이 틀렸거나 너무 짧아요";
 			setTimeout(() => {
 				emailInput.value = "";
-				emailInput.style?.color = "black";
+				emailInput.style.color = "black";
 			}, 1000);
 			return false;
 		}
