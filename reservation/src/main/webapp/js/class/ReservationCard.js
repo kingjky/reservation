@@ -11,14 +11,14 @@ class ReservationCard {
 		})
 	}
 	cancel() {
-		const cancelBtn = this.card?.querySelector(".btn");
-		const reservationInfoId = cancelBtn?.value;
+		const cancelBtn = this.card.querySelector(".btn");
+		const reservationInfoId = cancelBtn.value;
 		this.cancelAsk(reservationInfoId);
 	}
 	cancelAsk(reservationInfoId) {
 		const popup = document.querySelector(".popup_booking_wrapper");
-		const productTitleTag = popup?.querySelector(".pop_tit span");
-		const title = this.card?.querySelector(".card_detail .tit").textContent;
+		const productTitleTag = popup.querySelector(".pop_tit span");
+		const title = this.card.querySelector(".card_detail .tit").textContent;
 		productTitleTag.textContent = title;
 		
 		const yesBtn = popup.querySelector(".btn_green");

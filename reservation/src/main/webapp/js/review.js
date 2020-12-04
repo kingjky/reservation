@@ -21,7 +21,7 @@ const review = {
 
 		const TO_PERCENT = 100;
 		const totalPointTag = document.querySelector(".total"),
-			totalPoint = Number(totalPointTag?.textContent),
+			totalPoint = Number(totalPointTag.textContent),
 			percentage = (averageScore / totalPoint) * TO_PERCENT + "%";
 
 		const graphValueTag = document.querySelector(".graph_value");

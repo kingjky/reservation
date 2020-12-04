@@ -25,10 +25,10 @@ const mainpage = {
 			else
 				rightResultHTML += this.getReplacedItem(item, product);
 		})
-		leftProductList.innerHTML += leftResultHTML;
 		rightProductList.innerHTML += rightResultHTML;
+		leftProductList.innerHTML += leftResultHTML;
 		const moreButton = document.querySelector(".more > button");
-		const currentCount = moreButton.value = (parseInt(moreButton?.value) + products.length);
+		const currentCount = moreButton.value = (parseInt(moreButton.value) + products.length);
 		if (currentCount >= totalCount) {
 			const moreButtonWrapper = document.querySelector(".more");
 			moreButtonWrapper.style.display = "none";
@@ -49,7 +49,7 @@ const mainpage = {
 				return;
 			this.clearTabs();
 			const category = tab.dataset.category;
-			tab.querySelector("a")?.classList.add("active");
+			tab.querySelector("a").classList.add("active");
 			this.loadProducts(category);
 		});
 	},
@@ -59,12 +59,12 @@ const mainpage = {
 			const tabItems = document.querySelectorAll(".section_event_tab > ul > li");
 			let activeTab = tabItems[0];
 			for (let tab of tabItems) {
-				if (tab.querySelector("a")?.classList.contains("active")) {
+				if (tab.querySelector("a").classList.contains("active")) {
 					activeTab = tab;
 					break;
 				}
 			}
-			this.loadProducts(activeTab?.dataset.category, moreButton.value);
+			this.loadProducts(activeTab.dataset.category, moreButton.value);
 		})
 	},
 	clearTabs() {
@@ -73,7 +73,7 @@ const mainpage = {
 		leftProductList.innerHTML = rightProductList.innerHTML = "";
 		const tabItems = document.querySelectorAll(".section_event_tab > ul > li");
 		tabItems.forEach(tab => {
-			tab.querySelector("a")?.classList.remove("active");
+			tab.querySelector("a").classList.remove("active");
 		})
 		const moreButton = document.querySelector(".more > button");
 		moreButton.value = 0;
