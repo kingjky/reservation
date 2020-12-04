@@ -11,17 +11,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 @ResponseBody
 public class ExceptionManager {
-	private final static Logger logger = LoggerFactory.getLogger(ExceptionManager.class);
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@ExceptionHandler(CustomException.class)
 	public ResponseEntity<Error> catchedException(CustomException exception) {
-//		logger.error(exception);
+		logger.debug("{}", exception);
+//		logger.debug("{} 가종료되었습니다. {} 를 view로 사용합니다.", handler.toString(), modelAndView.getViewName()); 
 		return new ResponseEntity<Error>(Error.create(exception.getExceptionType()), HttpStatus.OK);
 	}
 
 	@ExceptionHandler
 	public ResponseEntity<Error> thrownException(Exception exception) {
 //		logger.error(exception);
+		logger.debug("{}", exception);
 		if (exception.getCause() == null) {
 			Error error = Error.create(ExceptionEnum.UNKNOWN_EXCEPTION);
 			return new ResponseEntity<Error>(error, error.getStatus());
