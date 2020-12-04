@@ -46,14 +46,14 @@
 							</a>
 						</h1>
 						<c:choose>
-							<c:when test="${sessionScope.email == null}">
+							<c:when test="${sessionScope.login == null}">
 								<a href="bookinglogin" class="btn_my">
 									<span class="viewReservation" title="예약확인">예약확인</span>
 								</a>
 							</c:when>
 							<c:otherwise>
 								<a href="myreservation" class="btn_my">
-									<span class="viewReservation" title="예약내역">${sessionScope.email}</span>
+									<span class="viewReservation" title="예약내역">${sessionScope.login}</span>
 								</a>
 							</c:otherwise>
 						</c:choose>

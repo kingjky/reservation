@@ -22,9 +22,9 @@ const myreservation = {
 		}
 		ReservationListTag.style.display = "block";
 		const summaryBoardTag = document.querySelector(".summary_board"),
-			book2FigureTag = summaryBoardTag?.querySelector(".figure.book2"),
-			bookSSFigureTag = summaryBoardTag?.querySelector(".figure.book_ss"),
-			backFigureTag = summaryBoardTag?.querySelector(".figure.back");
+			book2FigureTag = summaryBoardTag.querySelector(".figure.book2"),
+			bookSSFigureTag = summaryBoardTag.querySelector(".figure.book_ss"),
+			backFigureTag = summaryBoardTag.querySelector(".figure.back");
 
 		let totalCount = 0,
 			cancelYesCount = 0,
