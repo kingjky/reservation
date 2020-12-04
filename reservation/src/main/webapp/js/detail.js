@@ -1,4 +1,5 @@
 import API from "./util/api.js";
+import format from "./util/format.js";
 
 const detail = {
 	initialize() {
@@ -56,23 +57,13 @@ const detail = {
 			return displayInfo.productDescription;
 		});
 		Handlebars.registerHelper("getFormatScore", score => {
-			const DECIMAL_STR = ".0";
-			return score + DECIMAL_STR;
+			return format.getFormatScore(score);
 		});
 		Handlebars.registerHelper("getFormatEmail", reservationEmail => {
-			const SHOW_EMAIL_START = 0;
-			const SHOW_EMAIL_LIMIT = 4;
-			const MASAIC_STR = "****";
-			return reservationEmail.slice(SHOW_EMAIL_START, SHOW_EMAIL_LIMIT) + MASAIC_STR;
+			return format.getFormatEmail(reservationEmail);
 		});
 		Handlebars.registerHelper("getFormatDate", reservationDate => {
-			const date = new Date(reservationDate);
-			let year = date.getFullYear();
-			let month = (1 + date.getMonth());
-			month = month >= 10 ? month : `0${month}`;
-			let day = date.getDate();
-			day = day >= 10 ? day : `0${day}`;
-			return `${year}.${month}.${day}`;
+			return format.getFormatDate(reservationDate);
 		});
 		const commentTemplate = document.querySelector("#commentTemplate").innerText,
 			commentBindTemplate = Handlebars.compile(commentTemplate);
@@ -131,7 +122,7 @@ const detail = {
 		const FIRST_IMAGE_NUMBER = 1;
 		currentNumTag.textContent = FIRST_IMAGE_NUMBER;
 
-		const MIN_IMAGE_NUM_TO_USE_BTN = 2
+		const MIN_IMAGE_NUM_TO_USE_BTN = 2;
 		if (totalImagesLength >= MIN_IMAGE_NUM_TO_USE_BTN) {
 			this.addNavClickSlideEvent();
 		} else {
@@ -157,32 +148,32 @@ const detail = {
 	},
 	addTabClickEvent() {
 		const tabList = document.querySelector(".section_info_tab > ul.info_tab_lst"),
-			detailTab = tabList?.querySelector("._detail"),
-			pathTab = tabList?.querySelector("._path"),
+			detailTab = tabList.querySelector("._detail"),
+			pathTab = tabList.querySelector("._path"),
 			detailAreaWrap = document.querySelector(".detail_area_wrap"),
 			detailLocation = document.querySelector(".detail_location");
-		tabList?.addEventListener("click", event => {
+		tabList.addEventListener("click", event => {
 			const tab = event.target.closest("li");
-			if (!tab || !event.currentTarget.contains(tab) || tab.querySelector("a")?.classList.contains("active"))
+			if (!tab || !event.currentTarget.contains(tab) || tab.querySelector("a").classList.contains("active"))
 				return;
 
-			tab.querySelector("a")?.classList.add("active");
+			tab.querySelector("a").classList.add("active");
 			if (tab.classList.contains("_detail")) {
-				pathTab?.querySelector("a")?.classList.remove("active");
-				detailAreaWrap?.classList.remove("hide");
-				detailLocation?.classList.add("hide");
+				pathTab.querySelector("a").classList.remove("active");
+				detailAreaWrap.classList.remove("hide");
+				detailLocation.classList.add("hide");
 			} else {
-				detailTab?.querySelector("a")?.classList.remove("active");
-				detailAreaWrap?.classList.add("hide");
-				detailLocation?.classList.remove("hide");
+				detailTab.querySelector("a").classList.remove("active");
+				detailAreaWrap.classList.add("hide");
+				detailLocation.classList.remove("hide");
 			}
 		});
 	},
 	addNavClickSlideEvent() {
 		const slideWrapper = document.querySelector(".container_visual"),
 			slides = document.querySelectorAll(".container_visual ul li"),
-			totalSlides = slides?.length,
-			sliderWidth = slideWrapper?.clientWidth;
+			totalSlides = slides.length,
+			sliderWidth = slideWrapper.clientWidth;
 		slides.forEach(element => {
 			element.style.width = sliderWidth + "px";
 		})
@@ -216,17 +207,17 @@ const detail = {
 			}
 			const prevIcon = document.querySelector(".prev i"),
 				nextIcon = document.querySelector(".nxt i");
-			if (slideIndex == FIRST_IMAGE_INDEX) {
-				prevIcon?.classList.add("off");
-				nextIcon?.classList.remove("off");
-			} else if (slideIndex == (totalSlides + PREV)) {
-				prevIcon?.classList.remove("off");
-				nextIcon?.classList.add("off");
+			if (slideIndex === FIRST_IMAGE_INDEX) {
+				prevIcon.classList.add("off");
+				nextIcon.classList.remove("off");
+			} else if (slideIndex === (totalSlides + PREV)) {
+				prevIcon.classList.remove("off");
+				nextIcon.classList.add("off");
 			} else {
-				nextIcon?.classList.remove("off");
-				prevIcon?.classList.remove("off");
+				nextIcon.classList.remove("off");
+				prevIcon.classList.remove("off");
 			}
-			const currentNumTag = document.querySelector(".figure_pagination")?.firstElementChild;
+			const currentNumTag = document.querySelector(".figure_pagination").firstElementChild;
 			currentNumTag.textContent = (slideIndex + NEXT);
 
 			slider.style.left = -(sliderWidth * slideIndex) + "px";

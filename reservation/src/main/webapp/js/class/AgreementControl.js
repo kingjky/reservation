@@ -13,10 +13,10 @@ class AgreementControl {
 		if (target.tagName !== "A")
 			target = target.parentNode;
 		if (target.tagName === "A") {
-			if (event.currentTarget.classList?.contains("open")) {
-				event.currentTarget.classList?.remove("open");
+			if (event.currentTarget.classList.contains("open")) {
+				event.currentTarget.classList.remove("open");
 			} else {
-				event.currentTarget.classList?.add("open");
+				event.currentTarget.classList.add("open");
 			}
 		}
 	}
