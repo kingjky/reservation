@@ -67,8 +67,8 @@ const reserve = {
 		const storeTimeTag = document.querySelector(".store_details .dsc.time");
 		const storePriceTag = document.querySelector(".store_details .dsc.price");
 
-		storePlaceTag.textContent = displayInfo?.placeStreet;
-		storeTimeTag.textContent = displayInfo?.openingHours;
+		storePlaceTag.textContent = displayInfo.placeStreet;
+		storeTimeTag.textContent = displayInfo.openingHours;
 
 		let priceInfoHTML = productPrices.reduce((prev, next) => {
 			let desc;
@@ -95,7 +95,7 @@ const reserve = {
 	},
 	bindProductPrices(productPrices) {
 		Handlebars.registerHelper("getTypeName", priceTypeName => {
-			const typeName = priceTypeList[priceTypeName]?.name;
+			const typeName = priceTypeList[priceTypeName].name;
 			return typeName;
 		});
 		Handlebars.registerHelper("getFormatPrice", price => {
@@ -119,7 +119,7 @@ const reserve = {
 	addFormCheck() {
 		const formTag = document.querySelector(".form_horizontal");
 		formTag.addEventListener("change", evt => {
-			this.validCheck(evt.target.name, evt.target, evt.target.parentNode?.querySelector(".warning_msg"));
+			this.validCheck(evt.target.name, evt.target, evt.target.parentNode.querySelector(".warning_msg"));
 		});
 	},
 	formValidCheck() {
@@ -133,7 +133,7 @@ const reserve = {
 		return nameValid && telValid && emailValid;
 	},
 	validCheck(type, input, warning) {
-		const value = input?.value;
+		const value = input.value;
 		let Valid = {
 			name: inputValidCheck.getNameValid(value),
 			email: inputValidCheck.getEmailValid(value),
@@ -165,7 +165,7 @@ const reserve = {
 	},
 	submitForm(displayInfo) {
 		const checkBtn = document.querySelector("input.chk_agree");
-		const checkedStatus = checkBtn?.checked;
+		const checkedStatus = checkBtn.checked;
 		const formValid = this.formValidCheck();
 
 		if (checkedStatus && formValid) {
@@ -182,11 +182,11 @@ const reserve = {
 		const emailInput = form.querySelector("input.email");
 
 		let object = new Object();
-		object.reservationName = nameInput?.value;
-		object.reservationTelephone = telInput?.value;
-		object.reservationEmail = emailInput?.value;
-		object.displayInfoId = displayInfo?.displayInfoId;
-		object.productId = displayInfo?.productId;
+		object.reservationName = nameInput.value;
+		object.reservationTelephone = telInput.value;
+		object.reservationEmail = emailInput.value;
+		object.displayInfoId = displayInfo.displayInfoId;
+		object.productId = displayInfo.productId;
 		object.reservationYearMonthDay = format.getFormatDate(new Date().toDateString());
 		object.prices = this.makeReservationPriceArray();
 		return object;

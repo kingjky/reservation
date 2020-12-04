@@ -33,20 +33,19 @@ public class ViewController {
 
 	@GetMapping(path = "/login")
 	public String login(
-		@RequestParam(name = "reservationEmail", required = false) String reservationEmail,
-		HttpSession session) {
+		@RequestParam(name = "reservationEmail", required = false) String reservationEmail, ModelMap model) {
 		if (reservationEmail != null) {
 			List<Reservation> reservations = reservationService.getReservationsUsingEmail(reservationEmail);
 			if (reservations.size() > 0) {
-				session.setAttribute("email", reservationEmail);
+				model.addAttribute("email", reservationEmail);
 			}
 		}
-		return "redirect:/myreservation";
+		return "bookinglogin";
 	}
 
 	@GetMapping(path = "/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("email");
-		return "redirect:/";
+		session.removeAttribute("login");
+		return "redirect:/bookinglogin";
 	}
 }
