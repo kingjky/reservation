@@ -26,7 +26,7 @@
 					</a>
 				</h1>
 				<a href="./logout" class="btn_my">
-					<span title="내예약" class="viewReservation">${sessionScope.email}</span>
+					<span title="내예약" class="viewReservation">${sessionScope.login}</span>
 				</a>
 			</header>
 		</div>
