@@ -11,24 +11,19 @@ const bookinglogin = {
 		});
 	},
 	submitForm() {
-		if (this.formValidCheck()) {
-			const form = document.querySelector(".login_form");
-			const emailInput = form?.querySelector("input#resrv_id");
-			const email = emailInput?.value;
+		const form = document.querySelector(".login_form"),
+			emailInput = form?.querySelector("input#resrv_id"),
+			emailValid = this.validCheck(emailInput);
+		if (emailValid) {
+			const email = emailInput.value;
 			this.login(email);
 		}
 	},
 	login(email = "") {
 		location.href = `./login?reservationEmail=${email}`;
 	},
-	formValidCheck() {
-		const form = document.querySelector(".login_form");
-		const emailInput = form?.querySelector("input#resrv_id");
-		const emailValid = this.validCheck(emailInput);
-		return emailValid;
-	},
 	validCheck(emailInput = "") {
-		let email = emailInput?.value;
+		let email = emailInput.value;
 		const emailValid = inputValidCheck.getEmailValid(email);
 		if (!emailValid) {
 			emailInput.style.color = "red";
