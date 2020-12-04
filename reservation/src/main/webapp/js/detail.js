@@ -154,7 +154,7 @@ const detail = {
 			detailLocation = document.querySelector(".detail_location");
 		tabList.addEventListener("click", event => {
 			const tab = event.target.closest("li");
-			if (!tab || !event.currentTarget.contains(tab) || tab.querySelector("a")?.classList.contains("active"))
+			if (!tab || !event.currentTarget.contains(tab) || tab.querySelector("a").classList.contains("active"))
 				return;
 
 			tab.querySelector("a").classList.add("active");
@@ -217,7 +217,7 @@ const detail = {
 				nextIcon.classList.remove("off");
 				prevIcon.classList.remove("off");
 			}
-			const currentNumTag = document.querySelector(".figure_pagination")?.firstElementChild;
+			const currentNumTag = document.querySelector(".figure_pagination").firstElementChild;
 			currentNumTag.textContent = (slideIndex + NEXT);
 
 			slider.style.left = -(sliderWidth * slideIndex) + "px";

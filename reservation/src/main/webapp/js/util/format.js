@@ -6,7 +6,7 @@ const format = {
 			if (mod === 0)
 				mod = "000";
 			formatPrice = mod + formatPrice;
-			price = Math.round(price / 1000);
+			price = Math.floor(price / 1000);
 			if (price > 0)
 				formatPrice = "," + formatPrice;
 		}

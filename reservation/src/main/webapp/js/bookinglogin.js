@@ -12,16 +12,17 @@ const bookinglogin = {
 	},
 	submitForm() {
 		const form = document.querySelector(".login_form"),
-			emailInput = form?.querySelector("input#resrv_id");
-		if (this.validCheck(emailInput)) {
-			const email = emailInput?.value;
+			emailInput = form?.querySelector("input#resrv_id"),
+			emailValid = this.validCheck(emailInput);
+		if (emailValid) {
+			const email = emailInput.value;
 			this.login(email);
 		}
 	},
 	login(email = "") {
 		location.href = `./login?reservationEmail=${email}`;
 	},
-	validCheck(emailInput) {
+	validCheck(emailInput = "") {
 		let email = emailInput.value;
 		const emailValid = inputValidCheck.getEmailValid(email);
 		if (!emailValid) {
