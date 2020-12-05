@@ -6,9 +6,11 @@ import kr.or.connect.reservation.dto.Comment;
 import kr.or.connect.reservation.dto.CommentImage;
 
 public interface CommentService {
-	List<Comment> getCommentsUsingProductId(Integer productId);
+	List<Comment> getCommentsUsingProductId(Long productId);
 
-	List<CommentImage> getCommentImagesUsingCommentId(Integer commentId);
+	List<CommentImage> getCommentImagesUsingCommentId(Long commentId);
+	
+	CommentImage getCommentImageUsingImageId(Long imageId);
 
 	double getAverageScore(List<Comment> comments);
 }

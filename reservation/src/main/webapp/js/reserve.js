@@ -1,8 +1,8 @@
 import API from './util/api.js';
 import format from './util/format.js';
-import inputValidCheck from "./util//inputValidCheck.js";
-import AgreementControl from "./class/AgreementControl.js";
-import CountControl from "./class/CountControl.js";
+import inputValidCheck from "./util/inputValidCheck.js";
+import AgreementControl from "./component/AgreementControl.js";
+import CountControl from "./component/CountControl.js";
 
 const priceTypeList = {
 	A: {
@@ -85,7 +85,8 @@ const reserve = {
 	},
 	updateProductImages(displayInfo, productImages, productPrices) {
 		const visualImg = document.querySelector(".visual_img > li > img");
-		visualImg.src = productImages[0].saveFileName;
+		// visualImg.src = productImages[0].saveFileName;
+		visualImg.src = `./download?fileName=${productImages[0].saveFileName}&contentType=${productImages[0].contentType}`;
 
 		const priceTag = document.querySelector(".preview_txt").children[1];
 		const minPrice = productPrices.reduce((prev, next) => {

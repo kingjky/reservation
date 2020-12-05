@@ -9,7 +9,8 @@ const HTTP_REQUEST = {
 		return {
 			method: "POST",
 			url: `./api/reservations`,
-			body: jsonFormData
+			body: jsonFormData,
+			bodyType: "json",
 		}
 	},
 	getReservations(email) {
@@ -30,6 +31,13 @@ const HTTP_REQUEST = {
 			url: `./api/products?categoryId=${categoryId}&start=${start}`,
 		}
 	},
+	postReview(reservationInfoId, productId, comment, score, formData) {
+		return {
+			method: "POST",
+			url: `./api/reservations/${reservationInfoId}/comments?comment=${comment}&productId=${productId}&score=${score}`,
+			body: formData,
+		}
+	}
 }
 const API = {
 	sendAjax(request) {
@@ -43,8 +51,9 @@ const API = {
 				resolve(JSON.parse(oReq.responseText));
 			})
 			oReq.open(request.method, request.url);
-			if (request.body && request.method === "POST") {
-				oReq.setRequestHeader('Content-type', 'application/json');
+			if (request.method === "POST") {
+				if(request.bodyType === "json")
+					oReq.setRequestHeader('Content-type', 'application/json');
 				oReq.send(request.body);
 			} else {
 				oReq.send();
@@ -69,6 +78,10 @@ const API = {
 	},
 	async getProducts(categoryId, start) {
 		var result = await this.sendAjax(HTTP_REQUEST.getProducts(categoryId, start));
+		return result;
+	},
+	async postReview(reservationInfoId, productId, comment, score, formData) {
+		var result = await this.sendAjax(HTTP_REQUEST.postReview(reservationInfoId, productId, comment, score, formData));
 		return result;
 	},
 }

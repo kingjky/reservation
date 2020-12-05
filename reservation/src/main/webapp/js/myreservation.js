@@ -1,5 +1,5 @@
 import api from './util/api.js';
-import ReservationCard from './class/ReservationCard.js';
+import ReservationCard from './component/ReservationCard.js';
 
 const myreservation = {
 	initialize() {
@@ -14,7 +14,7 @@ const myreservation = {
 	},
 	bindCards(reservations = []) {
 		const ReservationListTag = document.querySelector(".wrap_mylist");
-		if(reservations.length === 0) {
+		if (reservations.length === 0) {
 			const noReservationTag = document.querySelector(".err");
 			noReservationTag.style.display = "block";
 			ReservationListTag.style.display = "none";
@@ -22,49 +22,62 @@ const myreservation = {
 		}
 		ReservationListTag.style.display = "block";
 		const summaryBoardTag = document.querySelector(".summary_board"),
-			book2FigureTag = summaryBoardTag.querySelector(".figure.book2"),
-			bookSSFigureTag = summaryBoardTag.querySelector(".figure.book_ss"),
-			backFigureTag = summaryBoardTag.querySelector(".figure.back");
+			totalCountTag = summaryBoardTag.querySelector(".figure.book2"),
+			bookingCountTag = summaryBoardTag.querySelector(".figure.book_ss"),
+			completeCountTag = summaryBoardTag.querySelector(".figure.check"),
+			cancelCountTag = summaryBoardTag.querySelector(".figure.back");
+
+		const today = new Date();
 
 		let totalCount = 0,
-			cancelYesCount = 0,
-			cancelNoCount = 0;
-		reservations.forEach(reservation => {
-			if (reservation.cancelYn)
-				cancelYesCount++;
-			else
-				cancelNoCount++;
-			totalCount++;
-		});
-		book2FigureTag.textContent = totalCount;
-		bookSSFigureTag.textContent = cancelNoCount;
-		backFigureTag.textContent = cancelYesCount;
-
+			cancelCount = 0,
+			completeCount = 0,
+			bookingCount = 0;
+			
 		const cardTemplate = document.querySelector("#cardTemplaate").innerText,
 			reservationBindTemplate = Handlebars.compile(cardTemplate);
-		let resultCancelNHTML = reservations.reduce((prev, next) => {
-			if (!next.cancelYn)
-				return prev + reservationBindTemplate(next);
-			else
-				return prev;
-		}, "");
+
+		let bookingCardHTML = "",
+			completeCardHTML = "",
+			cancelCardHTML = "";
+
+		reservations.forEach(reservation => {
+			const reservationDate = new Date(reservation.reservationDate);
+			today.setHours(0,0,0,0);
+			reservation.isComplete = (reservationDate < today);
+			if (reservation.cancelYn) {
+				cancelCount++;
+				cancelCardHTML += reservationBindTemplate(reservation);
+			} else if (reservation.isComplete) {
+				completeCount++;
+				completeCardHTML += reservationBindTemplate(reservation);
+			} else {
+				bookingCount++;
+				bookingCardHTML += reservationBindTemplate(reservation);
+			}
+			totalCount++;
+		});
+		totalCountTag.textContent = totalCount;
+		bookingCountTag.textContent = bookingCount;
+		completeCountTag.textContent = completeCount;
+		cancelCountTag.textContent = cancelCount;
+
 		const confirmedCardList = document.querySelector(".list_cards .card.confirmed");
-		confirmedCardList.insertAdjacentHTML("beforeend", resultCancelNHTML);
+		confirmedCardList.insertAdjacentHTML("beforeend", bookingCardHTML);
 
-		let resultCancelYHTML = reservations.reduce((prev, next) => {
-			if (next.cancelYn)
-				return prev + reservationBindTemplate(next);
-			else
-				return prev;
-		}, "");
-		const cancelCardList = document.querySelector(".list_cards .card.used.cancel");
-		cancelCardList.insertAdjacentHTML("beforeend", resultCancelYHTML);
+		const usedCardList = document.querySelector(".list_cards .card.used");
+		usedCardList.insertAdjacentHTML("beforeend", completeCardHTML);
 
-		this.addCancelClickEvent();
+		const cancelCardList = document.querySelector(".list_cards .card.cancel");
+		cancelCardList.insertAdjacentHTML("beforeend", cancelCardHTML);
+
+		this.addCardClickEvent();
 	},
-	addCancelClickEvent() {
-		const cardList = document.querySelectorAll(".card.confirmed article");
-		cardList.forEach(card => { new ReservationCard(card); });
+	addCardClickEvent() {
+		const confirmedCardList = document.querySelectorAll(".card.confirmed article");
+		confirmedCardList.forEach(card => { new ReservationCard(card, "confirmed"); });
+		const usedCardList = document.querySelectorAll(".card.used article");
+		usedCardList.forEach(card => { new ReservationCard(card, "used"); });
 	}
 }
 document.addEventListener("DOMContentLoaded", () => {

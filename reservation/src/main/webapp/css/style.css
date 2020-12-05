@@ -419,7 +419,7 @@ hr {
 
 .spr_book {
 	display: inline-block;
-	background-image: url(../img/spr_book.png);
+	background-image: url(../download?fileName=img/spr_book.png);
 	background-size: 400px 400px;
 	vertical-align: top;
 	text-indent: 100%;
@@ -479,7 +479,7 @@ hr {
 }
 
 .spr_book2 {
-	background-image: url(../img/spr_book2.png);
+	background-image: url(../download?fileName=img/spr_book2.png);
 	background-size: 330px 400px
 }
 
@@ -588,7 +588,7 @@ hr {
 }
 
 .spr_bi {
-	background-image: url(../img/spr_bi.png);
+	background-image: url(../download?fileName=img/spr_bi.png);
 	background-size: 130px 120px
 }
 
@@ -642,7 +642,7 @@ input[type=checkbox].chk_agree+.label:before {
 	overflow: hidden;
 	display: inline-block;
 	color: transparent;
-	background-image: url(../img/spr_book2.png);
+	background-image: url(../download?fileName=img/spr_book2.png);
 	background-size: 330px 400px;
 	vertical-align: top
 }
@@ -780,6 +780,11 @@ button {
 	padding: 10px;
 	background-color: #e9ecef;
 	box-sizing: border-box
+}
+
+.box_bk_btn.disable .bk_btn {
+	border: 1px solid #ccc;
+	background-color: #d1d1d1
 }
 
 .bk_btn_wrap.disable .bk_btn {
@@ -936,7 +941,7 @@ button {
 	left: 0;
 	width: 9px;
 	height: 11px;
-	background-image: url(../img/spr_book2.png);
+	background-image: url(../download?fileName=img/spr_book2.png);
 	background-size: 330px 400px;
 	background-repeat: no-repeat;
 	background-position: -299px -26px;
@@ -2511,7 +2516,7 @@ button {
 
 .section_review_list .grade_area .graph_mask, .section_review_list .grade_area .graph_value,
 	.section_review_list .short_review_area .review_info .grade:before {
-	background-image: url(../img/spr_comment.png);
+	background-image: url(../download?fileName=img/spr_comment.png);
 	background-repeat: no-repeat;
 	background-size: 90px 130px
 }
@@ -2851,7 +2856,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_header .left {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_hl.png);
+	background-image: url(../download?fileName=img/bg_card_hl.png);
 	background-size: 12px 54px;
 	background-repeat: no-repeat;
 	width: 12px;
@@ -2863,7 +2868,7 @@ button {
 	position: relative;
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_hm.gif);
+	background-image: url(../download?fileName=img/bg_card_hm.gif);
 	background-size: auto 54px;
 	background-repeat: repeat-x;
 	width: 100%;
@@ -2891,7 +2896,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_header .right {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_hr.png);
+	background-image: url(../download?fileName=img/bg_card_hr.png);
 	background-size: 12px 54px;
 	background-repeat: no-repeat;
 	width: 12px;
@@ -2932,7 +2937,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_body .left {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_bl.png);
+	background-image: url(../download?fileName=img/bg_card_bl.png);
 	background-size: 12px 2px;
 	background-repeat: repeat-y;
 	width: 12px;
@@ -3072,7 +3077,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_body .right {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_br.png);
+	background-image: url(../download?fileName=img/bg_card_br.png);
 	background-size: 12px 2px;
 	background-repeat: repeat-y;
 	width: 12px;
@@ -3087,7 +3092,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_footer .left {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_fl.png);
+	background-image: url(../download?fileName=img/bg_card_fl.png);
 	background-size: 12px 2px;
 	background-repeat: no-repeat;
 	width: 12px;
@@ -3098,7 +3103,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_footer .middle {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_fm.png);
+	background-image: url(../download?fileName=img/bg_card_fm.png);
 	background-size: 100% 2px;
 	background-repeat: no-repeat;
 	width: 100%;
@@ -3109,7 +3114,7 @@ button {
 .section_my .wrap_mylist .list_cards .card .card_footer .right {
 	overflow: hidden;
 	display: table-cell;
-	background-image: url(../img/bg_card_fr.png);
+	background-image: url(../download?fileName=img/bg_card_fr.png);
 	background-size: 12px 2px;
 	background-repeat: no-repeat;
 	width: 12px;
@@ -3124,29 +3129,29 @@ button {
 
 .section_my .wrap_mylist .list_cards .card.confirmed .card_header .left
 	{
-	background-image: url(../img/bg_card2_hl.png)
+	background-image: url(../download?fileName=img/bg_card2_hl.png)
 }
 
 .section_my .wrap_mylist .list_cards .card.confirmed .card_header .middle
 	{
-	background-image: url(../img/bg_card2_hm.gif)
+	background-image: url(../download?fileName=img/bg_card2_hm.gif)
 }
 
 .section_my .wrap_mylist .list_cards .card.confirmed .card_header .right
 	{
-	background-image: url(../img/bg_card2_hr.png)
+	background-image: url(../download?fileName=img/bg_card2_hr.png)
 }
 
 .section_my .wrap_mylist .list_cards .card.used .card_header .left {
-	background-image: url(../img/bg_card3_hl.png)
+	background-image: url(../download?fileName=img/bg_card3_hl.png)
 }
 
 .section_my .wrap_mylist .list_cards .card.used .card_header .middle {
-	background-image: url(../img/bg_card3_hm.gif)
+	background-image: url(../download?fileName=img/bg_card3_hm.gif)
 }
 
 .section_my .wrap_mylist .list_cards .card.used .card_header .right {
-	background-image: url(../img/bg_card3_hr.png)
+	background-image: url(../download?fileName=img/bg_card3_hr.png)
 }
 
 .event {
@@ -3520,7 +3525,7 @@ button {
 	overflow: hidden;
 	display: inline-block;
 	color: transparent;
-	background-image: url(../img/spr_book_event.png);
+	background-image: url(../download?fileName=img/spr_book_event.png);
 	background-size: 150px 50px;
 	-webkit-background-size: 150px 50px;
 	vertical-align: top;
@@ -3632,14 +3637,14 @@ button {
 .section_confirm .confirm_item_top:before {
 	bottom: 0;
 	left: 0;
-	background-image: url('../img/bg_confirm_check_bottom_left.png');
+	background-image: url('../download?fileName=img/bg_confirm_check_bottom_left.png');
 	background-position: 0 0;
 }
 
 .section_confirm .confirm_item_top:after {
 	bottom: 0;
 	right: 0;
-	background-image: url('../img/bg_confirm_check_bottom_right.png');
+	background-image: url('../download?fileName=img/bg_confirm_check_bottom_right.png');
 	background-position: 100% 0;
 }
 
@@ -3790,17 +3795,17 @@ button {
 }
 
 .section_confirm.used .confirm_item_top .item_top_inside_left {
-	background-image: url('../img/bg_confirm_check_gray_used_left.png');
+	background-image: url('../download?fileName=img/bg_confirm_check_gray_used_left.png');
 }
 
 .section_confirm.used .confirm_item_top .item_top_inside_left .item_top_inside_right
 	{
-	background-image: url('../img/bg_confirm_check_gray_used_right.png');
+	background-image: url('../download?fileName=img/bg_confirm_check_gray_used_right.png');
 }
 
 .section_confirm.used .confirm_item_top .item_top_inside_left .item_top_inside_right .confirm_title
 	{
-	background-image: url('../img/bg_confirm_check_gray_used_center.png');
+	background-image: url('../download?fileName=img/bg_confirm_check_gray_used_center.png');
 	background-size: 4px 53px;
 	height: 38px;
 }
@@ -3938,7 +3943,7 @@ button {
 	width: 35px;
 	height: 32px;
 	margin-left: -38px;
-	background-image: url('../img/spr_comment.png');
+	background-image: url('../download?fileName=img/spr_comment.png');
 	background-repeat: no-repeat;
 	background-size: 90px 130px;
 	background-position: 0 -92px;

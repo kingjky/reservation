@@ -12,7 +12,7 @@
 	<title>네이버 예약</title>
 	<link href="./css/style.css" rel="stylesheet">
 	<link href="./css/containerVisual.css" rel="stylesheet">
-	<link rel="icon" href="./img/favicon.ico">
+	<link rel="icon" href="./download?fileName=img/favicon.ico">
 	<style>
 		.container_visual {
 			height: 414px;
@@ -256,7 +256,7 @@
 								<a href="#" class="thumb" title="이미지 크게 보기">
 									<img width="90" height="90"
 										class="img_vertical_top"
-										src="{{saveFileName}}"
+										src="./download?fileName={{saveFileName}}&contentType={{contentType}}"
 										alt="리뷰이미지">
 								</a>
 								<span class="img_count" style="display: none;">1</span>
@@ -291,7 +291,7 @@
 	</script>
 	<script type="myTemplate" id="imageTemplate">
 		<li class="item" style="width: 414px;">
-			<img alt="{{fileName}}" class="img_thumb" src="{{saveFileName}}">
+			<img alt="{{fileName}}" class="img_thumb" src="./download?fileName={{saveFileName}}&contentType={{contentType}}">
 			<span class="img_bg"></span>
 			<div class="visual_txt">
 				<div class="visual_txt_inn">

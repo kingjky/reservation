@@ -17,7 +17,7 @@ public interface ProductService {
 
 	int getCountUsingCategory(Integer categoryId);
 
-	List<ProductImage> getProductImagesUsingProductId(Integer productId);
+	List<ProductImage> getProductImagesUsingProductId(Long productId);
 
-	List<ProductPrice> getProductPricesUsingProductId(Integer productId);
+	List<ProductPrice> getProductPricesUsingProductId(Long productId);
 }

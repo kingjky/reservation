@@ -52,7 +52,7 @@
 	<meta name="format-detection" content="telephone=no, address=no, email=no">
 	<title translate="CM-NBOOKING">네이버 예약</title>
 	<link rel="stylesheet" href="./css/bookinglogin.css">
-	<link rel="icon" href="./img/favicon.ico">
+	<link rel="icon" href="./download?fileName=img/favicon.ico">
 </head>
 
 <body class="biz  ko">

@@ -21,15 +21,21 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public List<Comment> getCommentsUsingProductId(Integer productId) {
+	public List<Comment> getCommentsUsingProductId(Long productId) {
 		List<Comment> comments = commentDao.selectAllUsingProductId(productId);
 		return comments;
 	}
 
 	@Override
-	public List<CommentImage> getCommentImagesUsingCommentId(Integer commentId) {
+	public List<CommentImage> getCommentImagesUsingCommentId(Long commentId) {
 		List<CommentImage> commentImages = commentImageDao.selectAllUsingCommentId(commentId);
 		return commentImages;
+	}
+
+	@Override
+	public CommentImage getCommentImageUsingImageId(Long imageId) {
+		CommentImage commentImage = commentImageDao.selectAllUsingImageId(imageId);
+		return commentImage;
 	}
 
 	@Override
@@ -47,5 +53,4 @@ public class CommentServiceImpl implements CommentService {
 		result = (double)Math.round(result * 10) / 10;
 		return result;
 	}
-
 }

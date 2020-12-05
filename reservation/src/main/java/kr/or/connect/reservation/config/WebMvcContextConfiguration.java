@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import kr.or.connect.reservation.interceptor.LogInterceptor;
 import kr.or.connect.reservation.interceptor.LoginInterceptor;
 
 @Configuration
@@ -35,17 +36,19 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/html/**").addResourceLocations("/htmls/").setCachePeriod(31556926);
 	}
 
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/detail").setViewName("detail");
-		registry.addViewController("/review").setViewName("review");
-		registry.addViewController("/reserve").setViewName("reserve");
-		registry.addViewController("/bookinglogin").setViewName("bookinglogin");
-		registry.addViewController("/myreservation").setViewName("myreservation");
-	}
+//	@Override
+//	public void addViewControllers(ViewControllerRegistry registry) {
+//		registry.addViewController("/detail").setViewName("detail");
+//		registry.addViewController("/review").setViewName("review");
+//		registry.addViewController("/reserve").setViewName("reserve");
+//		registry.addViewController("/bookinglogin").setViewName("bookinglogin");
+//		registry.addViewController("/myreservation").setViewName("myreservation");
+//		registry.addViewController("/reviewWrite").setViewName("reviewWrite");
+//	}
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new LogInterceptor());
 		registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/login");
 	}
 

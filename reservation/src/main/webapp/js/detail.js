@@ -99,7 +99,8 @@ const detail = {
 	},
 	updateDisplayInfoImage(displayInfoImage) {
 		const storeMapTag = document.querySelector(".store_map");
-		storeMapTag.src = displayInfoImage.saveFileName;
+		// storeMapTag.src = displayInfoImage.saveFileName;
+		storeMapTag.src = `./download?fileName=${displayInfoImage.saveFileName}&contentType=${displayInfoImage.contentType}`;
 	},
 	updateProductImages(displayInfo, productImages) {
 		const totalImagesLength = productImages.length,

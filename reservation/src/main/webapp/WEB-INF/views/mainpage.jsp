@@ -12,7 +12,7 @@
 	<title>네이버 예약</title>
 	<link href="./css/style.css" rel="stylesheet">
 	<link href="./css/containerVisual.css" rel="stylesheet">
-	<link rel="icon" href="./img/favicon.ico">
+	<link rel="icon" href="./download?fileName=img/favicon.ico">
 </head>
 
 <body>
@@ -62,8 +62,8 @@
 							<div class="container_visual">
 								<ul class="visual_img shifting">
 									<c:forEach items="${promotions}" var="promotion">
-										<li class="item" style="background-image: url(./${promotion.productImageUrl});">
-											<a href="detail?id=${promotion.id}"> <span class="img_btm_border"></span>
+										<li class="item" style="background-image: url(./download?fileName=${promotion.productImageUrl});">
+											<a href="detail?id=${promotion.productId}"> <span class="img_btm_border"></span>
 												<span class="img_right_border"></span> <span class="img_bg_gra"></span>
 												<div class="event_txt">
 													<h4 class="event_txt_tit"></h4>
@@ -147,7 +147,7 @@
 
 
 	<script type="rv-template" id="promotionItem">
-	<li class="item" style="background-image: url(./{productImageUrl});">
+	<li class="item" style="background-image: url(./download?fileName={productImageUrl});">
 		<a href="detail?id={id}"> <span class="img_btm_border"></span> <span class="img_right_border"></span> <span class="img_bg_gra"></span>
 			<div class="event_txt">
 				<h4 class="event_txt_tit"></h4>
@@ -162,7 +162,7 @@
 	<li class="item">
 		<a href="detail?id={id}" class="item_book">
 			<div class="item_preview">
-				<img alt="{description}" class="img_thumb" src="./{productImageUrl}">
+				<img alt="{description}" class="img_thumb" src="./download?fileName={productImageUrl}">
 				<span class="img_border"></span>
 			</div>
 				<div class="event_txt">
