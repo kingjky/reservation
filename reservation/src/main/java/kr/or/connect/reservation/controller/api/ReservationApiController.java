@@ -57,6 +57,7 @@ public class ReservationApiController extends EntityController {
 	@PostMapping
 	public ResponseEntity<Map<String, Object>> postReservation(@RequestBody ReservationForm reservationForm)
 		throws ParseException {
+		Date now = new Date();
 		reservationService.postReservation(reservationForm);
 		Map<String, Object> map = new HashMap<>();
 		map.put("reservationInfoId", reservationForm.getReservationInfoId());
@@ -70,8 +71,8 @@ public class ReservationApiController extends EntityController {
 		Date reservationDate = originalFormat.parse(reservationForm.getReservationYearMonthDay());
 		map.put("reservationDate", targetFormat.format(reservationDate));
 		map.put("cancelYn", false);
-		map.put("createDate", new Date());
-		map.put("modifyDate", new Date());
+		map.put("createDate", now);
+		map.put("modifyDate", now);
 		map.put("prices", reservationForm.getPrices());
 		return handleSuccess(map);
 	}
@@ -91,20 +92,9 @@ public class ReservationApiController extends EntityController {
 		@RequestParam(name = "comment", required = true) String review,
 		@RequestParam("attachedImage") MultipartFile file)
 		throws ParseException {
-		
-		System.out.println("reservationInfoId : " + reservationInfoId);
-		System.out.println("productId : " + productId);
-		System.out.println("score : " + score);
-		System.out.println("comment : " + review);
-		
-		System.out.println("파일 이름 : " + file.getOriginalFilename());
-		System.out.println("파일 크기 : " + file.getSize());
-		
 		DateFormat targetFormat = new SimpleDateFormat("yyyyMMdd_HHmmss_");
 		String now = targetFormat.format(new Date());
-		
 		Comment comment = reservationService.postComment(reservationInfoId, productId, score, review, file, now);
-		
 		try (
 			FileOutputStream fos = new FileOutputStream("c:/tmp/img/" + now + file.getOriginalFilename());
 			InputStream is = file.getInputStream();) {
@@ -118,7 +108,7 @@ public class ReservationApiController extends EntityController {
 		}
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("test", "ok");
+		map.put("comment", comment);
 		return handleSuccess(map);
 	}
 }

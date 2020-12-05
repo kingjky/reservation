@@ -30,8 +30,8 @@ public class CommentImageDao {
 		return jdbc.query(SELECT_ALL_USING_COMMENT_ID, params, rowMapper);
 	}
 	
-	public CommentImage selectAllUsingImageId(Long imageId) {
+	public CommentImage selectUsingImageId(Long imageId) {
 		Map<String, ?> params = Collections.singletonMap("imageId", imageId);
-		return jdbc.queryForObject(SELECT_ALL_USING_IMAGE_ID, params, rowMapper);
+		return jdbc.queryForObject(SELECT_USING_IMAGE_ID, params, rowMapper);
 	}
 }

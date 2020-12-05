@@ -17,7 +17,6 @@ class ReservationCard {
 		})
 	}
 	postReview() {
-		 //TODO: 리뷰 작성 페이지로 productId, reservationInfoId 운송시키는 작업.
 		 location.href=`./reviewWrite?reservationInfoId=${this.reservationInfoId}&productId=${this.productId}`;
 	}
 	cancelAsk(reservationInfoId) {

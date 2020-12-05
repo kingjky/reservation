@@ -85,7 +85,6 @@ const reserve = {
 	},
 	updateProductImages(displayInfo, productImages, productPrices) {
 		const visualImg = document.querySelector(".visual_img > li > img");
-		// visualImg.src = productImages[0].saveFileName;
 		visualImg.src = `./download?fileName=${productImages[0].saveFileName}&contentType=${productImages[0].contentType}`;
 
 		const priceTag = document.querySelector(".preview_txt").children[1];

@@ -20,7 +20,7 @@ public class CommentImageDaoSqls {
 		"WHERE " + 
 		"    reservation_user_comment_id = :commentId";
 
-	public static final String SELECT_ALL_USING_IMAGE_ID =
+	public static final String SELECT_USING_IMAGE_ID =
 		"SELECT  " + 
 			"    i.id AS imageId, " + 
 			"    i.reservation_info_id AS reservationInfoId, " + 
