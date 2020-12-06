@@ -33,6 +33,7 @@ const myreservation = {
 				cancelCount++;
 				cancelCardHTML += reservationBindTemplate(reservation);
 			} else if (reservationDate < today) {
+				reservation.isComplete = true;
 				completeCount++;
 				completeCardHTML += reservationBindTemplate(reservation);
 			} else {

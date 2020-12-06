@@ -5,36 +5,15 @@ import AgreementControl from "../component/AgreementControl.js";
 import CountControl from "../component/CountControl.js";
 
 const priceTypeList = {
-	A: {
-		name: "성인",
-		description: "성인(만 19~64세)"
-	},
-	Y: {
-		name: "청소년",
-		description: "청소년(만 13~18세)"
-	},
-	B: {
-		name: "유아",
-		description: "유아(만 3세 이하)"
-	},
-	S: {
-		name: "세트",
-	},
-	D: {
-		name: "장애인",
-	},
-	C: {
-		name: "지역주민",
-	},
-	E: {
-		name: "얼리버드",
-	},
-	V: {
-		name: "VIP석",
-	},
-	R: {
-		name: "R석",
-	}
+	A: { name: "성인", description: "성인(만 19~64세)" },
+	Y: { name: "청소년", description: "청소년(만 13~18세)" },
+	B: { name: "유아", description: "유아(만 3세 이하)" },
+	S: { name: "세트" },
+	D: { name: "장애인" },
+	C: { name: "지역주민" },
+	E: { name: "얼리버드" },
+	V: { name: "VIP석" },
+	R: { name: "R석" }
 };
 const reserve = {
 	initialize() {
