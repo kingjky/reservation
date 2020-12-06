@@ -5,22 +5,21 @@ const REGEX = {
 	FILE: /^image\/(jpg|png|jpeg)$/,
 	TEXT: /^(\w|\d|[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]).{3}.*(\w|\d|[ㄱ-ㅎ|ㅏ-ㅣ|가-힣])/,
 }
-const inputValidCheck = {
-	getNameValid(name = "") {
+const InputValidCheck = {
+	checkName(name = "") {
 		return REGEX.NAME.test(name);
 	},
-	getEmailValid(email = "") {
+	checkEmail(email = "") {
 		return REGEX.EMAIL.test(email);
 	},
-	getTelValid(tel = "") {
+	checkTel(tel = "") {
 		return REGEX.TEL.test(tel);
 	},
-	getFileNameValid(filename = "") {
+	checkFileName(filename = "") {
 		return REGEX.FILE.test(filename);
 	},
-	getTextValid(text = "") {
+	checkText(text = "") {
 		return REGEX.TEXT.test(text);
 	},
 }
-
-export default inputValidCheck;
+export default InputValidCheck;

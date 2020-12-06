@@ -1,6 +1,6 @@
-import API from "./util/api.js";
-import inputValidCheck from "./util/inputValidCheck.js";
-import RatingPoint from "./component/RatingPoint.js";
+import Api from "../module/api.js";
+import InputValidCheck from "../module/inputValidCheck.js";
+import RatingPoint from "../component/RatingPoint.js";
 
 const reviewWrite = {
 	initialize() {
@@ -45,14 +45,14 @@ const reviewWrite = {
 		})
 	},
 	validImageType(image) {
-		return inputValidCheck.getFileNameValid(image.type);
+		return InputValidCheck.checkFileName(image.type);
 	},
 	addReviewChangeEvent() {
 		const reviewTextArea = document.querySelector(".review_textarea");
 		const commentLengthTag = document.querySelector(".guide_review .length");
 		const submitButton = document.querySelector(".box_bk_btn");
 		reviewTextArea.addEventListener("keyup", () => {
-			if (!inputValidCheck.getTextValid(reviewTextArea.value)) {
+			if (!InputValidCheck.checkText(reviewTextArea.value)) {
 				submitButton.classList.add("disable");
 			} else {
 				submitButton.classList.remove("disable");
@@ -73,7 +73,7 @@ const reviewWrite = {
 			var formData = new FormData();
 			formData.append("attachedImage", myFile.files[0]);
 
-			if (!inputValidCheck.getTextValid(reviewTextArea.value)) {
+			if (!InputValidCheck.checkText(reviewTextArea.value)) {
 				alert("최소 5자 이상 입력하세요.");
 				return;
 			}
@@ -81,7 +81,7 @@ const reviewWrite = {
 				alert("평점을 입력하세요.");
 				return;
 			}
-			API.postReview(reservationInfoId, productId, reviewTextArea.value, ratingTag.dataset.rating, formData).then(result => {
+			Api.postReview(reservationInfoId, productId, reviewTextArea.value, ratingTag.dataset.rating, formData).then(result => {
 				console.log(result);
 			})
 			location.href = "./myreservation";

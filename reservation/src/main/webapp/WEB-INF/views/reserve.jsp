@@ -243,7 +243,7 @@
 		</div>
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-	<script type="module" src="./js/reserve.js"></script>
+	<script type="module" src="./js/views/reserve.js"></script>
 </body>
 
 </html>

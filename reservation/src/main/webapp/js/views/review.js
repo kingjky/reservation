@@ -1,16 +1,16 @@
-import API from './util//api.js';
-import format from './util//format.js';
+import Api from '../module/api.js';
+import Formatter from '../module/format.js';
 
 const review = {
 	initialize() {
 		const url = new URL(window.location);
-		const displayInfoId = url.searchParams.get("id");
+		this.displayInfoId = url.searchParams.get("id");
 		const backTag = document.querySelector(".btn_back");
 		backTag.href = "detail?id=" + displayInfoId;
 		this.loadDisplayInfo(displayInfoId);
 	},
 	loadDisplayInfo(displayInfoId) {
-		API.getDisplayInfo(displayInfoId).then(result => {
+		Api.getDisplayInfo(displayInfoId).then(result => {
 			this.updateAverageScore(result.averageScore);
 			this.updateComments(result.displayInfo, result.comments);
 		});
@@ -43,13 +43,13 @@ const review = {
 			return displayInfo.productDescription;
 		});
 		Handlebars.registerHelper("getFormatScore", score => {
-			return format.getFormatScore(score);
+			return Formatter.formatScore(score);
 		});
 		Handlebars.registerHelper("getFormatEmail", reservationEmail => {
-			return format.getFormatEmail(reservationEmail);
+			return Formatter.formatEmail(reservationEmail);
 		});
 		Handlebars.registerHelper("getFormatDate", reservationDate => {
-			return format.getFormatDate(reservationDate);
+			return Formatter.formatDate(reservationDate);
 		});
 		const commentTemplate = document.querySelector("#commentTemplate").innerText,
 			commentBindTemplate = Handlebars.compile(commentTemplate);

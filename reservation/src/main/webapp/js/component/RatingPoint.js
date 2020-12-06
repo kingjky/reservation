@@ -29,5 +29,4 @@ class RatingPoint {
 		return this.ratingElement.dataset.rating;
 	}
 }
-
 export default RatingPoint;

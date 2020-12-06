@@ -1,8 +1,8 @@
-import API from './util/api.js';
-import format from './util/format.js';
-import inputValidCheck from "./util/inputValidCheck.js";
-import AgreementControl from "./component/AgreementControl.js";
-import CountControl from "./component/CountControl.js";
+import Api from '../module/api.js';
+import Formatter from '../module/format.js';
+import InputValidCheck from "../module/inputValidCheck.js";
+import AgreementControl from "../component/AgreementControl.js";
+import CountControl from "../component/CountControl.js";
 
 const priceTypeList = {
 	A: {
@@ -41,7 +41,7 @@ const reserve = {
 		const url = new URL(window.location);
 		const displayInfoId = url.searchParams.get("id");
 
-		API.getDisplayInfo(displayInfoId).then(result => {
+		Api.getDisplayInfo(displayInfoId).then(result => {
 			this.updateProductReserve(result.averageScore,
 				result.comments,
 				result.displayInfo,
@@ -99,7 +99,7 @@ const reserve = {
 			return typeName;
 		});
 		Handlebars.registerHelper("getFormatPrice", price => {
-			return format.getFormatPrice(price);
+			return Formatter.formatPrice(price);
 		});
 		const priceTemplate = document.querySelector("#priceTemplate").innerText,
 			priceBindTemplate = Handlebars.compile(priceTemplate);
@@ -135,9 +135,9 @@ const reserve = {
 	validCheck(type, input, warning) {
 		const value = input.value;
 		let Valid = {
-			name: inputValidCheck.getNameValid(value),
-			email: inputValidCheck.getEmailValid(value),
-			tel: inputValidCheck.getTelValid(value)
+			name: InputValidCheck.checkName(value),
+			email: InputValidCheck.checkEmail(value),
+			tel: InputValidCheck.checkTel(value)
 		}[type]
 		if (!Valid) {
 			warning.style.visibility = "visible";
@@ -171,7 +171,7 @@ const reserve = {
 		if (checkedStatus && formValid) {
 			const reservation = this.makeReservationObj(displayInfo);
 			const json = JSON.stringify(reservation);
-			API.postBookingForm(json);
+			Api.postBookingForm(json);
 			location.href = "./";
 		}
 	},
@@ -187,7 +187,7 @@ const reserve = {
 		object.reservationEmail = emailInput.value;
 		object.displayInfoId = displayInfo.displayInfoId;
 		object.productId = displayInfo.productId;
-		object.reservationYearMonthDay = format.getFormatDate(new Date().toDateString());
+		object.reservationYearMonthDay = Formatter.formatDate(new Date().toDateString());
 		object.prices = this.makeReservationPriceArray();
 		return object;
 	},

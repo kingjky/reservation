@@ -58,25 +58,23 @@
 								</a>
 							</div>
 						</div>
-						<div>
-							<div class="container_visual">
-								<ul class="visual_img shifting">
-									<c:forEach items="${promotions}" var="promotion">
-										<li class="item" style="background-image: url(./download?fileName=${promotion.productImageUrl});">
-											<a href="detail?id=${promotion.productId}"> <span class="img_btm_border"></span>
-												<span class="img_right_border"></span> <span class="img_bg_gra"></span>
-												<div class="event_txt">
-													<h4 class="event_txt_tit"></h4>
-													<p class="event_txt_adr"></p>
-													<p class="event_txt_dsc"></p>
-												</div>
-											</a>
-										</li>
-									</c:forEach>
-								</ul>
-							</div>
-							<span class="nxt_fix" style="display: none;"></span>
+						<div class="container_visual">
+							<ul class="visual_img shifting">
+								<c:forEach items="${promotions}" var="promotion">
+									<li class="item" style="background-image: url(./download?fileName=${promotion.productImageUrl});">
+										<a href="detail?id=${promotion.productId}"> <span class="img_btm_border"></span>
+											<span class="img_right_border"></span> <span class="img_bg_gra"></span>
+											<div class="event_txt">
+												<h4 class="event_txt_tit"></h4>
+												<p class="event_txt_adr"></p>
+												<p class="event_txt_dsc"></p>
+											</div>
+										</a>
+									</li>
+								</c:forEach>
+							</ul>
 						</div>
+						<span class="nxt_fix" style="display: none;"></span>
 					</div>
 				</div>
 			</div>
@@ -106,18 +104,11 @@
 						<a class="anchor"> 
 							<span>연극</span>
 						</a></li>
-					<!-- <li class="item" data-category="7"><a class="anchor"> <span>클래스</span>
-					</a></li>
-					<li class="item" data-category="8"><a class="anchor"> <span>체험</span>
-					</a></li>
-					<li class="item" data-category="9"><a class="anchor last">
-							<span>키즈</span>
-					</a></li> -->
 				</ul>
 			</div>
 			<div class="section_event_lst">
 				<p class="event_lst_txt">
-					바로 예매 가능한 행사가 <span class="pink">0개</span> 있습니다
+					바로 예매 가능한 행사가 <span class="pink">0</span>개 있습니다
 				</p>
 				<div class="wrap_event_box">
 					<ul class="lst_event_box left">
@@ -125,9 +116,7 @@
 					<ul class="lst_event_box right">
 					</ul>
 					<div class="more">
-						<button class="btn" value="0">
-							<span>더보기</span>
-						</button>
+						<button class="btn" value="0"><span>더보기</span></button>
 					</div>
 				</div>
 			</div>
@@ -158,7 +147,7 @@
 	</li>
     </script>
 
-	<script type="rv-template" id="itemList">
+	<script type="rv-template" id="productItem">
 	<li class="item">
 		<a href="detail?id={id}" class="item_book">
 			<div class="item_preview">
@@ -175,8 +164,7 @@
 		</a>
 	</li>
 	</script>
-
-	<script type="module" src="./js/mainpage.js"></script>
+	<script type="module" src="./js/views/mainpage.js"></script>
 </body>
 
 </html>

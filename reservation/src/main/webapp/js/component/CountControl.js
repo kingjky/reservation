@@ -1,4 +1,4 @@
-import format from "../util/format.js";
+import Formatter from "../module/format.js";
 
 class CountControl {
 	constructor(tabElement) {
@@ -42,12 +42,11 @@ class CountControl {
 
 		const totalPriceTag = countBody.querySelector(".total_price");
 		const totalPrice = price * count;
-		totalPriceTag.textContent = format.getFormatPrice(totalPrice);
+		totalPriceTag.textContent = Formatter.formatPrice(totalPrice);
 
 		const totalCountTag = document.querySelector("#totalCount");
 		const totalCount = Number(totalCountTag.textContent) + Number(value);
 		totalCountTag.textContent = totalCount;
 	}
 }
-
 export default CountControl;

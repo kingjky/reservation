@@ -34,7 +34,7 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public CommentImage getCommentImageUsingImageId(Long imageId) {
-		CommentImage commentImage = commentImageDao.selectAllUsingImageId(imageId);
+		CommentImage commentImage = commentImageDao.selectUsingImageId(imageId);
 		return commentImage;
 	}
 

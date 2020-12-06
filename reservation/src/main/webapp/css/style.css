@@ -1920,7 +1920,9 @@ button {
 	line-height: 24px
 }
 
-.store_info .store_addr_wrap .store_addr.store_addr_bold {
+.store_info .store_addr_wrap .store_addr_bold {
+	margin-bottom: 2px;
+	line-height: 24px;
 	font-size: 16px;
 	color: #333
 }

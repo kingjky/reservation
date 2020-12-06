@@ -39,7 +39,7 @@ const HTTP_REQUEST = {
 		}
 	}
 }
-const API = {
+const Api = {
 	sendAjax(request) {
 		const HTTP_STATUS_OK = 200;
 		const oReq = new XMLHttpRequest();
@@ -47,12 +47,11 @@ const API = {
 			oReq.addEventListener("load", () => {
 				if (oReq.status !== HTTP_STATUS_OK)
 					reject(oReq.responseText);
-
 				resolve(JSON.parse(oReq.responseText));
 			})
 			oReq.open(request.method, request.url);
 			if (request.method === "POST") {
-				if(request.bodyType === "json")
+				if (request.bodyType === "json")
 					oReq.setRequestHeader('Content-type', 'application/json');
 				oReq.send(request.body);
 			} else {
@@ -76,7 +75,7 @@ const API = {
 		var result = await this.sendAjax(HTTP_REQUEST.cancelReservation(reservationInfoId));
 		return result;
 	},
-	async getProducts(categoryId, start) {
+	async getProducts(categoryId = 0, start = 0) {
 		var result = await this.sendAjax(HTTP_REQUEST.getProducts(categoryId, start));
 		return result;
 	},
@@ -85,5 +84,4 @@ const API = {
 		return result;
 	},
 }
-
-export default API;
+export default Api;

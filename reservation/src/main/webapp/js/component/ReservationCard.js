@@ -1,4 +1,4 @@
-import API from "../util/api.js";
+import Api from "../module/api.js";
 
 class ReservationCard {
 	constructor(cardElement, cardType) {
@@ -29,7 +29,7 @@ class ReservationCard {
 		const noBtn = popup.querySelector(".btn_gray");
 		const closeBtn = popup.querySelector(".popup_btn_close");
 		yesBtn.addEventListener("click", () => {
-			API.cancelReservation(reservationInfoId);
+			Api.cancelReservation(reservationInfoId);
 			const cancelList = document.querySelector(".card.cancel");
 			this.card.querySelector(".booking_cancel").remove();
 			cancelList.appendChild(this.card);
