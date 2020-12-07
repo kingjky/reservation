@@ -1,23 +1,23 @@
 package kr.or.connect.reservation.dto;
 
 public class ProductPrice {
-	int productPriceId;
-	int productId;
+	long productPriceId;
+	long productId;
 	String priceTypeName;
 	int price;
 	int discountRate;
 	String createDate;
 	String modifyDate;
-	public int getProductPriceId() {
+	public long getProductPriceId() {
 		return productPriceId;
 	}
-	public void setProductPriceId(int productPriceId) {
+	public void setProductPriceId(long productPriceId) {
 		this.productPriceId = productPriceId;
 	}
-	public int getProductId() {
+	public long getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 	public String getPriceTypeName() {

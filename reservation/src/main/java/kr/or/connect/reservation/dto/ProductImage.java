@@ -1,10 +1,10 @@
 package kr.or.connect.reservation.dto;
 
 public class ProductImage {
-	int productId;
-	int productImageId;
+	long productId;
+	long productImageId;
 	String type;
-	int fileInfoId;
+	long fileInfoId;
 	String fileName;
 	String saveFileName;
 	String contentType;
@@ -12,19 +12,19 @@ public class ProductImage {
 	String createDate;
 	String modifyDate;
 
-	public int getProductId() {
+	public long getProductId() {
 		return productId;
 	}
 
-	public void setProductId(int productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 
-	public int getProductImageId() {
+	public long getProductImageId() {
 		return productImageId;
 	}
 
-	public void setProductImageId(int productImageId) {
+	public void setProductImageId(long productImageId) {
 		this.productImageId = productImageId;
 	}
 
@@ -36,11 +36,11 @@ public class ProductImage {
 		this.type = type;
 	}
 
-	public int getFileInfoId() {
+	public long getFileInfoId() {
 		return fileInfoId;
 	}
 
-	public void setFileInfoId(int fileInfoId) {
+	public void setFileInfoId(long fileInfoId) {
 		this.fileInfoId = fileInfoId;
 	}
 

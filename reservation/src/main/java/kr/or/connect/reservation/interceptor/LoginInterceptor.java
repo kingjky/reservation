@@ -29,7 +29,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		Object email = modelMap.get("email");
 		if (email != null) {
 			session.setAttribute(LOGIN, email);
-			response.sendRedirect("./");
+			response.sendRedirect("./myreservation");
 		}
 	}
 

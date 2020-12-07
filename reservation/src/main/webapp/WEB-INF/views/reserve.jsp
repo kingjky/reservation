@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
 	<title>네이버 예약</title>
 	<link href="./css/style.css" rel="stylesheet">
-	<link rel="icon" href="./img/favicon.ico">
+	<link rel="icon" href="./download?fileName=img/favicon.ico">
 </head>
 
 <body>
@@ -243,7 +243,7 @@
 		</div>
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-	<script type="module" src="./js/reserve.js"></script>
+	<script type="module" src="./js/views/reserve.js"></script>
 </body>
 
 </html>
