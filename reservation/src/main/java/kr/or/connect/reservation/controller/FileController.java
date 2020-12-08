@@ -22,7 +22,7 @@ import kr.or.connect.reservation.service.CommentService;
 @Controller
 public class FileController {
 	private final CommentService commentService;
-	
+
 	public FileController(CommentService commentService) {
 		this.commentService = commentService;
 	}
@@ -58,7 +58,7 @@ public class FileController {
 		@PathVariable("imageId") Long imageId,
 		HttpServletResponse response) throws IOException {
 		CommentImage commentImage = commentService.getCommentImageUsingImageId(imageId);
-		
+
 		String fileName = commentImage.getSaveFileName();
 		String contentType = commentImage.getContentType();
 		String url = "../download?fileName=" + fileName + "&contentType=" + contentType;
