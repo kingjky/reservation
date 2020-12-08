@@ -3,28 +3,28 @@ package kr.or.connect.reservation.dto;
 import java.util.List;
 
 public class Comment {
-	int commentId, productId, reservationInfoId;
+	long commentId, productId, reservationInfoId;
 	double score;
 	String comment;
 	String reservationName, reservationTelephone, reservationEmail;
 	String reservationDate, createDate, modifyDate;
 	List<CommentImage> commentImages;
-	public int getCommentId() {
+	public long getCommentId() {
 		return commentId;
 	}
-	public void setCommentId(int commentId) {
+	public void setCommentId(long commentId) {
 		this.commentId = commentId;
 	}
-	public int getProductId() {
+	public long getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
-	public int getReservationInfoId() {
+	public long getReservationInfoId() {
 		return reservationInfoId;
 	}
-	public void setReservationInfoId(int reservationInfoId) {
+	public void setReservationInfoId(long reservationInfoId) {
 		this.reservationInfoId = reservationInfoId;
 	}
 	public double getScore() {

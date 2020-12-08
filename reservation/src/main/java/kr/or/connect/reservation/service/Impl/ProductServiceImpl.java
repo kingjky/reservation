@@ -52,13 +52,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductImage> getProductImagesUsingProductId(Integer productId) {
+	public List<ProductImage> getProductImagesUsingProductId(Long productId) {
 		List<ProductImage> productImages = productImageDao.selectAllUsingProductId(productId);
 		return productImages;
 	}
 
 	@Override
-	public List<ProductPrice> getProductPricesUsingProductId(Integer productId) {
+	public List<ProductPrice> getProductPricesUsingProductId(Long productId) {
 		List<ProductPrice> productPrices = productPriceDao.selectAllUsingProductId(productId);
 		return productPrices;
 	}

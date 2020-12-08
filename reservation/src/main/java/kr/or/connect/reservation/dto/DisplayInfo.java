@@ -1,9 +1,9 @@
 package kr.or.connect.reservation.dto;
 
 public class DisplayInfo {
-	int productId;
-	int categoryId;
-	int displayInfoId;
+	long productId;
+	long categoryId;
+	long displayInfoId;
 	String categoryName;
 	String productDescription;
 	String productContent;
@@ -17,22 +17,22 @@ public class DisplayInfo {
 	String email;
 	String createDate;
 	String modifyDate;
-	public int getProductId() {
+	public long getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
-	public int getCategoryId() {
+	public long getCategoryId() {
 		return categoryId;
 	}
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(long categoryId) {
 		this.categoryId = categoryId;
 	}
-	public int getDisplayInfoId() {
+	public long getDisplayInfoId() {
 		return displayInfoId;
 	}
-	public void setDisplayInfoId(int displayInfoId) {
+	public void setDisplayInfoId(long displayInfoId) {
 		this.displayInfoId = displayInfoId;
 	}
 	public String getCategoryName() {

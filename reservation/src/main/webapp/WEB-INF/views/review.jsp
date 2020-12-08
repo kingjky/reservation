@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
 	<title>네이버 예약</title>
 	<link href="./css/style.css" rel="stylesheet">
-	<link rel="icon" href="./img/favicon.ico">
+	<link rel="icon" href="./download?fileName=img/favicon.ico">
 </head>
 
 <body>
@@ -71,7 +71,7 @@
 							{{#if @first}}
 							<a href="#" class="thumb" title="이미지 크게 보기"> <img width="90" height="90"
 									class="img_vertical_top"
-									src="https://ssl.phinf.net/naverbooking/20170410_7/1491785083711GqT4T_PNG/image.png?type=f300_300"
+									src="./download/{{imageId}}"
 									alt="리뷰이미지"> </a>
 							{{/if}}
 						{{/each}}
@@ -104,7 +104,7 @@
 		</li>
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-	<script type="module" src="./js/review.js"></script>
+	<script type="module" src="./js/views/review.js"></script>
 </body>
 
 </html>

@@ -24,7 +24,7 @@ public class CommentDao {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	public List<Comment> selectAllUsingProductId(Integer productId) {
+	public List<Comment> selectAllUsingProductId(Long productId) {
 		Map<String, ?> params = Collections.singletonMap("productId", productId);
 		return jdbc.query(SELECT_ALL_USING_PRODUCT_ID, params, rowMapper);
 	}
