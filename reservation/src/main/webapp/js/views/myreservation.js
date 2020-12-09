@@ -1,4 +1,5 @@
 import Api from '../module/api.js';
+import Bind from '../module/bindTemplate.js';
 import ReservationCard from '../component/ReservationCard.js';
 
 const myreservation = {
@@ -12,37 +13,33 @@ const myreservation = {
 	},
 	bindCards(reservations) {
 		if (!reservations?.length) {
-			const emptyReservationTag = document.querySelector("#container > .ct > .section_my > .err");
-			emptyReservationTag.style.display = "block";
+			const emptyReservationEl = document.querySelector("#container > .ct > .section_my > .err");
+			emptyReservationEl.style.display = "block";
 			return;
 		}
 		this.reservationListTag.style.display = "block";
-
-		const today = new Date().setHours(0, 0, 0, 0),
-			reservationBindTemplate = Handlebars.compile(document.querySelector("#cardTemplaate").innerText);
-
+		const today = new Date().setHours(0, 0, 0, 0);
 		let totalCount, cancelCount, completeCount, bookingCount;
 		totalCount = cancelCount = completeCount = bookingCount = 0;
-
 		let bookingCardHTML, completeCardHTML, cancelCardHTML;
 		bookingCardHTML = completeCardHTML = cancelCardHTML = "";
 
+		const bindReservation = Bind.registerReservationTemplate(document.querySelector('#cardTemplate').innerText);
 		reservations.forEach(reservation => {
 			const reservationDate = new Date(reservation.reservationDate);
 			if (reservation.cancelYn) {
 				cancelCount++;
-				cancelCardHTML += reservationBindTemplate(reservation);
+				cancelCardHTML += bindReservation(reservation);
 			} else if (reservationDate < today) {
 				reservation.isComplete = true;
 				completeCount++;
-				completeCardHTML += reservationBindTemplate(reservation);
+				completeCardHTML += bindReservation(reservation);
 			} else {
 				bookingCount++;
-				bookingCardHTML += reservationBindTemplate(reservation);
+				bookingCardHTML += bindReservation(reservation);
 			}
 			totalCount++;
 		});
-
 		this.summaryBoardTag.querySelector("span.figure.book2")
 			.textContent = totalCount;
 		this.summaryBoardTag.querySelector("span.figure.book_ss")

@@ -62,23 +62,21 @@ const mainpage = {
 		this.moreButton.parentNode.style.display = "block";
 	},
 	startPromotionsSlide() {
-		let slideIndex = 0;
 		const slider = this.slideWrapper.querySelector('.visual_img'),
 			slides = slider.querySelectorAll('li'),
 			totalSlides = slides.length,
 			sliderWidth = this.slideWrapper.clientWidth;
+		let slideIndex = 0;
+
 		slider.style.width = sliderWidth * totalSlides + 'px';
 		slides.forEach(slide => slide.style.width = sliderWidth + 'px');
-		function plusSlides(n) {
+		function showSlides(n) {
 			slideIndex += n;
-			showSlides();
-		}
-		function showSlides() {
 			if (slideIndex === totalSlides)
 				slideIndex = 0;
 			slider.style.transform = "translate(" + (-(sliderWidth * slideIndex) + 'px') + ")";
 		}
-		setInterval(() => plusSlides(1), 3000);
+		setInterval(() => showSlides(1), 3000);
 	},
 }
 document.addEventListener("DOMContentLoaded", () => {

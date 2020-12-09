@@ -1,63 +1,42 @@
 import Api from '../module/api.js';
-import Formatter from '../module/format.js';
+import Bind from '../module/bindTemplate.js';
+
+const
+	TOTAL_POINT = 5;
 
 const review = {
 	initialize() {
 		const url = new URL(window.location);
 		this.displayInfoId = url.searchParams.get("id");
-		const backTag = document.querySelector(".btn_back");
-		backTag.href = "detail?id=" + displayInfoId;
-		this.loadDisplayInfo(displayInfoId);
-	},
-	loadDisplayInfo(displayInfoId) {
-		Api.getDisplayInfo(displayInfoId).then(result => {
+		document.querySelector(".btn_back").href = "detail?id=" + this.displayInfoId;
+
+		this.reviewHeader = document.querySelector(".ct > .wrap_review_list > .review_header");
+		this.reviewListWrapper = document.querySelector(".ct > .wrap_review_list > .section_review_list");
+		Api.getDisplayInfo(this.displayInfoId).then(result => {
 			this.updateAverageScore(result.averageScore);
-			this.updateComments(result.displayInfo, result.comments);
+			this.updateReviews(result.displayInfo, result.comments);
 		});
 	},
 	updateAverageScore(averageScore) {
-		const averagePointTag = document.querySelector(".text_value");
-		averagePointTag.firstElementChild.textContent = averageScore;
-
-		const TO_PERCENT = 100;
-		const totalPointTag = document.querySelector(".total"),
-			totalPoint = Number(totalPointTag.textContent),
-			percentage = (averageScore / totalPoint) * TO_PERCENT + "%";
-
-		const graphValueTag = document.querySelector(".graph_value");
-		graphValueTag.style.width = percentage;
+		this.reviewListWrapper.querySelector(".review_box > .short_review_area > .grade_area > .text_value > span.average")
+			.textContent = averageScore;
+		const percentage = (averageScore / TOTAL_POINT) * 100;
+		this.reviewListWrapper.querySelector(".review_box > .short_review_area > .grade_area > .graph_mask > em.graph_value")
+			.style.width = percentage + "%";
 	},
-	updateComments(displayInfo = {}, comments = []) {
-		const titleTag = document.querySelector(".title");
+	updateReviews(displayInfo, comments) {
+		const titleTag = this.reviewHeader.querySelector(".top_title > h2 > a.title");
 		titleTag.textContent = displayInfo.productDescription;
 		titleTag.href = "detail?id=" + displayInfo.displayInfoId;
-
-		const commentsNum = comments.length,
-			joinCountTag = document.querySelector(".join_count > .green");
-		joinCountTag.innerText = commentsNum + "건";
-
-		this.bindComments(displayInfo, comments);
+		this.reviewListWrapper.querySelector(".review_box > .short_review_area > .grade_area > .join_count > .green")
+			.innerText = comments.length + "건";
+		this.bindReviews(displayInfo, comments);
 	},
-	bindComments(displayInfo, comments){
-		Handlebars.registerHelper("getProductDescription", () => {
-			return displayInfo.productDescription;
-		});
-		Handlebars.registerHelper("getFormatScore", score => {
-			return Formatter.formatScore(score);
-		});
-		Handlebars.registerHelper("getFormatEmail", reservationEmail => {
-			return Formatter.formatEmail(reservationEmail);
-		});
-		Handlebars.registerHelper("getFormatDate", reservationDate => {
-			return Formatter.formatDate(reservationDate);
-		});
-		const commentTemplate = document.querySelector("#commentTemplate").innerText,
-			commentBindTemplate = Handlebars.compile(commentTemplate);
-		let resultHTML = comments.reduce((prev, next) => {
-			return prev + commentBindTemplate(next);
-		}, "");
-		const commentList = document.querySelector(".list_short_review");
-		commentList.innerHTML = resultHTML;
+	bindReviews(displayInfo, comments) {
+		const bindReview = Bind.registerReviewTemplate(document.querySelector('#reviewTemplate').innerText, displayInfo.productDescription);
+		let resultHTML = comments.reduce((prev, next) => prev + bindReview(next), "");
+		this.reviewListWrapper.querySelector(".review_box > .short_review_area > ul.list_short_review")
+			.innerHTML = resultHTML;
 	},
 }
 document.addEventListener("DOMContentLoaded", () => {
