@@ -25,16 +25,15 @@ const reviewWrite = {
 			reviewTextArea.focus();
 		})
 		reviewTextArea.addEventListener("blur", evt => {
-			if (reviewTextArea.value.length === 0) {
+			if (reviewTextArea.value.length === 0)
 				reviewWriteInfo.style.display = "block";
-			}
 		})
 	},
 	addImageChangeEvent() {
 		const elImage = document.querySelector("#reviewImageFileOpenInput");
 		elImage.addEventListener("change", evt => {
 			const image = evt.target.files[0];
-			if (!this.validImageType(image)) {
+			if (!InputValidCheck.checkFileName(image.type)) {
 				console.warn("invalid image file type");
 				return;
 			}
@@ -44,22 +43,18 @@ const reviewWrite = {
 			thumbnailItem.style.display = "block";
 		})
 	},
-	validImageType(image) {
-		return InputValidCheck.checkFileName(image.type);
-	},
 	addReviewChangeEvent() {
 		const reviewTextArea = document.querySelector(".review_textarea");
 		const commentLengthTag = document.querySelector(".guide_review .length");
 		const submitButton = document.querySelector(".box_bk_btn");
 		reviewTextArea.addEventListener("keyup", () => {
-			if (!InputValidCheck.checkText(reviewTextArea.value)) {
+			if (!InputValidCheck.checkText(reviewTextArea.value))
 				submitButton.classList.add("disable");
-			} else {
+			else
 				submitButton.classList.remove("disable");
-			}
-			if (reviewTextArea.value.length > 400) {
+
+			if (reviewTextArea.value.length > 400)
 				reviewTextArea.value = reviewTextArea.value.slice(0, 400);
-			}
 			commentLengthTag.textContent = reviewTextArea.value.length;
 		});
 	},
@@ -72,7 +67,6 @@ const reviewWrite = {
 
 			var formData = new FormData();
 			formData.append("attachedImage", myFile.files[0]);
-
 			if (!InputValidCheck.checkText(reviewTextArea.value)) {
 				alert("최소 5자 이상 입력하세요.");
 				return;

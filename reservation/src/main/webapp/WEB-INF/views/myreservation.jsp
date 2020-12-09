@@ -161,7 +161,7 @@
 		</div>
 	</div>
 	<!--// 취소 팝업 -->
-	<script type="myTemplate" id="cardTemplaate">
+	<script type="myTemplate" id="cardTemplate">
 		<article class="card_item" data-reservation-info-id={{reservationInfoId}}
 			 data-product-id={{productId}}>
 			<a class="link_booking_details">

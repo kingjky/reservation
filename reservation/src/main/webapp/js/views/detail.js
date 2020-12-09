@@ -1,5 +1,6 @@
 import Api from "../module/api.js";
-import Formatter from "../module/format.js";
+import Bind from "../module/bindTemplate.js";
+
 
 const
 	REVIEWS_START = 0,
@@ -46,8 +47,8 @@ const detail = {
 			.style.width = percentage + "%";
 	},
 	updateReviewsInfo(reviews) {
-		const joinCountTag = this.reviewListWrapper.querySelector(".review_box > .short_review_area > .grade_area > .join_count > em.green");
-		joinCountTag.innerText = reviews.length;
+		const joinCountEl = this.reviewListWrapper.querySelector(".review_box > .short_review_area > .grade_area > .join_count > em.green");
+		joinCountEl.innerText = reviews.length;
 		const moreReviewButton = this.reviewListWrapper.querySelector("a.btn_review_more");
 		moreReviewButton.href = `./review?id=${this.displayInfoId}`;
 		if (reviews.length > REVIEWS_LIMIT)
@@ -55,13 +56,8 @@ const detail = {
 	},
 	bindReviews(productDescription, reviews) {
 		reviews = reviews.slice(REVIEWS_START, REVIEWS_LIMIT);
-		Handlebars.registerHelper("getProductDescription", () => productDescription);
-		Handlebars.registerHelper("getFormatScore", score => Formatter.formatScore(score));
-		Handlebars.registerHelper("getFormatEmail", reservationEmail => Formatter.formatEmail(reservationEmail));
-		Handlebars.registerHelper("getFormatDate", reservationDate => Formatter.formatDate(reservationDate));
-
-		const reviewBindTemplate = Handlebars.compile(document.querySelector("#reviewTemplate").innerText),
-			resultHTML = reviews.reduce((prev, next) => prev + reviewBindTemplate(next), ""),
+		const bindReview = Bind.registerReviewTemplate(document.querySelector('#reviewTemplate').innerText, productDescription);
+		const resultHTML = reviews.reduce((prev, next) => prev + bindReview(next), ""),
 			reviewList = this.reviewListWrapper.querySelector(".review_box > .short_review_area > ul.list_short_review");
 		reviewList.innerHTML = resultHTML;
 	},
@@ -70,15 +66,13 @@ const detail = {
 			.textContent = displayInfo.productContent;
 		this.bookingButtonWrapper.querySelector("a")
 			.href = `./reserve?id=${this.displayInfoId}`;
-		Handlebars.registerHelper("getSaveFileName", () => displayInfoImage.saveFileName);
-		Handlebars.registerHelper("getContentType", () => displayInfoImage.contentType);
-
-		const infoTabTemplate = Handlebars.compile(document.querySelector("#infoTabTemplate").innerText);
-		this.infoTabWrapper.innerHTML = infoTabTemplate(displayInfo);
+		
+			const bindInfoTab = Bind.registerInfoTabTemplate(document.querySelector('#infoTabTemplate').innerText, displayInfoImage);
+		this.infoTabWrapper.innerHTML = bindInfoTab(displayInfo);
 	},
 	updateProductImages(displayInfo, productImages) {
-		const imageBindTemplate = Handlebars.compile(document.querySelector("#imageTemplate").innerText);
-		let resultHTML = productImages.reduce((prev, next) => prev + imageBindTemplate(next), "");
+		const bindImage = Bind.registerImageTemplate(document.querySelector('#imageTemplate').innerText);
+		let resultHTML = productImages.reduce((prev, next) => prev + bindImage(next), "");
 
 		const imageList = this.visualWrapper.querySelector(".group_visual > .container_visual > ul.visual_img");
 		imageList.innerHTML = resultHTML;
@@ -86,11 +80,11 @@ const detail = {
 		const visualTextList = imageList.querySelectorAll("li.item > .visual_txt > .visual_txt_inn > .visual_txt_tit > span");
 		visualTextList.forEach(visualText => visualText.textContent = displayInfo.productDescription);
 
-		const totalNumTag = this.visualWrapper.querySelector(".pagination > .figure_pagination > .num.off > span");
-		totalNumTag.textContent = productImages.length;
+		const totalNumEl = this.visualWrapper.querySelector(".pagination > .figure_pagination > .num.off > span");
+		totalNumEl.textContent = productImages.length;
 
-		const currentNumTag = this.visualWrapper.querySelector(".pagination > .figure_pagination > span.num");
-		currentNumTag.textContent = IMAGE_START;
+		const currentNumEl = this.visualWrapper.querySelector(".pagination > .figure_pagination > span.num");
+		currentNumEl.textContent = IMAGE_START;
 
 		if (productImages.length < IMAGE_LIMIT)
 			this.visualWrapper.querySelectorAll(".group_visual div.btn").forEach(btn => btn.style.display = "none")
@@ -118,9 +112,8 @@ const detail = {
 		this.infoTabWrapper.querySelector(".detail_location").classList.toggle("hide");
 	},
 	addNavSlideEvent() {
-		let slideIndex = 0,
-			totalSlides = 0,
-			sliderWidth = 0;
+		let slideIndex, totalSlides, sliderWidth;
+		slideIndex = totalSlides = sliderWidth = 0;
 		const slideWrapper = this.visualWrapper.querySelector(".group_visual > .container_visual"),
 			slides = this.visualWrapper.querySelectorAll(".group_visual > .container_visual > .visual_img > li"),
 			slider = document.querySelector(".group_visual > .container_visual > ul.detail_swipe");
