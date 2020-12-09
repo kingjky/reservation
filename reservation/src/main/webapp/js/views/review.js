@@ -33,7 +33,7 @@ const review = {
 		this.bindReviews(displayInfo, comments);
 	},
 	bindReviews(displayInfo, comments) {
-		const bindReview = Bind.registerReviewTemplate(displayInfo.productDescription);
+		const bindReview = Bind.registerReviewTemplate(document.querySelector('#reviewTemplate').innerText, displayInfo.productDescription);
 		let resultHTML = comments.reduce((prev, next) => prev + bindReview(next), "");
 		this.reviewListWrapper.querySelector(".review_box > .short_review_area > ul.list_short_review")
 			.innerHTML = resultHTML;

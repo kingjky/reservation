@@ -24,7 +24,7 @@ const myreservation = {
 		let bookingCardHTML, completeCardHTML, cancelCardHTML;
 		bookingCardHTML = completeCardHTML = cancelCardHTML = "";
 
-		const bindReservation = Bind.registerReservationTemplate();
+		const bindReservation = Bind.registerReservationTemplate(document.querySelector('#cardTemplate').innerText);
 		reservations.forEach(reservation => {
 			const reservationDate = new Date(reservation.reservationDate);
 			if (reservation.cancelYn) {

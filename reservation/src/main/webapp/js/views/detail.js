@@ -56,7 +56,7 @@ const detail = {
 	},
 	bindReviews(productDescription, reviews) {
 		reviews = reviews.slice(REVIEWS_START, REVIEWS_LIMIT);
-		const bindReview = Bind.registerReviewTemplate(productDescription);
+		const bindReview = Bind.registerReviewTemplate(document.querySelector('#reviewTemplate').innerText, productDescription);
 		const resultHTML = reviews.reduce((prev, next) => prev + bindReview(next), ""),
 			reviewList = this.reviewListWrapper.querySelector(".review_box > .short_review_area > ul.list_short_review");
 		reviewList.innerHTML = resultHTML;
@@ -67,11 +67,11 @@ const detail = {
 		this.bookingButtonWrapper.querySelector("a")
 			.href = `./reserve?id=${this.displayInfoId}`;
 		
-			const bindInfoTab = Bind.registerInfoTabTemplate(displayInfoImage);
+			const bindInfoTab = Bind.registerInfoTabTemplate(document.querySelector('#infoTabTemplate').innerText, displayInfoImage);
 		this.infoTabWrapper.innerHTML = bindInfoTab(displayInfo);
 	},
 	updateProductImages(displayInfo, productImages) {
-		const bindImage = Bind.registerImageTemplate();
+		const bindImage = Bind.registerImageTemplate(document.querySelector('#imageTemplate').innerText);
 		let resultHTML = productImages.reduce((prev, next) => prev + bindImage(next), "");
 
 		const imageList = this.visualWrapper.querySelector(".group_visual > .container_visual > ul.visual_img");

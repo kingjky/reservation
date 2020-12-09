@@ -69,7 +69,7 @@ const reserve = {
 	},
 	bindProductPrices(productPrices) {
 		const priceList = document.querySelector(".ticket_body");
-		const bindPrice = Bind.registerPriceTemplate(priceTypeList);
+		const bindPrice = Bind.registerPriceTemplate(document.querySelector('#priceTemplate').innerText, priceTypeList);
 		const resultHTML = productPrices.reduce((prev, next) => prev + bindPrice(next), "");
 		priceList.innerHTML = resultHTML;
 	},
