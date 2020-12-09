@@ -1,12 +1,14 @@
 package kr.or.connect.reservation.service.Impl;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.connect.reservation.dao.DisplayInfoDao;
 import kr.or.connect.reservation.dao.ReservationDao;
+import kr.or.connect.reservation.dto.Comment;
 import kr.or.connect.reservation.dto.DisplayInfo;
 import kr.or.connect.reservation.dto.PriceForm;
 import kr.or.connect.reservation.dto.Reservation;
@@ -38,11 +40,6 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public ReservationForm postReservation(ReservationForm reservationForm) {
-		reservationForm.setCancelYn(false);
-		Date now = new Date(new java.util.Date().getTime());
-		reservationForm.setCreateDate(now.toString());
-		reservationForm.setModifyDate(now.toString());
-
 		Long reservationInfoId = reservationDao.insert(reservationForm);
 		reservationForm.setReservationInfoId(reservationInfoId);
 		for (PriceForm priceForm : reservationForm.getPrices()) {
@@ -58,6 +55,17 @@ public class ReservationServiceImpl implements ReservationService {
 		reservationDao.updateCancel(reservationInfoId);
 		Reservation reservation = reservationDao.selectUsingId(reservationInfoId);
 		return reservation;
+	}
+
+	@Override
+	@Transactional
+	public Comment postComment(Long reservationInfoId, String productId, String score, String comment,
+		MultipartFile file, String now) {
+		Long reservationUserCommentId = reservationDao.insertComment(reservationInfoId, productId, score, comment);
+		if(file != null) {
+			reservationDao.insertCommentImage(reservationInfoId, reservationUserCommentId, now + file.getOriginalFilename(), file.getContentType());
+		}
+		return new Comment();
 	}
 
 }

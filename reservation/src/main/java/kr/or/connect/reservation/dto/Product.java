@@ -1,17 +1,17 @@
 package kr.or.connect.reservation.dto;
 
 public class Product {
-	int productId;
+	long productId;
 	String productDescription, productContent;
-	int displayInfoId;
+	long displayInfoId;
 	String placeName;
 	String productImageUrl;
 
-	public int getProductId() {
+	public long getProductId() {
 		return productId;
 	}
 
-	public void setProductId(int productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 
@@ -31,11 +31,11 @@ public class Product {
 		this.productContent = productContent;
 	}
 
-	public int getDisplayInfoId() {
+	public long getDisplayInfoId() {
 		return displayInfoId;
 	}
 
-	public void setDisplayInfoId(int displayInfoId) {
+	public void setDisplayInfoId(long displayInfoId) {
 		this.displayInfoId = displayInfoId;
 	}
 

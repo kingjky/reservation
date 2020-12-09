@@ -24,7 +24,7 @@ public class ProductPriceDao {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	public List<ProductPrice> selectAllUsingProductId(Integer productId) {
+	public List<ProductPrice> selectAllUsingProductId(Long productId) {
 		Map<String, ?> params = Collections.singletonMap("productId", productId);
 		return jdbc.query(SELECT_ALL_USING_PRODUCT_ID, params, rowMapper);
 	}

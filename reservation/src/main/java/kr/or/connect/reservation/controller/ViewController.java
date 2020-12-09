@@ -31,6 +31,36 @@ public class ViewController {
 		return "mainpage";
 	}
 
+	@GetMapping(path = "/detail")
+	public String detail(ModelMap model) {
+		return "detail";
+	}
+
+	@GetMapping(path = "/review")
+	public String review(ModelMap model) {
+		return "review";
+	}
+
+	@GetMapping(path = "/reserve")
+	public String reserve(ModelMap model) {
+		return "reserve";
+	}
+
+	@GetMapping(path = "/bookinglogin")
+	public String bookinglogin(ModelMap model) {
+		return "bookinglogin";
+	}
+
+	@GetMapping(path = "/myreservation")
+	public String myreservation(ModelMap model) {
+		return "myreservation";
+	}
+
+	@GetMapping(path = "/reviewWrite")
+	public String reviewWrite(ModelMap model) {
+		return "reviewWrite";
+	}
+
 	@GetMapping(path = "/login")
 	public String login(
 		@RequestParam(name = "reservationEmail", required = false) String reservationEmail, ModelMap model) {
