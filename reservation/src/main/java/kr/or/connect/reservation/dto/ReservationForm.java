@@ -3,9 +3,9 @@ package kr.or.connect.reservation.dto;
 import java.util.List;
 
 public class ReservationForm {
-	Long reservationInfoId;
-	Long displayInfoId;
-	Long productId;
+	long reservationInfoId;
+	long displayInfoId;
+	long productId;
 	List<PriceForm> prices;
 	String reservationEmail;
 	String reservationName;
@@ -15,27 +15,27 @@ public class ReservationForm {
 	String createDate;
 	String modifyDate;
 
-	public Long getReservationInfoId() {
+	public long getReservationInfoId() {
 		return reservationInfoId;
 	}
 
-	public void setReservationInfoId(Long reservationInfoId) {
+	public void setReservationInfoId(long reservationInfoId) {
 		this.reservationInfoId = reservationInfoId;
 	}
 
-	public Long getDisplayInfoId() {
+	public long getDisplayInfoId() {
 		return displayInfoId;
 	}
 
-	public void setDisplayInfoId(Long displayInfoId) {
+	public void setDisplayInfoId(long displayInfoId) {
 		this.displayInfoId = displayInfoId;
 	}
 
-	public Long getProductId() {
+	public long getProductId() {
 		return productId;
 	}
 
-	public void setProductId(Long productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 

@@ -1,31 +1,31 @@
 package kr.or.connect.reservation.dto;
 
 public class DisplayInfoImage {
-	int displayInfoImageId;
-	int displayInfoId;
-	int fileId;
+	long displayInfoImageId;
+	long displayInfoId;
+	long fileId;
 	String fileName;
 	String saveFileName;
 	String contentType;
 	boolean deleteFlag;
 	String createDate;
 	String modifyDate;
-	public int getDisplayInfoImageId() {
+	public long getDisplayInfoImageId() {
 		return displayInfoImageId;
 	}
-	public void setDisplayInfoImageId(int displayInfoImageId) {
+	public void setDisplayInfoImageId(long displayInfoImageId) {
 		this.displayInfoImageId = displayInfoImageId;
 	}
-	public int getDisplayInfoId() {
+	public long getDisplayInfoId() {
 		return displayInfoId;
 	}
-	public void setDisplayInfoId(int displayInfoId) {
+	public void setDisplayInfoId(long displayInfoId) {
 		this.displayInfoId = displayInfoId;
 	}
-	public int getFileId() {
+	public long getFileId() {
 		return fileId;
 	}
-	public void setFileId(int fileId) {
+	public void setFileId(long fileId) {
 		this.fileId = fileId;
 	}
 	public String getFileName() {

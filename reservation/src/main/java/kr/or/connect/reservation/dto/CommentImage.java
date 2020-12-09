@@ -1,38 +1,38 @@
 package kr.or.connect.reservation.dto;
 
 public class CommentImage {
-	int imageId;
-	int reservationInfoId;
-	int reservationUserCommentId;
-	int fileId;
+	long imageId;
+	long reservationInfoId;
+	long reservationUserCommentId;
+	long fileId;
 	String fileName;
 	String saveFileName;
 	String contentType;
 	boolean deleteFlag;
 	String createDate;
 	String modifyDate;
-	public int getImageId() {
+	public long getImageId() {
 		return imageId;
 	}
-	public void setImageId(int imageId) {
+	public void setImageId(long imageId) {
 		this.imageId = imageId;
 	}
-	public int getReservationInfoId() {
+	public long getReservationInfoId() {
 		return reservationInfoId;
 	}
-	public void setReservationInfoId(int reservationInfoId) {
+	public void setReservationInfoId(long reservationInfoId) {
 		this.reservationInfoId = reservationInfoId;
 	}
-	public int getReservationUserCommentId() {
+	public long getReservationUserCommentId() {
 		return reservationUserCommentId;
 	}
-	public void setReservationUserCommentId(int reservationUserCommentId) {
+	public void setReservationUserCommentId(long reservationUserCommentId) {
 		this.reservationUserCommentId = reservationUserCommentId;
 	}
-	public int getFileId() {
+	public long getFileId() {
 		return fileId;
 	}
-	public void setFileId(int fileId) {
+	public void setFileId(long fileId) {
 		this.fileId = fileId;
 	}
 	public String getFileName() {

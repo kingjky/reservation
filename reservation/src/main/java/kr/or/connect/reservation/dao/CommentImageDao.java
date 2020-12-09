@@ -1,6 +1,7 @@
 package kr.or.connect.reservation.dao;
 
 import static kr.or.connect.reservation.dao.CommentImageDaoSqls.*;
+import static kr.or.connect.reservation.dao.DisplayInfoDaoSqls.SELECT_USING_DISPLAY_INFO_ID;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,8 +25,13 @@ public class CommentImageDao {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	public List<CommentImage> selectAllUsingCommentId(Integer commentId) {
+	public List<CommentImage> selectAllUsingCommentId(Long commentId) {
 		Map<String, ?> params = Collections.singletonMap("commentId", commentId);
 		return jdbc.query(SELECT_ALL_USING_COMMENT_ID, params, rowMapper);
+	}
+	
+	public CommentImage selectUsingImageId(Long imageId) {
+		Map<String, ?> params = Collections.singletonMap("imageId", imageId);
+		return jdbc.queryForObject(SELECT_USING_IMAGE_ID, params, rowMapper);
 	}
 }

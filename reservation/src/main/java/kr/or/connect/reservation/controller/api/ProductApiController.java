@@ -55,7 +55,7 @@ public class ProductApiController extends EntityController {
 		@PathVariable(name = "displayInfoId") Long displayInfoId) {
 		DisplayInfo displayInfo = displayService.getDisplayInfoUsingDisplayInfoId(displayInfoId);
 		DisplayInfoImage displayInfoImage = displayService.getDisplayInfoImageUsingDisplayInfoId(displayInfoId);
-		int productId = displayInfo.getProductId();
+		Long productId = displayInfo.getProductId();
 		List<ProductImage> productImages = productService.getProductImagesUsingProductId(productId);
 		List<ProductPrice> productPrices = productService.getProductPricesUsingProductId(productId);
 		List<Comment> comments = commentService.getCommentsUsingProductId(productId);

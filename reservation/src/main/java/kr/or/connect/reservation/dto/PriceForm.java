@@ -1,40 +1,40 @@
 package kr.or.connect.reservation.dto;
 
 public class PriceForm {
-	Long count;
-	Long productPriceId;
-	Long reservationInfoId;
-	Long reservationInfoPriceId;
+	long count;
+	long productPriceId;
+	long reservationInfoId;
+	long reservationInfoPriceId;
 
-	public Long getCount() {
+	public long getCount() {
 		return count;
 	}
 
-	public void setCount(Long count) {
+	public void setCount(long count) {
 		this.count = count;
 	}
 
-	public Long getProductPriceId() {
+	public long getProductPriceId() {
 		return productPriceId;
 	}
 
-	public void setProductPriceId(Long productPriceId) {
+	public void setProductPriceId(long productPriceId) {
 		this.productPriceId = productPriceId;
 	}
 
-	public Long getReservationInfoId() {
+	public long getReservationInfoId() {
 		return reservationInfoId;
 	}
 
-	public void setReservationInfoId(Long reservationInfoId) {
+	public void setReservationInfoId(long reservationInfoId) {
 		this.reservationInfoId = reservationInfoId;
 	}
 
-	public Long getReservationInfoPriceId() {
+	public long getReservationInfoPriceId() {
 		return reservationInfoPriceId;
 	}
 
-	public void setReservationInfoPriceId(Long reservationInfoPriceId) {
+	public void setReservationInfoPriceId(long reservationInfoPriceId) {
 		this.reservationInfoPriceId = reservationInfoPriceId;
 	}
 
